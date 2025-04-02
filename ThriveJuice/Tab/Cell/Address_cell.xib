@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Jost-Regular.ttf">
+            <string>Jost-Regular</string>
+        </array>
+        <array key="Jost-SemiBold.ttf">
+            <string>Jost-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="140" id="KGk-i7-Jjw" customClass="Address_cell" customModule="ThriveJuice" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="395" height="140"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="395" height="140"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aJS-nI-Yq0" customClass="CardView" customModule="ThriveJuice" customModuleProvider="target">
+                        <rect key="frame" x="20" y="10" width="355" height="118"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8xL-R1-bOQ">
+                                <rect key="frame" x="8" y="9.9999999999999982" width="339" height="20.333333333333329"/>
+                                <fontDescription key="fontDescription" name="Jost-SemiBold" family="Jost" pointSize="14"/>
+                                <color key="textColor" name="Black"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eAG-iB-UEm">
+                                <rect key="frame" x="8" y="40.333333333333336" width="339" height="35.000000000000007"/>
+                                <string key="text">abc
+abc</string>
+                                <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="12"/>
+                                <color key="textColor" name="TextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="abc" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFs-iZ-jB9">
+                                <rect key="frame" x="8" y="85.333333333333329" width="339" height="17.666666666666671"/>
+                                <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="12"/>
+                                <color key="textColor" name="TextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="eAG-iB-UEm" firstAttribute="top" secondItem="8xL-R1-bOQ" secondAttribute="bottom" constant="10" id="0bN-Dq-nod"/>
+                            <constraint firstAttribute="trailing" secondItem="eAG-iB-UEm" secondAttribute="trailing" constant="8" id="5Oy-gu-Jkj"/>
+                            <constraint firstItem="TFs-iZ-jB9" firstAttribute="leading" secondItem="aJS-nI-Yq0" secondAttribute="leading" constant="8" id="HLp-sc-PPF"/>
+                            <constraint firstItem="8xL-R1-bOQ" firstAttribute="top" secondItem="aJS-nI-Yq0" secondAttribute="top" constant="10" id="HpW-kv-Afv"/>
+                            <constraint firstAttribute="bottom" secondItem="TFs-iZ-jB9" secondAttribute="bottom" constant="15" id="Lr1-oV-jOk"/>
+                            <constraint firstAttribute="trailing" secondItem="TFs-iZ-jB9" secondAttribute="trailing" constant="8" id="WfG-Ub-Xyd"/>
+                            <constraint firstItem="eAG-iB-UEm" firstAttribute="leading" secondItem="aJS-nI-Yq0" secondAttribute="leading" constant="8" id="X87-E8-SoR"/>
+                            <constraint firstItem="TFs-iZ-jB9" firstAttribute="top" secondItem="eAG-iB-UEm" secondAttribute="bottom" constant="10" id="lBS-xf-Za7"/>
+                            <constraint firstAttribute="trailing" secondItem="8xL-R1-bOQ" secondAttribute="trailing" constant="8" id="qfo-YX-bTN"/>
+                            <constraint firstItem="8xL-R1-bOQ" firstAttribute="leading" secondItem="aJS-nI-Yq0" secondAttribute="leading" constant="8" id="rMX-1Q-scl"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="aJS-nI-Yq0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" symbolic="YES" id="R9K-B3-vS6"/>
+                    <constraint firstItem="aJS-nI-Yq0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="fMq-Gn-3pl"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="aJS-nI-Yq0" secondAttribute="bottom" constant="5" id="noh-k0-kMD"/>
+                    <constraint firstAttribute="trailing" secondItem="aJS-nI-Yq0" secondAttribute="trailing" constant="20" symbolic="YES" id="qlB-SV-KIb"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="lbl_address" destination="eAG-iB-UEm" id="FQj-0x-z34"/>
+                <outlet property="lbl_city" destination="TFs-iZ-jB9" id="3Zt-Go-4dB"/>
+                <outlet property="lbl_id" destination="8xL-R1-bOQ" id="66L-4e-3fo"/>
+                <outlet property="vw_address" destination="aJS-nI-Yq0" id="ubK-DU-vGC"/>
+            </connections>
+            <point key="canvasLocation" x="83.206106870229007" y="31.690140845070424"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="Black">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TextColor">
+            <color red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

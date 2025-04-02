@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Jost-Medium.ttf">
+            <string>Jost-Medium</string>
+        </array>
+        <array key="Jost-Regular.ttf">
+            <string>Jost-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="70" id="KGk-i7-Jjw" customClass="Notification_cell" customModule="ThriveJuice" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="395" height="70"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="395" height="70"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gha-d2-qmg">
+                        <rect key="frame" x="20" y="9.9999999999999982" width="355" height="20.333333333333329"/>
+                        <fontDescription key="fontDescription" name="Jost-Medium" family="Jost" pointSize="14"/>
+                        <color key="textColor" name="Black"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13-07-2023, 10:03" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fwr-sa-CfD">
+                        <rect key="frame" x="20" y="38.333333333333336" width="355" height="17.666666666666664"/>
+                        <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="12"/>
+                        <color key="textColor" name="TextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AGC-Ka-syj">
+                        <rect key="frame" x="20" y="66" width="355" height="1"/>
+                        <color key="backgroundColor" name="BorderColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="oa1-jZ-3To"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="AGC-Ka-syj" secondAttribute="bottom" id="2jz-Qa-jLM"/>
+                    <constraint firstItem="gha-d2-qmg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="3gU-mm-ty7"/>
+                    <constraint firstItem="gha-d2-qmg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" symbolic="YES" id="6J7-MH-POd"/>
+                    <constraint firstAttribute="trailing" secondItem="gha-d2-qmg" secondAttribute="trailing" constant="20" symbolic="YES" id="9id-jT-vDL"/>
+                    <constraint firstAttribute="trailing" secondItem="Fwr-sa-CfD" secondAttribute="trailing" constant="20" symbolic="YES" id="AYU-Vh-ULV"/>
+                    <constraint firstItem="Fwr-sa-CfD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" symbolic="YES" id="MH7-e1-CRg"/>
+                    <constraint firstItem="AGC-Ka-syj" firstAttribute="top" secondItem="Fwr-sa-CfD" secondAttribute="bottom" constant="10" id="P51-EG-Jzb"/>
+                    <constraint firstItem="Fwr-sa-CfD" firstAttribute="top" secondItem="gha-d2-qmg" secondAttribute="bottom" constant="8" id="fb3-uT-9A2"/>
+                    <constraint firstAttribute="trailing" secondItem="AGC-Ka-syj" secondAttribute="trailing" constant="20" symbolic="YES" id="hiM-8n-9Th"/>
+                    <constraint firstItem="AGC-Ka-syj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" symbolic="YES" id="quD-9Z-hIz"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="lbl_date" destination="Fwr-sa-CfD" id="FFd-s2-eJd"/>
+                <outlet property="lbl_title" destination="gha-d2-qmg" id="jY8-Hc-1QV"/>
+            </connections>
+            <point key="canvasLocation" x="183.96946564885496" y="7.746478873239437"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="Black">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="BorderColor">
+            <color red="0.61960784313725492" green="0.61960784313725492" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TextColor">
+            <color red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

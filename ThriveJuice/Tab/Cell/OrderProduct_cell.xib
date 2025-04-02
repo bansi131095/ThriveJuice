@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Jost-Bold.ttf">
+            <string>Jost-Bold</string>
+        </array>
+        <array key="Jost-Medium.ttf">
+            <string>Jost-Medium</string>
+        </array>
+        <array key="Jost-Regular.ttf">
+            <string>Jost-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="125" id="KGk-i7-Jjw" customClass="OrderProduct_cell" customModule="ThriveJuice" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="395" height="125"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="395" height="125"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xcl-eE-YPB">
+                        <rect key="frame" x="10" y="2" width="296" height="25.333333333333332"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AWAKEN" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YrX-rs-DWi">
+                                <rect key="frame" x="0.0" y="0.0" width="251.66666666666666" height="20.333333333333332"/>
+                                <fontDescription key="fontDescription" name="Jost-Bold" family="Jost" pointSize="14"/>
+                                <color key="textColor" name="Black"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X 2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ty1-dK-Xkh">
+                                <rect key="frame" x="276" y="0.0" width="20" height="20.333333333333332"/>
+                                <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="14"/>
+                                <color key="textColor" name="Black"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="YrX-rs-DWi" firstAttribute="leading" secondItem="Xcl-eE-YPB" secondAttribute="leading" id="4fS-Zs-fve"/>
+                            <constraint firstAttribute="bottom" secondItem="YrX-rs-DWi" secondAttribute="bottom" constant="5" id="Gd9-TX-5bQ"/>
+                            <constraint firstItem="YrX-rs-DWi" firstAttribute="top" secondItem="Xcl-eE-YPB" secondAttribute="top" id="MLU-SA-P3e"/>
+                            <constraint firstItem="Ty1-dK-Xkh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="YrX-rs-DWi" secondAttribute="trailing" constant="3" id="NwT-qm-oHL"/>
+                            <constraint firstItem="Ty1-dK-Xkh" firstAttribute="top" secondItem="Xcl-eE-YPB" secondAttribute="top" id="V0V-e7-WUf"/>
+                            <constraint firstItem="YrX-rs-DWi" firstAttribute="width" secondItem="Xcl-eE-YPB" secondAttribute="width" multiplier="0.85" id="VuR-Vn-Aqe"/>
+                            <constraint firstAttribute="trailing" secondItem="Ty1-dK-Xkh" secondAttribute="trailing" id="nfy-dm-Q12"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$34.50" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FoY-ZU-ueL">
+                        <rect key="frame" x="314" y="2" width="44.666666666666686" height="20.333333333333332"/>
+                        <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="14"/>
+                        <color key="textColor" name="Black"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="321-UA-jaC">
+                        <rect key="frame" x="368.66666666666669" y="0.0" width="21.333333333333314" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="Bkx-Cd-Xlv"/>
+                            <constraint firstAttribute="width" constant="21.333333333333314" id="Ej5-18-WCj"/>
+                        </constraints>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal" image="cancel"/>
+                        <connections>
+                            <action selector="act_Cancel:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="gTU-II-goI"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jh6-xh-Wmz">
+                        <rect key="frame" x="12" y="29.333333333333332" width="371" height="0.0"/>
+                        <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="13"/>
+                        <color key="textColor" name="Black"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N8c-8S-Tae">
+                        <rect key="frame" x="12" y="33.333333333333336" width="43" height="0.0"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="43" id="jAP-Pl-mxh"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Jost-Medium" family="Jost" pointSize="12"/>
+                        <color key="textColor" name="Black"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oki-K8-3c7">
+                        <rect key="frame" x="60" y="33.333333333333336" width="323" height="0.0"/>
+                        <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="12"/>
+                        <color key="textColor" name="Black"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Jh6-xh-Wmz" firstAttribute="top" secondItem="Xcl-eE-YPB" secondAttribute="bottom" constant="2" id="1Uo-bs-GFd"/>
+                    <constraint firstItem="N8c-8S-Tae" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="BbS-Da-cFG"/>
+                    <constraint firstItem="Xcl-eE-YPB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="Ggv-8T-sjZ"/>
+                    <constraint firstAttribute="trailing" secondItem="Oki-K8-3c7" secondAttribute="trailing" constant="12" id="NXD-wq-0FG"/>
+                    <constraint firstAttribute="trailing" secondItem="321-UA-jaC" secondAttribute="trailing" constant="5" id="Q0m-GO-Bbh"/>
+                    <constraint firstItem="FoY-ZU-ueL" firstAttribute="leading" secondItem="Xcl-eE-YPB" secondAttribute="trailing" constant="8" id="RPG-Mt-tFH"/>
+                    <constraint firstItem="FoY-ZU-ueL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="Ygb-9k-lgc"/>
+                    <constraint firstAttribute="trailing" secondItem="Jh6-xh-Wmz" secondAttribute="trailing" constant="12" id="aeM-ZR-AKW"/>
+                    <constraint firstItem="Oki-K8-3c7" firstAttribute="top" secondItem="Jh6-xh-Wmz" secondAttribute="bottom" constant="4" id="auE-JQ-30U"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Oki-K8-3c7" secondAttribute="bottom" constant="10" id="ezq-aB-0o1"/>
+                    <constraint firstItem="321-UA-jaC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ila-BX-lJZ"/>
+                    <constraint firstItem="Jh6-xh-Wmz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="jD3-3Q-tNq"/>
+                    <constraint firstItem="Oki-K8-3c7" firstAttribute="leading" secondItem="N8c-8S-Tae" secondAttribute="trailing" constant="5" id="mSv-yd-oUT"/>
+                    <constraint firstItem="N8c-8S-Tae" firstAttribute="centerY" secondItem="Oki-K8-3c7" secondAttribute="centerY" id="pHI-UN-cA5"/>
+                    <constraint firstItem="321-UA-jaC" firstAttribute="leading" secondItem="FoY-ZU-ueL" secondAttribute="trailing" constant="10" id="sh8-Dl-eTc"/>
+                    <constraint firstItem="Xcl-eE-YPB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="wO8-P8-Ztd"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="act_cancel" destination="321-UA-jaC" id="aKy-NS-Pz2"/>
+                <outlet property="lbl_Addon" destination="Oki-K8-3c7" id="ot0-PJ-BRB"/>
+                <outlet property="lbl_price" destination="FoY-ZU-ueL" id="s0d-nl-yag"/>
+                <outlet property="lbl_product" destination="YrX-rs-DWi" id="za4-hO-Gxj"/>
+                <outlet property="lbl_qty" destination="Ty1-dK-Xkh" id="ej0-Ae-NFE"/>
+                <outlet property="lbl_size" destination="Jh6-xh-Wmz" id="fUr-rX-Hqw"/>
+                <outlet property="lbl_title" destination="N8c-8S-Tae" id="Lh0-Ym-ANv"/>
+                <outlet property="lbl_titleWidth_const" destination="jAP-Pl-mxh" id="HiY-un-ThO"/>
+            </connections>
+            <point key="canvasLocation" x="183.96946564885496" y="27.112676056338028"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="cancel" width="21.333333969116211" height="21.333333969116211"/>
+        <namedColor name="Black">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

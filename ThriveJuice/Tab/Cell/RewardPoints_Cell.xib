@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Jost-Regular.ttf">
+            <string>Jost-Regular</string>
+        </array>
+        <array key="Jost-SemiBold.ttf">
+            <string>Jost-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="50" id="KGk-i7-Jjw" customClass="RewardPoints_Cell" customModule="ThriveJuice" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="395" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="395" height="50"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oeK-uF-NSo">
+                        <rect key="frame" x="16" y="0.0" width="363" height="47"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Reward" translatesAutoresizingMaskIntoConstraints="NO" id="uNe-tS-ztI">
+                                <rect key="frame" x="12" y="14" width="22" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="22" id="5k1-1e-Etg"/>
+                                    <constraint firstAttribute="height" constant="22" id="jja-bG-hvL"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Signup Bonus" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hl8-Wb-Igd">
+                                <rect key="frame" x="42" y="13.999999999999998" width="82" height="20.333333333333329"/>
+                                <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="14"/>
+                                <color key="textColor" name="TextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100 Points" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ATC-tz-GtG">
+                                <rect key="frame" x="284" y="13.999999999999998" width="67" height="20.333333333333329"/>
+                                <fontDescription key="fontDescription" name="Jost-SemiBold" family="Jost" pointSize="14"/>
+                                <color key="textColor" name="Green"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RBP-w0-dPV">
+                                <rect key="frame" x="12" y="46" width="339" height="1"/>
+                                <color key="backgroundColor" name="TextGray"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="HX9-2y-APf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" name="Gray 1"/>
+                        <constraints>
+                            <constraint firstItem="uNe-tS-ztI" firstAttribute="leading" secondItem="oeK-uF-NSo" secondAttribute="leading" constant="12" id="1uQ-SH-7ah"/>
+                            <constraint firstItem="RBP-w0-dPV" firstAttribute="leading" secondItem="oeK-uF-NSo" secondAttribute="leading" constant="12" id="FY4-te-fBH"/>
+                            <constraint firstItem="hl8-Wb-Igd" firstAttribute="top" secondItem="oeK-uF-NSo" secondAttribute="top" constant="14" id="Rav-Ck-Tud"/>
+                            <constraint firstItem="ATC-tz-GtG" firstAttribute="top" secondItem="oeK-uF-NSo" secondAttribute="top" constant="14" id="Rsb-SR-K0p"/>
+                            <constraint firstAttribute="bottom" secondItem="RBP-w0-dPV" secondAttribute="bottom" id="SuF-oA-rgt"/>
+                            <constraint firstItem="RBP-w0-dPV" firstAttribute="top" secondItem="uNe-tS-ztI" secondAttribute="bottom" constant="10" id="VgX-Bo-Bcv"/>
+                            <constraint firstItem="uNe-tS-ztI" firstAttribute="top" secondItem="oeK-uF-NSo" secondAttribute="top" constant="14" id="ZZm-oD-qZA"/>
+                            <constraint firstItem="hl8-Wb-Igd" firstAttribute="leading" secondItem="uNe-tS-ztI" secondAttribute="trailing" constant="8" id="Zt8-cs-bFF"/>
+                            <constraint firstAttribute="trailing" secondItem="ATC-tz-GtG" secondAttribute="trailing" constant="12" id="kkG-3y-GUj"/>
+                            <constraint firstAttribute="trailing" secondItem="RBP-w0-dPV" secondAttribute="trailing" constant="12" id="uM6-Pb-oId"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="oeK-uF-NSo" secondAttribute="bottom" id="HF6-xc-9VQ"/>
+                    <constraint firstItem="oeK-uF-NSo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="dz4-kg-7pG"/>
+                    <constraint firstAttribute="trailing" secondItem="oeK-uF-NSo" secondAttribute="trailing" constant="16" id="gu6-Ym-E71"/>
+                    <constraint firstItem="oeK-uF-NSo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="zIV-ni-Umx"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="lbl_note" destination="hl8-Wb-Igd" id="h8m-OR-IpH"/>
+                <outlet property="lbl_rewardsPoints" destination="ATC-tz-GtG" id="zxG-2Y-WlW"/>
+            </connections>
+            <point key="canvasLocation" x="183.96946564885496" y="0.70422535211267612"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Reward" width="40" height="40"/>
+        <namedColor name="Gray 1">
+            <color red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Green">
+            <color red="0.062745098039215685" green="0.54509803921568623" blue="0.16470588235294117" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TextColor">
+            <color red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TextGray">
+            <color red="0.25098039215686274" green="0.25098039215686274" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

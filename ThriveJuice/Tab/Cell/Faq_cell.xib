@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Jost-Medium.ttf">
+            <string>Jost-Medium</string>
+        </array>
+        <array key="Jost-Regular.ttf">
+            <string>Jost-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="130" id="KGk-i7-Jjw" customClass="Faq_cell" customModule="ThriveJuice" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="130"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="130"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hso-px-rNg">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="130"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OLD-zb-AF1">
+                                <rect key="frame" x="16" y="10.000000000000002" width="368" height="17.666666666666671"/>
+                                <fontDescription key="fontDescription" name="Jost-Medium" family="Jost" pointSize="12"/>
+                                <color key="textColor" name="Black"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lZb-Pw-eNm">
+                                <rect key="frame" x="0.0" y="35.666666666666664" width="414" height="1"/>
+                                <color key="backgroundColor" name="BorderColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="8CF-mB-aSo"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dEL-PR-3vc">
+                                <rect key="frame" x="394" y="11.333333333333336" width="15" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="15" id="LSu-aE-ozB"/>
+                                    <constraint firstAttribute="height" constant="15" id="bT2-uA-lES"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="down-arrow"/>
+                                <connections>
+                                    <action selector="act_Arrow:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="UHV-5S-QhT"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d6s-5M-uw0">
+                                <rect key="frame" x="0.0" y="36.666666666666664" width="414" height="19"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DqR-1b-3d2">
+                                        <rect key="frame" x="16" y="0.0" width="382" height="19"/>
+                                        <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="DqR-1b-3d2" firstAttribute="top" secondItem="d6s-5M-uw0" secondAttribute="top" id="AEc-n8-rZh"/>
+                                    <constraint firstAttribute="bottom" secondItem="DqR-1b-3d2" secondAttribute="bottom" id="FNG-jR-rvZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="DqR-1b-3d2" secondAttribute="trailing" constant="16" id="mH2-NU-Nvb"/>
+                                    <constraint firstItem="DqR-1b-3d2" firstAttribute="leading" secondItem="d6s-5M-uw0" secondAttribute="leading" constant="16" id="q9U-AC-aC8"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="OLD-zb-AF1" firstAttribute="leading" secondItem="hso-px-rNg" secondAttribute="leading" constant="16" id="0Hu-fl-esq"/>
+                            <constraint firstAttribute="trailing" secondItem="dEL-PR-3vc" secondAttribute="trailing" constant="5" id="2W9-su-T3U"/>
+                            <constraint firstItem="OLD-zb-AF1" firstAttribute="top" secondItem="hso-px-rNg" secondAttribute="top" constant="10" id="E3M-fE-anY"/>
+                            <constraint firstItem="d6s-5M-uw0" firstAttribute="leading" secondItem="hso-px-rNg" secondAttribute="leading" id="JFj-8z-6eu"/>
+                            <constraint firstAttribute="trailing" secondItem="lZb-Pw-eNm" secondAttribute="trailing" id="LTC-AQ-tYx"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="d6s-5M-uw0" secondAttribute="bottom" id="RsL-OB-mIr"/>
+                            <constraint firstItem="dEL-PR-3vc" firstAttribute="centerY" secondItem="OLD-zb-AF1" secondAttribute="centerY" id="VTK-f1-jva"/>
+                            <constraint firstItem="d6s-5M-uw0" firstAttribute="top" secondItem="lZb-Pw-eNm" secondAttribute="bottom" id="emU-LW-W5j"/>
+                            <constraint firstItem="lZb-Pw-eNm" firstAttribute="top" secondItem="OLD-zb-AF1" secondAttribute="bottom" constant="8" id="n4V-Q6-Xib"/>
+                            <constraint firstItem="dEL-PR-3vc" firstAttribute="leading" secondItem="OLD-zb-AF1" secondAttribute="trailing" constant="10" id="s8Y-fA-O0E"/>
+                            <constraint firstAttribute="trailing" secondItem="d6s-5M-uw0" secondAttribute="trailing" id="sor-bL-TFM"/>
+                            <constraint firstItem="lZb-Pw-eNm" firstAttribute="leading" secondItem="hso-px-rNg" secondAttribute="leading" id="zKs-Ae-Qd8"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="hso-px-rNg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="M4c-7Q-qcB"/>
+                    <constraint firstItem="hso-px-rNg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="UDR-CY-Rx8"/>
+                    <constraint firstAttribute="trailing" secondItem="hso-px-rNg" secondAttribute="trailing" id="ici-1d-upS"/>
+                    <constraint firstAttribute="bottom" secondItem="hso-px-rNg" secondAttribute="bottom" id="zJb-Qf-MsC"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="btn_arrow" destination="dEL-PR-3vc" id="bQW-0c-scJ"/>
+                <outlet property="lbl_answer" destination="DqR-1b-3d2" id="MzR-RR-h6a"/>
+                <outlet property="lbl_title" destination="OLD-zb-AF1" id="c8k-Wn-QLg"/>
+                <outlet property="vw_answer" destination="d6s-5M-uw0" id="9zG-zz-30i"/>
+            </connections>
+            <point key="canvasLocation" x="198.47328244274809" y="28.87323943661972"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="down-arrow" width="21.333333969116211" height="21.333333969116211"/>
+        <namedColor name="Black">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="BorderColor">
+            <color red="0.61960784313725492" green="0.61960784313725492" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
