@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -75,13 +75,13 @@
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jh6-xh-Wmz">
-                        <rect key="frame" x="12" y="29.333333333333332" width="371" height="0.0"/>
-                        <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="13"/>
+                        <rect key="frame" x="12" y="27.333333333333332" width="371" height="0.0"/>
+                        <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="12"/>
                         <color key="textColor" name="Black"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N8c-8S-Tae">
-                        <rect key="frame" x="12" y="33.333333333333336" width="43" height="0.0"/>
+                        <rect key="frame" x="12" y="27.333333333333332" width="43" height="0.0"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="43" id="jAP-Pl-mxh"/>
                         </constraints>
@@ -90,14 +90,14 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oki-K8-3c7">
-                        <rect key="frame" x="60" y="33.333333333333336" width="323" height="0.0"/>
+                        <rect key="frame" x="60" y="27.333333333333332" width="323" height="0.0"/>
                         <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="12"/>
                         <color key="textColor" name="Black"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Jh6-xh-Wmz" firstAttribute="top" secondItem="Xcl-eE-YPB" secondAttribute="bottom" constant="2" id="1Uo-bs-GFd"/>
+                    <constraint firstItem="Jh6-xh-Wmz" firstAttribute="top" secondItem="Xcl-eE-YPB" secondAttribute="bottom" id="1Uo-bs-GFd"/>
                     <constraint firstItem="N8c-8S-Tae" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="BbS-Da-cFG"/>
                     <constraint firstItem="Xcl-eE-YPB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="Ggv-8T-sjZ"/>
                     <constraint firstAttribute="trailing" secondItem="Oki-K8-3c7" secondAttribute="trailing" constant="12" id="NXD-wq-0FG"/>
@@ -105,7 +105,7 @@
                     <constraint firstItem="FoY-ZU-ueL" firstAttribute="leading" secondItem="Xcl-eE-YPB" secondAttribute="trailing" constant="8" id="RPG-Mt-tFH"/>
                     <constraint firstItem="FoY-ZU-ueL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="Ygb-9k-lgc"/>
                     <constraint firstAttribute="trailing" secondItem="Jh6-xh-Wmz" secondAttribute="trailing" constant="12" id="aeM-ZR-AKW"/>
-                    <constraint firstItem="Oki-K8-3c7" firstAttribute="top" secondItem="Jh6-xh-Wmz" secondAttribute="bottom" constant="4" id="auE-JQ-30U"/>
+                    <constraint firstItem="Oki-K8-3c7" firstAttribute="top" secondItem="Jh6-xh-Wmz" secondAttribute="bottom" id="auE-JQ-30U"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Oki-K8-3c7" secondAttribute="bottom" constant="10" id="ezq-aB-0o1"/>
                     <constraint firstItem="321-UA-jaC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ila-BX-lJZ"/>
                     <constraint firstItem="Jh6-xh-Wmz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="jD3-3Q-tNq"/>

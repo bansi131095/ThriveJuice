@@ -140,6 +140,7 @@ struct Product_Addons : Mappable {
     var addon_Title : String?
     var addons : [Addons]?
     var Selection_Type : String?
+    var Selection_Required : String?
 
     init?(map: Map) {
 
@@ -150,6 +151,7 @@ struct Product_Addons : Mappable {
         addon_Title <- map["Addon_Title"]
         addons <- map["Addons"]
         Selection_Type <- map["Selection_Type"]
+        Selection_Required <- map["Selection_Required"]
     }
 
 }

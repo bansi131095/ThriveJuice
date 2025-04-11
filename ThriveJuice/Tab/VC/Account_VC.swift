@@ -17,7 +17,7 @@ class Account_VC: UIViewController {
     @IBOutlet weak var lbl_cartTotal: UILabel!
     
     var dict_Profile: User?
-    
+    var imagePicker = UIImagePickerController()
     
     //MARK:- View Life Cycle
     override func viewDidLoad() {
@@ -86,6 +86,28 @@ class Account_VC: UIViewController {
     }
     
     @IBAction func act_Camera(_ sender: UIButton) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "Take Photo", style: .default, handler: { _ in
+                self.openCamera()
+            }))
+            
+            alert.addAction(UIAlertAction(title: "Choose Photo", style: .default, handler: { _ in
+                self.openGallary()
+            }))
+            
+            alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
+            
+            //If you want work actionsheet on ipad then you have to use popoverPresentationController to present the actionsheet, otherwise app will crash in iPad
+            switch UIDevice.current.userInterfaceIdiom {
+            case .pad:
+                alert.popoverPresentationController?.sourceView = sender
+                alert.popoverPresentationController?.sourceRect = sender.bounds
+                alert.popoverPresentationController?.permittedArrowDirections = .up
+            default:
+                break
+            }
+            
+            self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func act_PersonalDetails(_ sender: UIButton) {
@@ -159,6 +181,31 @@ class Account_VC: UIViewController {
             }
         })
     }
+    
+    // MARK: - imagePicker methods
+    func openCamera() {
+        if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerController.SourceType.camera)){
+            imagePicker.sourceType = UIImagePickerController.SourceType.camera
+            //If you dont want to edit the photo then you can set allowsEditing to false
+            imagePicker.allowsEditing = true
+            imagePicker.delegate = self
+            self.present(imagePicker, animated: true, completion: nil)
+        }else{
+            let alert  = UIAlertController(title: "Warning", message: "You don't have camera", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+
+    // MARK: - Choose image from camera roll
+    func openGallary() {
+        imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
+        // If you don't want to edit the photo then you can set allowsEditing to false
+        imagePicker.allowsEditing = true
+        imagePicker.delegate = self
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
     
     //MARK:- API Call
     func call_ProfileAPI() {
@@ -238,4 +285,24 @@ class Account_VC: UIViewController {
     }
     */
 
+}
+
+
+extension Account_VC: UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        // Get the image from the info dictionary.
+        if let editedImage = info[.editedImage] as? UIImage {
+            self.img_vw.image = editedImage
+        }
+        
+        // Dismiss the UIImagePicker after selection
+        picker.dismiss(animated: true, completion: nil)
+    }
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.isNavigationBarHidden = false
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 }

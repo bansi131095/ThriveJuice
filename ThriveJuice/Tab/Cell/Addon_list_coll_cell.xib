@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -24,10 +24,10 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XJg-BQ-tnz">
-                        <rect key="frame" x="0.0" y="0.0" width="199" height="43"/>
+                        <rect key="frame" x="5" y="0.0" width="189" height="43"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Topping 1 - $0.10" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8EP-fQ-h3J">
-                                <rect key="frame" x="14" y="8" width="171" height="27"/>
+                                <rect key="frame" x="14" y="8" width="161" height="27"/>
                                 <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="14"/>
                                 <color key="textColor" name="AccentColor"/>
                                 <nil key="highlightedColor"/>
@@ -57,8 +57,8 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="XJg-BQ-tnz" secondAttribute="bottom" id="EsC-lZ-XjW"/>
-                <constraint firstItem="XJg-BQ-tnz" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Sw3-en-6ET"/>
-                <constraint firstAttribute="trailing" secondItem="XJg-BQ-tnz" secondAttribute="trailing" id="eY2-Su-qMM"/>
+                <constraint firstItem="XJg-BQ-tnz" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="Sw3-en-6ET"/>
+                <constraint firstAttribute="trailing" secondItem="XJg-BQ-tnz" secondAttribute="trailing" constant="5" id="eY2-Su-qMM"/>
                 <constraint firstItem="XJg-BQ-tnz" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="qy7-QB-bVa"/>
             </constraints>
             <size key="customSize" width="199" height="40"/>

@@ -781,7 +781,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shop" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yje-Ut-T1U">
-                                        <rect key="frame" x="178.33333333333334" y="13.333333333333325" width="36.666666666666657" height="23.333333333333332"/>
+                                        <rect key="frame" x="178.33333333333334" y="13.333333333333327" width="36.666666666666657" height="23.333333333333329"/>
                                         <fontDescription key="fontDescription" name="Jost-Medium" family="Jost" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1751,7 +1751,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notification" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RCN-MN-F3g">
-                                        <rect key="frame" x="155.66666666666666" y="13.333333333333325" width="81.666666666666657" height="23.333333333333332"/>
+                                        <rect key="frame" x="155.66666666666666" y="13.333333333333327" width="81.666666666666657" height="23.333333333333329"/>
                                         <fontDescription key="fontDescription" name="Jost-Medium" family="Jost" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1828,7 +1828,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stores" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HKs-cG-uj6">
-                                        <rect key="frame" x="174.66666666666666" y="13.333333333333325" width="44" height="23.333333333333332"/>
+                                        <rect key="frame" x="174.66666666666666" y="13.333333333333327" width="44" height="23.333333333333329"/>
                                         <fontDescription key="fontDescription" name="Jost-Medium" family="Jost" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1969,7 +1969,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stores" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="heu-1o-fgK">
-                                        <rect key="frame" x="174.66666666666666" y="13.333333333333325" width="44" height="23.333333333333332"/>
+                                        <rect key="frame" x="174.66666666666666" y="13.333333333333327" width="44" height="23.333333333333329"/>
                                         <fontDescription key="fontDescription" name="Jost-Medium" family="Jost" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -2587,7 +2587,7 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Offers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DuT-44-c00">
-                                        <rect key="frame" x="175" y="13.333333333333325" width="43.333333333333343" height="23.333333333333332"/>
+                                        <rect key="frame" x="175" y="13.333333333333327" width="43.333333333333343" height="23.333333333333329"/>
                                         <fontDescription key="fontDescription" name="Jost-Medium" family="Jost" pointSize="16"/>
                                         <color key="textColor" name="Gray2"/>
                                         <nil key="highlightedColor"/>
@@ -2893,7 +2893,7 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Cart" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OWW-K8-WAm">
-                                        <rect key="frame" x="169" y="13.333333333333325" width="55.333333333333343" height="23.333333333333332"/>
+                                        <rect key="frame" x="169" y="13.333333333333327" width="55.333333333333343" height="23.333333333333329"/>
                                         <fontDescription key="fontDescription" name="Jost-Medium" family="Jost" pointSize="16"/>
                                         <color key="textColor" name="Gray2"/>
                                         <nil key="highlightedColor"/>
@@ -3312,7 +3312,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order Summary" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="keA-yI-gcG">
-                                        <rect key="frame" x="140" y="13.333333333333325" width="113.33333333333331" height="23.333333333333332"/>
+                                        <rect key="frame" x="140" y="13.333333333333327" width="113.33333333333331" height="23.333333333333329"/>
                                         <fontDescription key="fontDescription" name="Jost-Medium" family="Jost" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -4114,7 +4114,7 @@ You can use it for a discount on future orders</string>
                                 <rect key="frame" x="0.0" y="59" width="393" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Orders" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yj8-U7-hKj">
-                                        <rect key="frame" x="171.66666666666666" y="13.333333333333325" width="49.666666666666657" height="23.333333333333332"/>
+                                        <rect key="frame" x="171.66666666666666" y="13.333333333333327" width="49.666666666666657" height="23.333333333333329"/>
                                         <fontDescription key="fontDescription" name="Jost-Medium" family="Jost" pointSize="16"/>
                                         <color key="textColor" name="Gray2"/>
                                         <nil key="highlightedColor"/>
@@ -4151,7 +4151,7 @@ You can use it for a discount on future orders</string>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All Orders" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kN3-31-a8b">
-                                        <rect key="frame" x="12" y="5.6666666666666581" width="95" height="19"/>
+                                        <rect key="frame" x="12" y="5.6666666666666572" width="95" height="19"/>
                                         <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="13"/>
                                         <color key="textColor" name="Black"/>
                                         <nil key="highlightedColor"/>
@@ -4504,7 +4504,7 @@ You can use it for a discount on future orders</string>
                                 <rect key="frame" x="0.0" y="109" width="393" height="757"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fK2-Nb-etu">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="757"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="776"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#123456" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ybT-aO-a7U">
                                                 <rect key="frame" x="23.999999999999996" y="28" width="62.666666666666657" height="20.333333333333329"/>
@@ -4542,8 +4542,33 @@ You can use it for a discount on future orders</string>
                                                 <color key="textColor" name="TextGray"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0ZS-Fd-sRN">
+                                                <rect key="frame" x="22" y="80.333333333333343" width="347" height="30"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delivery Time:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AgD-TR-loD">
+                                                        <rect key="frame" x="171.66666666666666" y="5" width="84.999999999999972" height="20.333333333333332"/>
+                                                        <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="14"/>
+                                                        <color key="textColor" name="TextGray"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14:00 - 17:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pKz-Ne-I6m">
+                                                        <rect key="frame" x="256.66666666666669" y="5" width="90.333333333333314" height="20.333333333333332"/>
+                                                        <fontDescription key="fontDescription" name="Jost-Bold" family="Jost" pointSize="14"/>
+                                                        <color key="textColor" name="TextGray"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="Bwf-0V-vIq"/>
+                                                    <constraint firstItem="pKz-Ne-I6m" firstAttribute="leading" secondItem="AgD-TR-loD" secondAttribute="trailing" id="Eb9-Dx-Auc"/>
+                                                    <constraint firstAttribute="trailing" secondItem="pKz-Ne-I6m" secondAttribute="trailing" id="H1m-Sd-FIr"/>
+                                                    <constraint firstItem="AgD-TR-loD" firstAttribute="centerY" secondItem="0ZS-Fd-sRN" secondAttribute="centerY" id="H6V-Em-WJP"/>
+                                                    <constraint firstItem="pKz-Ne-I6m" firstAttribute="centerY" secondItem="0ZS-Fd-sRN" secondAttribute="centerY" id="jzQ-iW-m23"/>
+                                                </constraints>
+                                            </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9tb-Pe-DM0">
-                                                <rect key="frame" x="24" y="84.333333333333343" width="345" height="1"/>
+                                                <rect key="frame" x="24" y="115.33333333333334" width="345" height="1"/>
                                                 <color key="backgroundColor" name="TextGray"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="MUp-Qa-jfp"/>
@@ -4553,14 +4578,14 @@ You can use it for a discount on future orders</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="JgK-2F-f5B">
-                                                <rect key="frame" x="20" y="90.333333333333343" width="353" height="60"/>
+                                                <rect key="frame" x="20" y="121.33333333333334" width="353" height="60"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="60" id="n6d-MG-KpQ"/>
                                                 </constraints>
                                             </tableView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UTJ-IZ-jIv">
-                                                <rect key="frame" x="24" y="155.33333333333331" width="345" height="1"/>
+                                                <rect key="frame" x="24" y="186.33333333333331" width="345" height="1"/>
                                                 <color key="backgroundColor" name="TextGray"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="aTQ-I3-1R9"/>
@@ -4570,7 +4595,7 @@ You can use it for a discount on future orders</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="JzN-vh-hdw">
-                                                <rect key="frame" x="24" y="155.33333333333331" width="345" height="200"/>
+                                                <rect key="frame" x="24" y="186.33333333333331" width="345" height="200"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Yz-dE-6xT">
                                                         <rect key="frame" x="0.0" y="0.0" width="345" height="25"/>
@@ -4799,7 +4824,7 @@ You can use it for a discount on future orders</string>
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xon-IE-UcB">
-                                                <rect key="frame" x="24" y="365.33333333333331" width="345" height="1"/>
+                                                <rect key="frame" x="24" y="396.33333333333331" width="345" height="1"/>
                                                 <color key="backgroundColor" name="TextGray"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="P2I-uI-Djd"/>
@@ -4809,16 +4834,16 @@ You can use it for a discount on future orders</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YFM-L5-qlF">
-                                                <rect key="frame" x="24" y="366.33333333333331" width="345" height="33.333333333333314"/>
+                                                <rect key="frame" x="24" y="397.33333333333331" width="345" height="33.333333333333314"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ML-kJ-R8F">
-                                                        <rect key="frame" x="0.0" y="7.9999999999999982" width="35" height="23.333333333333329"/>
+                                                        <rect key="frame" x="0.0" y="8.0000000000000551" width="35" height="23.333333333333329"/>
                                                         <fontDescription key="fontDescription" name="Jost-Bold" family="Jost" pointSize="16"/>
                                                         <color key="textColor" name="TextColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$84.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bUB-AD-wKH">
-                                                        <rect key="frame" x="287.33333333333331" y="7.9999999999999982" width="57.666666666666686" height="23.333333333333329"/>
+                                                        <rect key="frame" x="287.33333333333331" y="8.0000000000000551" width="57.666666666666686" height="23.333333333333329"/>
                                                         <fontDescription key="fontDescription" name="Jost-Bold" family="Jost" pointSize="16"/>
                                                         <color key="textColor" name="TextColor"/>
                                                         <nil key="highlightedColor"/>
@@ -4836,7 +4861,7 @@ You can use it for a discount on future orders</string>
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rhD-rp-qsU">
-                                                <rect key="frame" x="24" y="415.66666666666663" width="345" height="203"/>
+                                                <rect key="frame" x="24" y="446.66666666666663" width="345" height="203"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nWY-BE-4R9">
                                                         <rect key="frame" x="0.0" y="0.0" width="345" height="91"/>
@@ -4932,9 +4957,9 @@ Saskatoon, SK S7V 0R6</string>
                                                 </userDefinedRuntimeAttributes>
                                             </stackView>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hf9-RI-jHt">
-                                                <rect key="frame" x="121.66666666666669" y="648.66666666666663" width="150" height="34"/>
+                                                <rect key="frame" x="71.666666666666686" y="679.66666666666663" width="250" height="22"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="150" id="s2a-Ht-stB"/>
+                                                    <constraint firstAttribute="width" constant="250" id="oUR-pm-Xs4"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Jost-Medium" family="Jost" pointSize="15"/>
                                                 <inset key="titleEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -4947,14 +4972,14 @@ Saskatoon, SK S7V 0R6</string>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ePA-ZZ-eBd">
-                                                <rect key="frame" x="121.66666666666669" y="648.66666666666663" width="150" height="34"/>
+                                                <rect key="frame" x="71.666666666666686" y="679.66666666666663" width="250" height="34"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="150" id="x1H-63-T68"/>
+                                                    <constraint firstAttribute="width" constant="250" id="YU2-eR-hu6"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Jost-Medium" family="Jost" pointSize="15"/>
                                                 <inset key="titleEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" title="CANCEL">
+                                                <state key="normal" title="CANCEL SUBSCRIPTION">
                                                     <color key="titleColor" name="Red"/>
                                                 </state>
                                                 <connections>
@@ -4962,7 +4987,7 @@ Saskatoon, SK S7V 0R6</string>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7r9-O0-bB2">
-                                                <rect key="frame" x="121.66666666666669" y="697.66666666666663" width="150" height="34"/>
+                                                <rect key="frame" x="121.66666666666669" y="716.66666666666663" width="150" height="34"/>
                                                 <color key="backgroundColor" name="AccentColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="YNf-Sa-TaJ"/>
@@ -4991,10 +5016,12 @@ Saskatoon, SK S7V 0R6</string>
                                             <constraint firstItem="ey0-65-EI2" firstAttribute="leading" secondItem="GFR-1b-3r8" secondAttribute="trailing" constant="2" id="4vL-P2-2lc"/>
                                             <constraint firstItem="OYs-KL-fs0" firstAttribute="top" secondItem="fK2-Nb-etu" secondAttribute="top" constant="28" id="5NW-61-Co1"/>
                                             <constraint firstItem="YFM-L5-qlF" firstAttribute="leading" secondItem="fK2-Nb-etu" secondAttribute="leading" constant="24" id="6dk-p5-ioY"/>
+                                            <constraint firstItem="0ZS-Fd-sRN" firstAttribute="trailing" secondItem="ey0-65-EI2" secondAttribute="trailing" id="7CR-vG-XQr"/>
                                             <constraint firstItem="Wmk-0o-Xin" firstAttribute="top" secondItem="OYs-KL-fs0" secondAttribute="top" id="82M-VQ-qBX"/>
-                                            <constraint firstItem="9tb-Pe-DM0" firstAttribute="top" secondItem="GFR-1b-3r8" secondAttribute="bottom" constant="9" id="87L-bB-pLB"/>
+                                            <constraint firstItem="0ZS-Fd-sRN" firstAttribute="leading" secondItem="fK2-Nb-etu" secondAttribute="leading" constant="22" id="9Hp-HK-bwL"/>
                                             <constraint firstItem="UTJ-IZ-jIv" firstAttribute="top" secondItem="JgK-2F-f5B" secondAttribute="bottom" constant="5" id="B9b-4F-pXo"/>
-                                            <constraint firstItem="9tb-Pe-DM0" firstAttribute="top" secondItem="jZI-dr-6Ch" secondAttribute="bottom" constant="12" id="Hjw-ZA-817"/>
+                                            <constraint firstItem="9tb-Pe-DM0" firstAttribute="top" secondItem="0ZS-Fd-sRN" secondAttribute="bottom" constant="5" id="CbH-nU-fNe"/>
+                                            <constraint firstItem="0ZS-Fd-sRN" firstAttribute="top" secondItem="ey0-65-EI2" secondAttribute="bottom" constant="5" id="Eau-UD-TmS"/>
                                             <constraint firstItem="JzN-vh-hdw" firstAttribute="leading" secondItem="fK2-Nb-etu" secondAttribute="leading" constant="24" id="Hsu-Jb-Qa7"/>
                                             <constraint firstItem="rhD-rp-qsU" firstAttribute="top" secondItem="YFM-L5-qlF" secondAttribute="bottom" constant="16" id="J9f-gN-jIj"/>
                                             <constraint firstAttribute="bottom" secondItem="hf9-RI-jHt" secondAttribute="bottom" constant="74.333333333333371" id="JUg-4X-iCk"/>
@@ -5008,9 +5035,8 @@ Saskatoon, SK S7V 0R6</string>
                                             <constraint firstItem="xon-IE-UcB" firstAttribute="top" secondItem="JzN-vh-hdw" secondAttribute="bottom" constant="10" id="VQW-ry-H6P"/>
                                             <constraint firstItem="jZI-dr-6Ch" firstAttribute="top" secondItem="ybT-aO-a7U" secondAttribute="bottom" constant="8" id="W9F-NO-62x"/>
                                             <constraint firstItem="Wmk-0o-Xin" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ybT-aO-a7U" secondAttribute="trailing" constant="10" id="ZfB-1S-vBo"/>
-                                            <constraint firstItem="ePA-ZZ-eBd" firstAttribute="bottom" secondItem="hf9-RI-jHt" secondAttribute="bottom" id="aOk-5e-9cg"/>
-                                            <constraint firstItem="ePA-ZZ-eBd" firstAttribute="leading" secondItem="hf9-RI-jHt" secondAttribute="leading" id="b9I-1H-gLs"/>
                                             <constraint firstItem="ey0-65-EI2" firstAttribute="top" secondItem="OYs-KL-fs0" secondAttribute="bottom" constant="8" id="caL-Ch-Af0"/>
+                                            <constraint firstItem="ePA-ZZ-eBd" firstAttribute="top" secondItem="Hca-b9-Nwk" secondAttribute="bottom" constant="30" id="dca-lo-eTJ"/>
                                             <constraint firstAttribute="trailing" secondItem="ey0-65-EI2" secondAttribute="trailing" constant="24" id="e5G-CW-6CL"/>
                                             <constraint firstAttribute="trailing" secondItem="xon-IE-UcB" secondAttribute="trailing" constant="24" id="eqc-Vb-HU5"/>
                                             <constraint firstItem="rhD-rp-qsU" firstAttribute="leading" secondItem="fK2-Nb-etu" secondAttribute="leading" constant="24" id="f1a-Eo-Edw"/>
@@ -5021,14 +5047,13 @@ Saskatoon, SK S7V 0R6</string>
                                             <constraint firstItem="YFM-L5-qlF" firstAttribute="top" secondItem="xon-IE-UcB" secondAttribute="bottom" id="ltO-00-7V3"/>
                                             <constraint firstAttribute="trailing" secondItem="OYs-KL-fs0" secondAttribute="trailing" constant="24" id="mGe-nz-yXq"/>
                                             <constraint firstItem="GFR-1b-3r8" firstAttribute="top" secondItem="ey0-65-EI2" secondAttribute="top" id="qxR-6x-zkV"/>
+                                            <constraint firstItem="ePA-ZZ-eBd" firstAttribute="centerX" secondItem="fK2-Nb-etu" secondAttribute="centerX" id="t7Z-fO-COd"/>
                                             <constraint firstItem="ybT-aO-a7U" firstAttribute="leading" secondItem="fK2-Nb-etu" secondAttribute="leading" constant="24" id="u6f-K1-eDZ"/>
                                             <constraint firstItem="7r9-O0-bB2" firstAttribute="centerX" secondItem="fK2-Nb-etu" secondAttribute="centerX" id="vKa-Cv-gqt"/>
                                             <constraint firstItem="JgK-2F-f5B" firstAttribute="top" secondItem="9tb-Pe-DM0" secondAttribute="bottom" constant="5" id="vnD-eH-Hui"/>
                                             <constraint firstItem="9tb-Pe-DM0" firstAttribute="leading" secondItem="fK2-Nb-etu" secondAttribute="leading" constant="24" id="wHf-p3-Ihb"/>
                                             <constraint firstAttribute="trailing" secondItem="YFM-L5-qlF" secondAttribute="trailing" constant="24" id="waK-NA-IVd"/>
-                                            <constraint firstItem="ePA-ZZ-eBd" firstAttribute="trailing" secondItem="hf9-RI-jHt" secondAttribute="trailing" id="zHx-wc-l7l"/>
                                             <constraint firstItem="hf9-RI-jHt" firstAttribute="top" secondItem="rhD-rp-qsU" secondAttribute="bottom" constant="30" id="zeZ-Je-U0z"/>
-                                            <constraint firstItem="ePA-ZZ-eBd" firstAttribute="top" secondItem="hf9-RI-jHt" secondAttribute="top" id="zsm-Bf-WNC"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -5059,6 +5084,7 @@ Saskatoon, SK S7V 0R6</string>
                         <outlet property="btn_cancel" destination="ePA-ZZ-eBd" id="DgS-Zw-os8"/>
                         <outlet property="btn_cancelOrder" destination="7r9-O0-bB2" id="Ter-zJ-3wf"/>
                         <outlet property="btn_repeatOrder" destination="hf9-RI-jHt" id="DBG-Nm-r8X"/>
+                        <outlet property="lblTime" destination="pKz-Ne-I6m" id="KA7-sw-dZ7"/>
                         <outlet property="lbl_Address" destination="7Hp-Kh-5Gq" id="WLo-3Y-oNG"/>
                         <outlet property="lbl_BottleEnvir" destination="VLg-t7-XQC" id="TdQ-o6-KPQ"/>
                         <outlet property="lbl_DeliveryDateTitle" destination="GFR-1b-3r8" id="MCj-YO-GDY"/>
@@ -5082,6 +5108,8 @@ Saskatoon, SK S7V 0R6</string>
                         <outlet property="lbl_week" destination="Wmk-0o-Xin" id="1Cg-xR-0ot"/>
                         <outlet property="tbl_height_const" destination="n6d-MG-KpQ" id="rTK-dR-Fdm"/>
                         <outlet property="tbl_vw" destination="JgK-2F-f5B" id="H1s-Cz-g64"/>
+                        <outlet property="vwTime" destination="0ZS-Fd-sRN" id="tws-D5-yVT"/>
+                        <outlet property="vwTimeHeight" destination="Bwf-0V-vIq" id="7zj-3n-xRl"/>
                         <outlet property="vw_Address" destination="nWY-BE-4R9" id="I5O-if-pkZ"/>
                         <outlet property="vw_SubscribeDiscount" destination="94o-Oc-umt" id="PJx-Tk-xYi"/>
                         <outlet property="vw_TaxGST" destination="joC-FK-Yd0" id="YmK-lL-O1f"/>
@@ -5109,7 +5137,7 @@ Saskatoon, SK S7V 0R6</string>
                                 <rect key="frame" x="0.0" y="59" width="393" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KwW-ru-45B">
-                                        <rect key="frame" x="168" y="13.333333333333325" width="57.333333333333343" height="23.333333333333332"/>
+                                        <rect key="frame" x="168" y="13.333333333333327" width="57.333333333333343" height="23.333333333333329"/>
                                         <fontDescription key="fontDescription" name="Jost-Medium" family="Jost" pointSize="16"/>
                                         <color key="textColor" name="Gray2"/>
                                         <nil key="highlightedColor"/>
@@ -5907,7 +5935,7 @@ Saskatoon, SK S7V 0R6</string>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Personal Details" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vCA-T4-cqN">
-                                        <rect key="frame" x="140.66666666666666" y="13.333333333333325" width="112" height="23.333333333333332"/>
+                                        <rect key="frame" x="140.66666666666666" y="13.333333333333327" width="112" height="23.333333333333329"/>
                                         <fontDescription key="fontDescription" name="Jost-Medium" family="Jost" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -6085,7 +6113,7 @@ Saskatoon, SK S7V 0R6</string>
                                                                 <rect key="frame" x="25" y="11" width="311" height="22"/>
                                                                 <color key="textColor" name="Black"/>
                                                                 <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                                             </textField>
                                                         </subviews>
                                                         <color key="backgroundColor" name="Gray 1"/>
@@ -6253,7 +6281,7 @@ Saskatoon, SK S7V 0R6</string>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add New Address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tk2-Pt-0IF">
-                                        <rect key="frame" x="131.66666666666669" y="13.333333333333325" width="129.66666666666669" height="23.333333333333332"/>
+                                        <rect key="frame" x="131.66666666666669" y="13.333333333333327" width="129.66666666666669" height="23.333333333333329"/>
                                         <fontDescription key="fontDescription" name="Jost-Medium" family="Jost" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -6465,7 +6493,7 @@ Saskatoon, SK S7V 0R6</string>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product Wishlist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wAC-Qh-iJX">
-                                        <rect key="frame" x="139.33333333333334" y="13.333333333333325" width="114.33333333333334" height="23.333333333333332"/>
+                                        <rect key="frame" x="139.33333333333334" y="13.333333333333327" width="114.33333333333334" height="23.333333333333329"/>
                                         <fontDescription key="fontDescription" name="Jost-Medium" family="Jost" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -6620,7 +6648,7 @@ Saskatoon, SK S7V 0R6</string>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reward Points" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZW-Fl-3j5">
-                                        <rect key="frame" x="146.66666666666666" y="13.333333333333325" width="99.666666666666657" height="23.333333333333332"/>
+                                        <rect key="frame" x="146.66666666666666" y="13.333333333333327" width="99.666666666666657" height="23.333333333333329"/>
                                         <fontDescription key="fontDescription" name="Jost-Medium" family="Jost" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -6786,7 +6814,7 @@ Saskatoon, SK S7V 0R6</string>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Subscription" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m0r-iy-50W">
-                                        <rect key="frame" x="139.66666666666666" y="13.333333333333325" width="114" height="23.333333333333332"/>
+                                        <rect key="frame" x="139.66666666666666" y="13.333333333333327" width="114" height="23.333333333333329"/>
                                         <fontDescription key="fontDescription" name="Jost-Medium" family="Jost" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -6884,7 +6912,7 @@ Saskatoon, SK S7V 0R6</string>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Us" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fu4-gf-iTh">
-                                        <rect key="frame" x="158.66666666666666" y="13.333333333333325" width="75.666666666666657" height="23.333333333333332"/>
+                                        <rect key="frame" x="158.66666666666666" y="13.333333333333327" width="75.666666666666657" height="23.333333333333329"/>
                                         <fontDescription key="fontDescription" name="Jost-Medium" family="Jost" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -6965,14 +6993,17 @@ Saskatoon, SK S7V 0R6</string>
                                                         <color key="textColor" name="Black"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="306.954.1104" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dJz-y5-ngT">
-                                                        <rect key="frame" x="44" y="42.333333333333314" width="86" height="20.333333333333329"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dJz-y5-ngT">
+                                                        <rect key="frame" x="10" y="42.333333333333314" width="154" height="61"/>
+                                                        <string key="text">306.954.1104
+
+306.954.1104</string>
                                                         <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="14"/>
                                                         <color key="textColor" name="TextColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INFO@THRIVEJUICECO.COM" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W3b-IJ-bSh">
-                                                        <rect key="frame" x="11" y="62.666666666666657" width="152" height="40.666666666666657"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W3b-IJ-bSh">
+                                                        <rect key="frame" x="11" y="103.33333333333334" width="152" height="0.0"/>
                                                         <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="14"/>
                                                         <color key="textColor" name="TextColor"/>
                                                         <nil key="highlightedColor"/>
@@ -6981,12 +7012,15 @@ Saskatoon, SK S7V 0R6</string>
                                                 <color key="backgroundColor" name="Gray 1"/>
                                                 <constraints>
                                                     <constraint firstAttribute="bottom" secondItem="W3b-IJ-bSh" secondAttribute="bottom" constant="16" id="EHS-iO-ZZM"/>
+                                                    <constraint firstAttribute="bottom" secondItem="dJz-y5-ngT" secondAttribute="bottom" constant="16" id="FyC-Oz-3EG"/>
                                                     <constraint firstItem="Yfp-xT-61N" firstAttribute="top" secondItem="0bY-il-Ag7" secondAttribute="top" constant="16" id="JlS-Tn-C2c"/>
+                                                    <constraint firstItem="dJz-y5-ngT" firstAttribute="leading" secondItem="0bY-il-Ag7" secondAttribute="leading" constant="10" id="QgE-tX-jWu"/>
                                                     <constraint firstItem="W3b-IJ-bSh" firstAttribute="top" secondItem="dJz-y5-ngT" secondAttribute="bottom" id="RSM-jR-iX5"/>
                                                     <constraint firstAttribute="trailing" secondItem="W3b-IJ-bSh" secondAttribute="trailing" constant="11" id="VAa-6b-fkz"/>
                                                     <constraint firstItem="W3b-IJ-bSh" firstAttribute="leading" secondItem="0bY-il-Ag7" secondAttribute="leading" constant="11" id="d7o-kz-dN0"/>
                                                     <constraint firstItem="dJz-y5-ngT" firstAttribute="top" secondItem="Yfp-xT-61N" secondAttribute="bottom" constant="6" id="gIJ-T3-b29"/>
                                                     <constraint firstItem="dJz-y5-ngT" firstAttribute="centerX" secondItem="0bY-il-Ag7" secondAttribute="centerX" id="ifc-jS-La5"/>
+                                                    <constraint firstAttribute="trailing" secondItem="dJz-y5-ngT" secondAttribute="trailing" constant="10" id="jqa-pe-3dg"/>
                                                     <constraint firstItem="Yfp-xT-61N" firstAttribute="centerX" secondItem="0bY-il-Ag7" secondAttribute="centerX" id="qDm-LD-Znv"/>
                                                     <constraint firstItem="W3b-IJ-bSh" firstAttribute="centerX" secondItem="0bY-il-Ag7" secondAttribute="centerX" id="zFy-EA-Z40"/>
                                                 </constraints>
@@ -7474,6 +7508,7 @@ Saskatoon, SK S7V 0R6</string>
                                             <constraint firstItem="7DA-U8-APP" firstAttribute="top" secondItem="ZxF-ym-zhw" secondAttribute="bottom" id="oCU-ZM-ACk"/>
                                             <constraint firstItem="7Tl-qS-e3D" firstAttribute="leading" secondItem="Z3A-Ba-aba" secondAttribute="leading" constant="10" id="pRd-8y-yYa"/>
                                             <constraint firstItem="aDJ-tz-qcG" firstAttribute="top" secondItem="TXE-Kb-qUv" secondAttribute="bottom" constant="12" id="q8a-1T-tYo"/>
+                                            <constraint firstItem="0bY-il-Ag7" firstAttribute="height" secondItem="m45-Sg-OSP" secondAttribute="height" id="r7T-oU-Ibv"/>
                                             <constraint firstAttribute="trailing" secondItem="Df1-co-bD8" secondAttribute="trailing" id="seS-cb-GBM"/>
                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="7Tl-qS-e3D" secondAttribute="bottom" constant="20" id="t9P-Cv-GDy"/>
                                             <constraint firstItem="ZxF-ym-zhw" firstAttribute="leading" secondItem="Z3A-Ba-aba" secondAttribute="leading" id="tIC-kp-8uP"/>
@@ -7559,7 +7594,7 @@ Saskatoon, SK S7V 0R6</string>
                                                     <action selector="act_localDelivery:" destination="q2x-g1-6Ei" eventType="touchUpInside" id="5cE-AA-0K4"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Local_Delivery" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tN5-vM-f20">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Local Delivery" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tN5-vM-f20">
                                                 <rect key="frame" x="57" y="9.9999999999999982" width="316" height="20.333333333333329"/>
                                                 <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="14"/>
                                                 <color key="textColor" name="TextColor"/>
@@ -7591,7 +7626,7 @@ Saskatoon, SK S7V 0R6</string>
                                                     <action selector="act_storePickup:" destination="q2x-g1-6Ei" eventType="touchUpInside" id="XrJ-2P-iw6"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Store_Pickup" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evK-YV-jUC">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Store Pickup" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evK-YV-jUC">
                                                 <rect key="frame" x="57" y="9.9999999999999982" width="316" height="20.333333333333329"/>
                                                 <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="14"/>
                                                 <color key="textColor" name="TextColor"/>
@@ -7688,12 +7723,23 @@ Saskatoon, SK S7V 0R6</string>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b7K-gr-oKD">
+                                <rect key="frame" x="0.0" y="59.000000000000028" width="393" height="490.66666666666674"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <connections>
+                                    <action selector="btnClose_Action:" destination="q2x-g1-6Ei" eventType="touchUpInside" id="Xvy-MF-3rp"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="dZg-Ys-2aB"/>
                         <color key="backgroundColor" white="0.0" alpha="0.34648263689999997" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="dZg-Ys-2aB" firstAttribute="trailing" secondItem="b7K-gr-oKD" secondAttribute="trailing" id="3S8-bL-B1v"/>
                             <constraint firstAttribute="trailing" secondItem="GMc-uD-8D3" secondAttribute="trailing" id="67i-xX-H6D"/>
+                            <constraint firstItem="b7K-gr-oKD" firstAttribute="leading" secondItem="dZg-Ys-2aB" secondAttribute="leading" id="MIr-Tf-aSH"/>
+                            <constraint firstItem="GMc-uD-8D3" firstAttribute="top" secondItem="b7K-gr-oKD" secondAttribute="bottom" id="Mrd-4Z-R94"/>
                             <constraint firstItem="GMc-uD-8D3" firstAttribute="leading" secondItem="A3k-xA-uTK" secondAttribute="leading" id="WGZ-7m-UN1"/>
+                            <constraint firstItem="b7K-gr-oKD" firstAttribute="top" secondItem="dZg-Ys-2aB" secondAttribute="top" id="mIn-Lw-2fe"/>
                             <constraint firstItem="dZg-Ys-2aB" firstAttribute="bottom" secondItem="GMc-uD-8D3" secondAttribute="bottom" id="yQO-iz-Phr"/>
                         </constraints>
                     </view>
@@ -7732,7 +7778,7 @@ Saskatoon, SK S7V 0R6</string>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CheckOut" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0DR-KH-cJ5">
-                                        <rect key="frame" x="161.66666666666666" y="13.333333333333325" width="70" height="23.333333333333332"/>
+                                        <rect key="frame" x="161.66666666666666" y="13.333333333333327" width="70" height="23.333333333333329"/>
                                         <fontDescription key="fontDescription" name="Jost-Medium" family="Jost" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>

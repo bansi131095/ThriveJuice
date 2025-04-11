@@ -21,7 +21,7 @@ class Filter_VC: UIViewController {
     @IBOutlet weak var tbl_vw: UITableView!
     
     var arr_price: [String] = ["Popularity", "Price: Low to High", "Price: High to Low", "Name: A - Z", "Name: Z - A"]
-    var arr_order: [String] = ["All Orders", "Pending", "In-Progress", "Delivered"]
+    var arr_order: [String] = ["All Orders", "Pending", "In-Progress", "Delivered","Cancelled"]
     
     var arr_Category: [Categories] = []
     var isCategory = false
@@ -29,6 +29,7 @@ class Filter_VC: UIViewController {
     var selectOrder = String()
     var selectCategory = String()
     var selectPrice = String()
+    var selected_Sort = String()
     weak var delegate: FilterDataDelegate?
     
     //MARK:- View Life Cycle
@@ -37,6 +38,9 @@ class Filter_VC: UIViewController {
         self.tbl_vw.register(UINib(nibName: "FilterCell", bundle: nil), forCellReuseIdentifier: "cell")
         self.tbl_vw.delegate = self
         self.tbl_vw.dataSource = self
+        if selected_Sort == "All Orders"{
+            UserDefaults.standard.removeObject(forKey: "selectOrder")
+        }
 //        UserDefaults.standard.removeObject(forKey: "selectOrder")
 //        UserDefaults.standard.removeObject(forKey: "selectCategory")
 //        UserDefaults.standard.removeObject(forKey: "selectPrice")

@@ -18,6 +18,7 @@ struct ProductModel : Mappable {
 	var products : [Products]?
 	var limit : Int?
 
+
 	init?(map: Map) {
 
 	}
@@ -40,7 +41,8 @@ struct Products : Mappable {
     var category_Id : String?
     var is_Special : String?
     var is_Wishlist : Bool?
-
+    var product_Addons : [Product_Addons]?
+    
     init?(map: Map) {
 
     }
@@ -55,6 +57,7 @@ struct Products : Mappable {
         category_Id <- map["Category_Id"]
         is_Special <- map["Is_Special"]
         is_Wishlist <- map["Is_Wishlist"]
+        product_Addons <- map["Product_Addons"]
     }
 
 }

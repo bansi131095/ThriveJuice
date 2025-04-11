@@ -34,6 +34,7 @@ struct OrderListModel : Mappable {
 struct Orders : Mappable {
     var order_Id : String?
     var delivery_Date : String?
+    var delivery_Time : String?
     var order_Status : String?
     var cart_Data : [Cart_Datas]?
     var grand_Total : String?
@@ -63,6 +64,7 @@ struct Orders : Mappable {
 
         order_Id <- map["Order_Id"]
         delivery_Date <- map["Delivery_Date"]
+        delivery_Time <- map["Delivery_Time"]
         order_Status <- map["Order_Status"]
         cart_Data <- map["Cart_Data"]
         grand_Total <- map["Grand_Total"]

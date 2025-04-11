@@ -113,6 +113,7 @@ class Orders_VC: UIViewController {
         filter.modalPresentationStyle = .overFullScreen
         filter.isOrder = true
         filter.delegate = self
+        filter.selected_Sort = lbl_sortOrder.text ?? ""
         self.present(filter, animated: true)
     }
     
@@ -249,19 +250,38 @@ extension Orders_VC: UITableViewDelegate, UITableViewDataSource {
             cell.lbl_order.text = "#" + (dict.order_Id ?? "0")
             cell.lbl_date.text = dict.order_Added_At ?? ""
             if let status = dict.order_Status {
-                if status == "Pending" {
+                /*if status == "Pending" {
                     cell.lbl_status.textColor = UIColor(named: "Green")
+                    cell.lbl_status.text = "· " + "Pending"
                 } else if status == "Completed" {
                     cell.lbl_status.textColor = UIColor(named: "Green")
+                    cell.lbl_status.text = "· " + "In-P"
+                }*/
+                
+                if status == "Cancel" {
+                    cell.lbl_status.textColor = UIColor(named: "Red")
+                    cell.lbl_status.text = "· " + "Cancelled"
+                }else{
+                    cell.lbl_status.textColor = UIColor(named: "Green")
+                    cell.lbl_status.text = "· " + (dict.order_Status ?? "")
                 }
             }
-            cell.lbl_status.text = "." + (dict.order_Status ?? "")
+//            cell.lbl_status.text = "." + (dict.order_Status ?? "")
             if let delivery = dict.delivery_Date {
                 if delivery == "" {
                     cell.lbl_DeliveryDateTitle.text = ""
                     cell.lbl_DeliveryDate.text = dict.delivery_Date ?? ""
                 } else {
                     cell.lbl_DeliveryDate.text = dict.delivery_Date ?? ""
+                }
+            }
+            
+            if let deliveryTime = dict.delivery_Time {
+                if deliveryTime == "" {
+                    cell.vwHeight.constant = 0
+                } else {
+                    cell.vwHeight.constant = 30
+                    cell.lblDeliveryTime.text = dict.delivery_Time ?? ""
                 }
             }
             
@@ -344,6 +364,10 @@ extension Orders_VC: FilterDataDelegate {
             self.str_offset = "0"
             if data == "All Orders" {
                 self.strFilterType = ""
+            } else if (data == "In-Progress") {
+                self.strFilterType = "In_Progress"
+            } else if (data == "Cancelled") {
+                self.strFilterType = "Cancel"
             } else {
                 self.strFilterType = data
             }
@@ -351,5 +375,4 @@ extension Orders_VC: FilterDataDelegate {
             self.call_OrdersAPI()
         }
     }
-    
 }

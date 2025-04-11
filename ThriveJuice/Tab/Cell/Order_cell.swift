@@ -23,6 +23,11 @@ class Order_cell: UITableViewCell {
     @IBOutlet weak var btn_Cancel: UIButton!
     @IBOutlet weak var lbl_week: UILabel!
     
+    @IBOutlet weak var vwDeliveryTime: UIView!
+    @IBOutlet weak var lblDelivery: UILabel!
+    @IBOutlet weak var lblDeliveryTime: UILabel!
+    @IBOutlet weak var vwHeight: NSLayoutConstraint!
+    
     var arr_cartData: [Cart_Datas] = []
 //    var str_addon = ""
     

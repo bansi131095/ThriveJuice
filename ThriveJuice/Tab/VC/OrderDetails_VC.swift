@@ -47,6 +47,13 @@ class OrderDetails_VC: UIViewController {
     @IBOutlet weak var btn_cancelOrder: UIButton!
     @IBOutlet weak var btn_repeatOrder: UIButton!
     @IBOutlet weak var lbl_week: UILabel!
+    
+    
+    @IBOutlet weak var vwTime: UIView!
+    @IBOutlet weak var vwTimeHeight: NSLayoutConstraint!
+    
+    @IBOutlet weak var lblTime: UILabel!
+    
     var subscribe_Week : String?
     var subscribe_Week_Cancel : String?
     
@@ -129,19 +136,41 @@ class OrderDetails_VC: UIViewController {
             self.lbl_orderNo.text = "#" + (dict.order_Id ?? "0")
             self.lbl_date.text = dict.order_Added_At ?? ""
             if let status = dict.order_Status {
-                if status == "Pending" {
+                /*if status == "Pending" {
                     self.lbl_status.textColor = UIColor(named: "Green")
                 } else if status == "Completed" {
                     self.lbl_status.textColor = UIColor(named: "Green")
+                }*/
+                
+                if status == "Cancel" {
+                    self.lbl_status.textColor = UIColor(named: "Red")
+                    self.lbl_status.text = "· " + "Cancelled"
+                    btn_cancelOrder.isHidden = true
+                }else{
+                    self.lbl_status.textColor = UIColor(named: "Green")
+                    self.lbl_status.text = "· " + (dict.order_Status ?? "")
+                    btn_cancelOrder.isHidden = false
                 }
             }
-            self.lbl_status.text = "." + (dict.order_Status ?? "")
+            
+            
+            
+//            self.lbl_status.text = "." + (dict.order_Status ?? "")
             if let delivery = dict.delivery_Date {
                 if delivery == "" {
                     self.lbl_DeliveryDateTitle.text = ""
                     self.lbl_deliveryDate.text = dict.delivery_Date ?? ""
                 } else {
                     self.lbl_deliveryDate.text = dict.delivery_Date ?? ""
+                }
+            }
+            
+            if let delivery = dict.delivery_Time {
+                if delivery == "" {
+                    self.vwTimeHeight.constant = 0
+                } else {
+                    self.vwTimeHeight.constant = 30
+                    self.lblTime.text = dict.delivery_Time ?? ""
                 }
             }
             

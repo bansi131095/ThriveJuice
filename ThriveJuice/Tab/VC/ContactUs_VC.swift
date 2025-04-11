@@ -130,7 +130,7 @@ class ContactUs_VC: UIViewController {
                         if let val = self.arr_settings[i].setting_Value {
                             let split = val.components(separatedBy: "?")
                             self.lbl_phone.text = split[0]
-                            self.lbl_email.text = split[1]
+//                            self.lbl_email.text = split[0]
                         }
                     } else if key == "Contact_Us_Image_1" {
                         if let img = self.arr_settings[i].setting_Value, img != "" {

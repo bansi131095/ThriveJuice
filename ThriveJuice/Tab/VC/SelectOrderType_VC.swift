@@ -42,14 +42,20 @@ class SelectOrderType_VC: UIViewController {
         }
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    /*override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch: UITouch? = touches.first
         if touch?.view != self.vw_rounded{
             self.dismiss(animated: true)
         }
+    }*/
+    
+    //MARK: - button Action
+    
+    @IBAction func btnClose_Action(_ sender: Any) {
+        self.dismiss(animated: true)
     }
     
-    //MARK:- button Action
+    
     @IBAction func act_save(_ sender: UIButton) {
         if userId != "" {
             self.call_UpdateProfileAPI()

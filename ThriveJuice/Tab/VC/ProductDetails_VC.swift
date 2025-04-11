@@ -121,6 +121,31 @@ class ProductDetails_VC: UIViewController {
         }
         self.CartTotal = 0
         if userId != "" {
+            var isSelectionMissing = false
+            var missingRequiredAddons: [String] = []
+            
+            if let addons = dict_product?.product_Addons {
+                for addon in addons {
+                    if addon.Selection_Required == "1" {
+                        let addonIds = addon.addons?.compactMap { $0.addon_Id } ?? []
+
+                        let intersection = addonIds.filter { self.selectAddonId.contains($0) }
+                        
+                        if intersection.isEmpty {
+                            if let title = addon.addon_Title{
+                                missingRequiredAddons.append(title)
+                            }
+                        }
+                    }
+                }
+            }
+            
+            if !missingRequiredAddons.isEmpty {
+                let missingTitles = missingRequiredAddons.joined(separator: ", ")
+                alertWithImage(title: "", Msg: "Please select required addon: \(missingTitles)")
+                return
+            }
+            
             if let dict = self.dict_product {
                 if let arr = self.dict_product?.product_Size, arr.count != 0 {
                     if let stock = arr[0].available_Stock {
@@ -846,6 +871,7 @@ extension ProductDetails_VC: UITableViewDelegate, UITableViewDataSource {
         var widthTotal = 0.0
         if let arr = data.addons, arr.count != 0 {
             cell.arr_AddonItem = arr
+            cell.ProductId = self.ProductId
             for i1 in 0..<arr.count {
                 let data = arr[i1]
                 var text = ""
@@ -887,6 +913,27 @@ extension ProductDetails_VC: UITableViewDelegate, UITableViewDataSource {
             } else {
                 self.selectAddonId.remove(str)
             }
+            
+            /*var strSelectedId: String = ""
+            
+            if self.selectAddonId.count != 0 {
+                for i in 0..<self.selectAddonId.count {
+                    if i == 0 {
+                        strSelectedId.append(self.selectAddonId[i])
+                    } else {
+                        strSelectedId.append(","+self.selectAddonId[i])
+                    }
+                }
+            }
+            
+            for item in global.shared.arr_AddCartData {
+                if item.Product_Id == self.ProductId {
+                    self.selectAddonId = item.Cart_Addons.components(separatedBy: ",")
+                    print("AddonID:- \(self.selectAddonId)")
+                    print("SelectedAddonID:- \(cell.selectAddonId.joined(separator: ","))")
+                    break
+                }
+            }*/
         }
         return cell
     }
@@ -931,6 +978,17 @@ extension ProductDetails_VC: UICollectionViewDataSource, UICollectionViewDelegat
                     }
                 }
             }
+            
+            if dict.product_Addons?.count ?? 0 > 0 {
+               cell1.btn_AddToCart.setTitle("View Product", for: .normal)
+               cell1.btn_AddToCart.backgroundColor = UIColor(named: "AccentColor")
+               cell1.btn_AddToCart.isUserInteractionEnabled = false
+            }else{
+               cell1.btn_AddToCart.setTitle("Add To Cart", for: .normal)
+               cell1.btn_AddToCart.backgroundColor = UIColor(named: "AccentColor")
+               cell1.btn_AddToCart.isUserInteractionEnabled = true
+            }
+            
             if let isWishlist = dict.is_Wishlist {
                 if isWishlist {
                     cell1.btn_like.setImage(UIImage(named: "Like"), for: .normal)

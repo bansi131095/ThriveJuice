@@ -19,6 +19,7 @@ class Addon_cell: UITableViewCell {
     var selectAddonId: [String] = []
     var CollectionHeight = 0
     var selectType: String = ""
+    var ProductId = String()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -42,7 +43,14 @@ class Addon_cell: UITableViewCell {
             layout.minimumInteritemSpacing = spacing
             layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         }
-        
+        selectAddonId.removeAll()
+        for item in global.shared.arr_AddCartData {
+            if item.Product_Id == ProductId {
+                selectAddonId = item.Cart_Addons.components(separatedBy: ",")
+                break
+            }
+        }
+        self.collect_vw.reloadData()
     }
     
 }
@@ -54,11 +62,33 @@ extension Addon_cell: UICollectionViewDelegate, UICollectionViewDataSource, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+            let cell = self.collect_vw.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! Addon_list_coll_cell
+            let data = self.arr_AddonItem[indexPath.item]
+
+            if let name = data.addon_Name, let price = data.addon_Price {
+                cell.lbl_Addon.text = "\(name) - $\(price)"
+            }
+        
+            // Default state
+            cell.vw_Addon.backgroundColor = UIColor(named: "White")
+            cell.lbl_Addon.textColor = UIColor(named: "AccentColor")
+
+            // Selected state
+            if let id = data.addon_Id, selectAddonId.contains(id) {
+                cell.vw_Addon.backgroundColor = UIColor(named: "AccentColor")
+                cell.lbl_Addon.textColor = UIColor(named: "White")
+            }
+
+            return cell
+        }
+    
+    /*func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = self.collect_vw.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! Addon_list_coll_cell
         let data = self.arr_AddonItem[indexPath.item]
         if let name = data.addon_Name, let price = data.addon_Price {
             cell.lbl_Addon.text = name + " - $" + price
         }
+        
         if let id = data.addon_Id {
             if self.selectAddonId.contains(id) {
                 cell.vw_Addon.backgroundColor = UIColor(named: "AccentColor")
@@ -69,7 +99,37 @@ extension Addon_cell: UICollectionViewDelegate, UICollectionViewDataSource, UICo
             }
         }
         return cell
-    }
+    }*/
+    
+    /*func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = self.collect_vw.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! Addon_list_coll_cell
+        let data = self.arr_AddonItem[indexPath.item]
+
+        // Set addon name and price
+        if let name = data.addon_Name, let price = data.addon_Price {
+            cell.lbl_Addon.text = "\(name) - $\(price)"
+        }
+
+        // Default: not selected UI
+        cell.vw_Addon.backgroundColor = UIColor(named: "White")
+        cell.lbl_Addon.textColor = UIColor(named: "AccentColor")
+
+        // Check if current addon is selected in the cart
+        if let currentAddonId = data.addon_Id {
+            for item in global.shared.arr_AddCartData {
+                if item.Product_Id == ProductId {
+                    let idArray = item.Cart_Addons.components(separatedBy: ",")
+                    if idArray.contains(currentAddonId) {
+                        // Matched: update UI for selected
+                        cell.vw_Addon.backgroundColor = UIColor(named: "AccentColor")
+                        cell.lbl_Addon.textColor = UIColor(named: "White")
+                        break
+                    }
+                }
+            }
+        }
+        return cell
+    }*/
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let data = self.arr_AddonItem[indexPath.item]

@@ -26,6 +26,7 @@ class ShopList_VC: UIViewController {
     
     var arr_FilterProduct: [Products] = []
     var arr_Product: [Products] = []
+    var arr_Product_Addons: [Product_Addons] = []
     var categoryId = String()
     var categoryName = String()
     var str_offset = "0"
@@ -336,6 +337,18 @@ extension ShopList_VC: UICollectionViewDelegate, UICollectionViewDataSource, UIC
                     }
                 }
             }
+            
+            if dict.product_Addons?.count ?? 0 > 0 {
+                cell1.btn_AddToCart.setTitle("View Product", for: .normal)
+                cell1.btn_AddToCart.backgroundColor = UIColor(named: "AccentColor")
+                cell1.btn_AddToCart.isUserInteractionEnabled = false
+            }else{
+                cell1.btn_AddToCart.setTitle("Add To Cart", for: .normal)
+                cell1.btn_AddToCart.backgroundColor = UIColor(named: "AccentColor")
+                cell1.btn_AddToCart.isUserInteractionEnabled = true
+            }
+            
+           
             if let isWishlist = dict.is_Wishlist {
                 if isWishlist {
                     cell1.btn_like.setImage(UIImage(named: "Like"), for: .normal)
@@ -368,7 +381,13 @@ extension ShopList_VC: UICollectionViewDelegate, UICollectionViewDataSource, UIC
                 if let id = dict.product_Id {
                     let arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
                     if arrCart.count != 0 {
-                        cell1.vw_cart.isHidden = false
+                        
+                        if dict.product_Addons?.count ?? 0 > 0{
+                            cell1.vw_cart.isHidden = true
+                        }else{
+                            cell1.vw_cart.isHidden = false
+                        }
+//                        cell1.vw_cart.isHidden = false
                         Cellcart = Int(arrCart[0].Cart_Qty) ?? 0
                         cell1.lbl_cart.text = "\(Cellcart)"
                     } else {
@@ -376,6 +395,8 @@ extension ShopList_VC: UICollectionViewDelegate, UICollectionViewDataSource, UIC
                     }
                 }
             }
+            
+            
             cell1.Act_AddToCart = {
                 var userId = String()
                 if UserDefaults.standard.object(forKey: "u_id") != nil {
@@ -601,5 +622,4 @@ extension ShopList_VC: FilterDataDelegate {
             call_ProductAPI()
         }
     }
-    
 }

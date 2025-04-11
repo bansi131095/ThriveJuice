@@ -70,11 +70,18 @@ class Shop_VC: UIViewController {
 //            let filter = self.storyboard?.instantiateViewController(withIdentifier: "SelectOrderType_VC") as! SelectOrderType_VC
 //            filter.modalPresentationStyle = .overFullScreen
 //            self.present(filter, animated: true)
-            OrderType = "Right_Away"
+//            OrderType = "Right_Away"
             UserDefaults.standard.set(OrderType, forKey: "orderType")
+            print("OrderType:- \(OrderType)")
             self.lbl_orderType.text = OrderType
         } else {
-            self.lbl_orderType.text = OrderType
+            if OrderType == "Right_Away"{
+                self.lbl_orderType.text = "Pickup Today"
+            }else if OrderType == "Store_Pickup"{
+                self.lbl_orderType.text = "Store Pickup"
+            }else if OrderType == "Local_Delivery"{
+                self.lbl_orderType.text = "Local Delivery"
+            }
         }
         self.call_StoreListAPI()
         if global.shared.arr_AddCartData.count != 0 {
@@ -111,11 +118,9 @@ class Shop_VC: UIViewController {
                     } else if OrderType == "Right_Away" {
                         self.lbl_orderType.text = "Pickup Today"
                     }
-                    
                 }
             }
         }
-        
     }
     
     
