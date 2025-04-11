@@ -141,7 +141,15 @@ extension Addon_cell: UICollectionViewDelegate, UICollectionViewDataSource, UICo
                             self.Act_AddAddon?(id, "", false)
                         }
                     } else {
-                        let last = self.selectAddonId.last ?? ""
+                        var last = ""
+                        for val in self.arr_AddonItem {
+                            if let addonId = val.addon_Id {
+                                if self.selectAddonId.contains(addonId) {
+                                    last = addonId;
+                                    break;
+                                }
+                            }
+                        }
                         self.selectAddonId = []
                         self.selectAddonId.append(id)
                         self.Act_AddAddon?(id, last,true)
@@ -172,5 +180,4 @@ extension Addon_cell: UICollectionViewDelegate, UICollectionViewDataSource, UICo
         self.collect_vw.reloadData()
     }
     
-
 }
