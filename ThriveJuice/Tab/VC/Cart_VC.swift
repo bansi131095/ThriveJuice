@@ -440,9 +440,19 @@ extension Cart_VC: UITableViewDelegate, UITableViewDataSource {
                     cell.lbl_count.text = "\(cart_countQty)"
                     if let id = data.product_Id {
                         let arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
-                        if arrCart.count != 0 && arrCart.count == 1 {
-                            if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Product_Id == id }) {
-                                global.shared.arr_AddCartData[index].Cart_Qty = "\(cart_countQty)"
+                        if arrCart.count != 0 {
+                            var joinedIds = ""
+                            if let arr1 = self.arrCartProduct[indexPath.row].cart_Addons_Price, arr1.count != 0 {
+                                joinedIds = arr1.compactMap { $0.addon_Id }.joined(separator: ",")
+                            }
+                            print("Join \(joinedIds)");
+                            if let index = global.shared.arr_AddCartData.firstIndex(where: {
+                                let cartAddonSet = Set($0.Cart_Addons.components(separatedBy: ","))
+                                let joinedIdSet = Set(joinedIds.components(separatedBy: ","))
+                                return cartAddonSet == joinedIdSet
+                            }) {
+                                print("Index \(index)");
+                                global.shared.arr_AddCartData[indexPath.row].Cart_Qty = "\(cart_countQty)"
                             }
                         } else {
                             cart_data = CartData(productId: data.product_Id ?? "", cartQty: "\(cart_countQty)", cartProductSize: data.cart_Product_Size ?? "0")
@@ -464,13 +474,28 @@ extension Cart_VC: UITableViewDelegate, UITableViewDataSource {
                     cell.lbl_count.text = "\(cart_countQty)"
                     if let id = data.product_Id {
                         let arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
-                        if arrCart.count != 0 && arrCart.count == 1 {
+                        if arrCart.count != 0 {
+                            var joinedIds = ""
+                            if let arr1 = self.arrCartProduct[indexPath.row].cart_Addons_Price, arr1.count != 0 {
+                                joinedIds = arr1.compactMap { $0.addon_Id }.joined(separator: ",")
+                            }
+                            print("Join \(joinedIds)");
                             if cart_countQty == 0 {
-                                if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Product_Id == id }) {
-                                    global.shared.arr_AddCartData.remove(at: index)
+                                if let index = global.shared.arr_AddCartData.firstIndex(where: {
+                                    let cartAddonSet = Set($0.Cart_Addons.components(separatedBy: ","))
+                                    let joinedIdSet = Set(joinedIds.components(separatedBy: ","))
+                                    return cartAddonSet == joinedIdSet
+                                }) {
+                                    print("Index \(index)");
+                                    global.shared.arr_AddCartData.remove(at: indexPath.row)
                                 }
                             } else {
-                                if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Product_Id == id }) {
+                                if let index = global.shared.arr_AddCartData.firstIndex(where: {
+                                    let cartAddonSet = Set($0.Cart_Addons.components(separatedBy: ","))
+                                    let joinedIdSet = Set(joinedIds.components(separatedBy: ","))
+                                    return cartAddonSet == joinedIdSet
+                                }) {
+                                    print("Index \(index)");
                                     global.shared.arr_AddCartData[index].Cart_Qty = "\(cart_countQty)"
                                 }
                             }

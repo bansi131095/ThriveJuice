@@ -66,13 +66,23 @@ class ProductDetails_VC: UIViewController {
     var arr_ProductDays: [Product_Size] = []
     var arr_ProductSizes: [Product_Size] = []
     var selectAddonId: [String] = []
+    var editSelectAddonId: [String] = []
     
     var arrCartData: [CartData] = []
     
     //MARK:- View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("Global Arr data \(global.shared.arr_AddCartData)")
+        if global.shared.arr_AddCartData.count != 0 {
+            for i in 0..<global.shared.arr_AddCartData.count {
+                if global.shared.arr_AddCartData[i].Product_Id == self.ProductId {
+                    editSelectAddonId = global.shared.arr_AddCartData[i].Cart_Addons.components(separatedBy: ",")
+                    selectAddonId = editSelectAddonId
+                }
+            }
+            print("Arr data New \(selectAddonId)")
+        }
         // Do any additional setup after loading the view.
     }
     
@@ -87,6 +97,7 @@ class ProductDetails_VC: UIViewController {
                     total += val
                 }
             }
+            print("Arr data total \(total)")
             self.lbl_cartTotal.text = "\(total)"
         }
     }
@@ -165,38 +176,7 @@ class ProductDetails_VC: UIViewController {
                                 }
                             }
                             if let id = dict.product_Id {
-                                let arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
-                                if arrCart.count != 0 && arrCart.count == 1 {
-                                    if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Product_Id == id }) {
-                                        if let Special = dict.is_Special, Special == "1" {
-                                            if global.shared.arr_AddCartData[index].Cart_Product_Size == (self.txt_detox.text ?? "") {
-                                                global.shared.arr_AddCartData[index].Cart_Qty = "\(self.CartTotal)"
-                                            } else {
-                                                if strSelectId != "" {
-                                                    cart_data = CartData(productId: dict.product_Id ?? "", cartQty: "\(self.CartTotal)", cartProductSize: self.txt_detox.text ?? "", cartDays: self.txt_days.text ?? "", cartAddon: strSelectId)
-                                                } else {
-                                                    cart_data = CartData(productId: dict.product_Id ?? "", cartQty: "\(self.CartTotal)", cartProductSize: self.txt_detox.text ?? "", cartDays: self.txt_days.text ?? "")
-                                                }
-                                                if let data = cart_data {
-                                                    global.shared.arr_AddCartData.append(data)
-                                                }
-                                            }
-                                        } else {
-                                            if global.shared.arr_AddCartData[index].Cart_Product_Size == (self.vw_size.isHidden ? (self.lbl_size.text ?? "") : (self.txt_size.text ?? "")) {
-                                                global.shared.arr_AddCartData[index].Cart_Qty = "\(self.CartTotal)"
-                                            } else {
-                                                if strSelectId != "" {
-                                                    cart_data = CartData(productId: dict.product_Id ?? "", cartQty: "\(self.CartTotal)", cartProductSize: self.vw_size.isHidden ? (self.lbl_size.text ?? "") : (self.txt_size.text ?? ""), cartAddon: strSelectId)
-                                                } else {
-                                                    cart_data = CartData(productId: dict.product_Id ?? "", cartQty: "\(self.CartTotal)", cartProductSize: self.vw_size.isHidden ? (self.lbl_size.text ?? "") : (self.txt_size.text ?? ""))
-                                                }
-                                                if let data = cart_data {
-                                                    global.shared.arr_AddCartData.append(data)
-                                                }
-                                            }
-                                        }
-                                    }
-                                } else {
+                                if (!btn_AddToCart.isHidden) {
                                     if let Special = dict.is_Special, Special == "1" {
                                         if strSelectId != "" {
                                             cart_data = CartData(productId: dict.product_Id ?? "", cartQty: "\(self.CartTotal)", cartProductSize: self.txt_detox.text ?? "", cartDays: self.txt_days.text ?? "", cartAddon: strSelectId)
@@ -214,6 +194,59 @@ class ProductDetails_VC: UIViewController {
                                         }
                                         if let data = cart_data {
                                             global.shared.arr_AddCartData.append(data)
+                                        }
+                                    }
+                                } else {
+                                    let arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
+                                    if arrCart.count != 0 && arrCart.count == 1 {
+                                        if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Product_Id == id }) {
+                                            if let Special = dict.is_Special, Special == "1" {
+                                                if global.shared.arr_AddCartData[index].Cart_Product_Size == (self.txt_detox.text ?? "") {
+                                                    global.shared.arr_AddCartData[index].Cart_Qty = "\(self.CartTotal)"
+                                                } else {
+                                                    if strSelectId != "" {
+                                                        cart_data = CartData(productId: dict.product_Id ?? "", cartQty: "\(self.CartTotal)", cartProductSize: self.txt_detox.text ?? "", cartDays: self.txt_days.text ?? "", cartAddon: strSelectId)
+                                                    } else {
+                                                        cart_data = CartData(productId: dict.product_Id ?? "", cartQty: "\(self.CartTotal)", cartProductSize: self.txt_detox.text ?? "", cartDays: self.txt_days.text ?? "")
+                                                    }
+                                                    if let data = cart_data {
+                                                        global.shared.arr_AddCartData.append(data)
+                                                    }
+                                                }
+                                            } else {
+                                                if global.shared.arr_AddCartData[index].Cart_Product_Size == (self.vw_size.isHidden ? (self.lbl_size.text ?? "") : (self.txt_size.text ?? "")) {
+                                                    global.shared.arr_AddCartData[index].Cart_Qty = "\(self.CartTotal)"
+                                                } else {
+                                                    if strSelectId != "" {
+                                                        cart_data = CartData(productId: dict.product_Id ?? "", cartQty: "\(self.CartTotal)", cartProductSize: self.vw_size.isHidden ? (self.lbl_size.text ?? "") : (self.txt_size.text ?? ""), cartAddon: strSelectId)
+                                                    } else {
+                                                        cart_data = CartData(productId: dict.product_Id ?? "", cartQty: "\(self.CartTotal)", cartProductSize: self.vw_size.isHidden ? (self.lbl_size.text ?? "") : (self.txt_size.text ?? ""))
+                                                    }
+                                                    if let data = cart_data {
+                                                        global.shared.arr_AddCartData.append(data)
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    } else {
+                                        if let Special = dict.is_Special, Special == "1" {
+                                            if strSelectId != "" {
+                                                cart_data = CartData(productId: dict.product_Id ?? "", cartQty: "\(self.CartTotal)", cartProductSize: self.txt_detox.text ?? "", cartDays: self.txt_days.text ?? "", cartAddon: strSelectId)
+                                            } else {
+                                                cart_data = CartData(productId: dict.product_Id ?? "", cartQty: "\(self.CartTotal)", cartProductSize: self.txt_detox.text ?? "", cartDays: self.txt_days.text ?? "")
+                                            }
+                                            if let data = cart_data {
+                                                global.shared.arr_AddCartData.append(data)
+                                            }
+                                        } else {
+                                            if strSelectId != "" {
+                                                cart_data = CartData(productId: dict.product_Id ?? "", cartQty: "\(self.CartTotal)", cartProductSize: self.vw_size.isHidden ? (self.lbl_size.text ?? "") : (self.txt_size.text ?? ""), cartAddon: strSelectId)
+                                            } else {
+                                                cart_data = CartData(productId: dict.product_Id ?? "", cartQty: "\(self.CartTotal)", cartProductSize: self.vw_size.isHidden ? (self.lbl_size.text ?? "") : (self.txt_size.text ?? ""))
+                                            }
+                                            if let data = cart_data {
+                                                global.shared.arr_AddCartData.append(data)
+                                            }
                                         }
                                     }
                                 }
@@ -261,8 +294,13 @@ class ProductDetails_VC: UIViewController {
                     if let dict = self.dict_product {
                         if let id = dict.product_Id {
                             let arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
-                            if arrCart.count != 0 && arrCart.count == 1 {
-                                if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Product_Id == id }) {
+                            if arrCart.count != 0 {
+                                var joinedIds = strSelectId
+                                if let index = global.shared.arr_AddCartData.firstIndex(where: {
+                                    let cartAddonSet = Set($0.Cart_Addons.components(separatedBy: ","))
+                                    let joinedIdSet = Set(joinedIds.components(separatedBy: ","))
+                                    return cartAddonSet == joinedIdSet
+                                }) {
                                     if let Special = dict.is_Special, Special == "1" {
                                         if global.shared.arr_AddCartData[index].Cart_Product_Size == (self.txt_detox.text ?? "") {
                                             global.shared.arr_AddCartData[index].Cart_Qty = "\(self.CartTotal)"
@@ -340,16 +378,35 @@ class ProductDetails_VC: UIViewController {
         if self.CartTotal == 0 {
             self.vw_cart.isHidden = true
         }
+        var strSelectId = ""
+        if self.selectAddonId.count != 0 {
+            for i in 0..<self.selectAddonId.count {
+                if i == 0 {
+                    strSelectId.append(self.selectAddonId[i])
+                } else {
+                    strSelectId.append(","+self.selectAddonId[i])
+                }
+            }
+        }
         if let dict = self.dict_product {
             if let id = dict.product_Id {
                 var arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
-                if arrCart.count != 0 && arrCart.count == 1 {
+                if arrCart.count != 0 {
+                    var joinedIds = strSelectId
                     if self.CartTotal == 0 {
-                        if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Product_Id == id }) {
+                        if let index = global.shared.arr_AddCartData.firstIndex(where: {
+                            let cartAddonSet = Set($0.Cart_Addons.components(separatedBy: ","))
+                            let joinedIdSet = Set(joinedIds.components(separatedBy: ","))
+                            return cartAddonSet == joinedIdSet
+                        }) {
                             global.shared.arr_AddCartData.remove(at: index)
                         }
                     } else {
-                        if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Product_Id == id }) {
+                        if let index = global.shared.arr_AddCartData.firstIndex(where: {
+                            let cartAddonSet = Set($0.Cart_Addons.components(separatedBy: ","))
+                            let joinedIdSet = Set(joinedIds.components(separatedBy: ","))
+                            return cartAddonSet == joinedIdSet
+                        }) {
                             global.shared.arr_AddCartData[index].Cart_Qty = "\(self.CartTotal)"
                         }
                     }
@@ -359,16 +416,7 @@ class ProductDetails_VC: UIViewController {
                             global.shared.arr_AddCartData.remove(at: index)
                         }
                     } else {
-                        var strSelectId = ""
-                        if self.selectAddonId.count != 0 {
-                            for i in 0..<self.selectAddonId.count {
-                                if i == 0 {
-                                    strSelectId.append(self.selectAddonId[i])
-                                } else {
-                                    strSelectId.append(","+self.selectAddonId[i])
-                                }
-                            }
-                        }
+                        
                         if let Special = dict.is_Special, Special == "1" {
                             if strSelectId != "" {
                                 cart_data = CartData(productId: dict.product_Id ?? "", cartQty: "\(self.CartTotal)", cartProductSize: self.txt_detox.text ?? "", cartDays: self.txt_days.text ?? "", cartAddon: strSelectId)
@@ -409,7 +457,7 @@ class ProductDetails_VC: UIViewController {
             let navigation = sb.instantiateViewController(withIdentifier: "Navigate_Login") as! UINavigationController
             navigation.modalPresentationStyle = .fullScreen
             self.present(navigation, animated: true)
-        }       
+        }
     }
   
     @IBAction func act_like(_ sender: UIButton) {
@@ -664,7 +712,7 @@ class ProductDetails_VC: UIViewController {
                         self.vw_cart.isHidden = false
                         for i in 0..<arrCart.count {
                             if let qty = Int(arrCart[i].Cart_Qty) {
-                                self.CartTotal += qty
+                                self.CartTotal = qty
                             }
                         }
                         // self.lbl_cartTotal.text = "\(self.CartTotal)"
@@ -913,7 +961,15 @@ extension ProductDetails_VC: UITableViewDelegate, UITableViewDataSource {
             } else {
                 self.selectAddonId.remove(str)
             }
-            
+            print("Selected : \(self.selectAddonId)")
+            print("Edit Addon : \(self.editSelectAddonId)")
+            if (Set(self.selectAddonId) == Set(self.editSelectAddonId)) {
+                self.vw_cart.isHidden = false
+                self.btn_AddToCart.isHidden = true
+            } else {
+                self.vw_cart.isHidden = true
+                self.btn_AddToCart.isHidden = false
+            }
             /*var strSelectedId: String = ""
             
             if self.selectAddonId.count != 0 {
@@ -1044,7 +1100,7 @@ extension ProductDetails_VC: UICollectionViewDataSource, UICollectionViewDelegat
                                     Cellcart += 1
                                     cell1.lbl_cart.text = "\(Cellcart)"
                                     if let id = dict.product_Id {
-                                        var arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
+                                        let arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
                                         if arrCart.count != 0 && arrCart.count == 1 {
                                             if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Product_Id == id }) {
                                                 global.shared.arr_AddCartData[index].Cart_Qty = "\(Cellcart)"
@@ -1083,7 +1139,7 @@ extension ProductDetails_VC: UICollectionViewDataSource, UICollectionViewDelegat
                             Cellcart += 1
                             cell1.lbl_cart.text = "\(Cellcart)"
                             if let id = dict.product_Id {
-                                var arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
+                                let arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
                                 if arrCart.count != 0 && arrCart.count == 1 {
                                     if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Product_Id == id }) {
                                         global.shared.arr_AddCartData[index].Cart_Qty = "\(Cellcart)"
@@ -1117,7 +1173,7 @@ extension ProductDetails_VC: UICollectionViewDataSource, UICollectionViewDelegat
                     cell1.lbl_cart.text = "\(Cellcart)"
                 }
                 if let id = dict.product_Id {
-                    var arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
+                    let arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
                     if arrCart.count != 0 && arrCart.count == 1 {
                         if Cellcart == 0 {
                             if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Product_Id == id }) {
@@ -1218,3 +1274,4 @@ extension ProductDetails_VC: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
 }
+

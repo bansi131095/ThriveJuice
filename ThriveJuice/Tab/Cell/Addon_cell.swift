@@ -47,7 +47,6 @@ class Addon_cell: UITableViewCell {
         for item in global.shared.arr_AddCartData {
             if item.Product_Id == ProductId {
                 selectAddonId = item.Cart_Addons.components(separatedBy: ",")
-                break
             }
         }
         self.collect_vw.reloadData()
