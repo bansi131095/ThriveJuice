@@ -42,9 +42,12 @@ class Orders_VC: UIViewController {
         self.tbl_vw.register(UINib(nibName: "Order_cell", bundle: nil), forCellReuseIdentifier: "cell")
         self.tbl_vw.delegate = self
         self.tbl_vw.dataSource = self
-        
+        self.tbl_vw.reloadData()
         let footerView = BlankFooterView(frame: CGRect(x: 0, y: 0, width: self.tbl_vw.frame.size.width, height: 70.0))
         self.tbl_vw.tableFooterView = footerView
+        
+        self.call_OrdersAPI()
+        
         // Do any additional setup after loading the view.
     }
     
@@ -219,12 +222,12 @@ extension Orders_VC: UITableViewDelegate, UITableViewDataSource {
                     for i in 0..<cell.arr_cartData.count {
                         if let name = cell.arr_cartData[i].product_Name {
                             if name.count < 24 {
-                                heights += 60
+                                heights += 70
                             } else {
-                                heights += 80
+                                heights += 85
                             }
                         } else {
-                            heights += 60
+                            heights += 70
                         }
                         if let arr = cell.arr_cartData[i].cart_Addons_Price, arr.count != 0 {
                             var str = ""
@@ -237,7 +240,7 @@ extension Orders_VC: UITableViewDelegate, UITableViewDataSource {
                                 }
                             }
                             print("Addon: ", str)
-                            let widths = 240.0
+                            let widths = 250.0
                             let height = str.textHeight(withWidth: widths)
                             heights += Int(height)
                         }
@@ -245,6 +248,7 @@ extension Orders_VC: UITableViewDelegate, UITableViewDataSource {
                 }
                 cell.tbl_height_const.constant = CGFloat(heights)
                 cell.tbl_vw.reloadData()
+                cell.tbl_vw.layoutIfNeeded()
                 cell.set_TableView()
             }
             cell.lbl_order.text = "#" + (dict.order_Id ?? "0")
@@ -279,6 +283,7 @@ extension Orders_VC: UITableViewDelegate, UITableViewDataSource {
             if let deliveryTime = dict.delivery_Time {
                 if deliveryTime == "" {
                     cell.vwHeight.constant = 0
+                    cell.lblDeliveryTime.text = ""
                 } else {
                     cell.vwHeight.constant = 30
                     cell.lblDeliveryTime.text = dict.delivery_Time ?? ""

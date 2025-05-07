@@ -100,7 +100,7 @@ class global: NSObject
     var URL_Add_Order = global.server_url + "Add_Order.php"
     // Delivery_Date, Subscribe_Week, Order_Type = Local_Delivery / Store_Pickup
     
-    var URL_StripepaymentAPI = global.base_url + "Stripe/paymentAPI.php"
+    var URL_StripepaymentAPI = global.base_url + "Stripe/paymentAPI-New.php"
     // Order_Id
     
     var URL_Complete_Order_Payment = global.server_url + "Complete_Order_Payment.php"

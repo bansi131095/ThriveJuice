@@ -119,6 +119,8 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="act_cancel" destination="321-UA-jaC" id="aKy-NS-Pz2"/>
+                <outlet property="imgLeding" destination="Q0m-GO-Bbh" id="ZdF-Lz-cam"/>
+                <outlet property="imgWrong" destination="Ej5-18-WCj" id="HhB-m2-ggS"/>
                 <outlet property="lbl_Addon" destination="Oki-K8-3c7" id="ot0-PJ-BRB"/>
                 <outlet property="lbl_price" destination="FoY-ZU-ueL" id="s0d-nl-yag"/>
                 <outlet property="lbl_product" destination="YrX-rs-DWi" id="za4-hO-Gxj"/>
@@ -126,6 +128,7 @@
                 <outlet property="lbl_size" destination="Jh6-xh-Wmz" id="fUr-rX-Hqw"/>
                 <outlet property="lbl_title" destination="N8c-8S-Tae" id="Lh0-Ym-ANv"/>
                 <outlet property="lbl_titleWidth_const" destination="jAP-Pl-mxh" id="HiY-un-ThO"/>
+                <outlet property="priceleding" destination="sh8-Dl-eTc" id="hk9-u1-EXQ"/>
             </connections>
             <point key="canvasLocation" x="183.96946564885496" y="27.112676056338028"/>
         </tableViewCell>

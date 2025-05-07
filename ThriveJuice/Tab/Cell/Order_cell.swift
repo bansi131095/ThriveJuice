@@ -28,6 +28,10 @@ class Order_cell: UITableViewCell {
     @IBOutlet weak var lblDeliveryTime: UILabel!
     @IBOutlet weak var vwHeight: NSLayoutConstraint!
     
+    @IBOutlet weak var vwWidthTotal: NSLayoutConstraint!
+    
+    
+    
     var arr_cartData: [Cart_Datas] = []
 //    var str_addon = ""
     
@@ -46,6 +50,10 @@ class Order_cell: UITableViewCell {
         self.tbl_vw.register(UINib(nibName: "OrderProduct_cell", bundle: nil), forCellReuseIdentifier: "cell")
         self.tbl_vw.delegate = self
         self.tbl_vw.dataSource = self
+        self.tbl_vw.rowHeight = UITableView.automaticDimension
+        self.tbl_vw.layoutIfNeeded()
+        self.tbl_height_const.constant = self.tbl_vw.contentSize.height
+        self.tbl_vw.estimatedRowHeight = 65
         self.tbl_vw.reloadData()
     }
     
@@ -94,6 +102,7 @@ extension Order_cell: UITableViewDelegate, UITableViewDataSource {
                 cell.lbl_title.text = ""
                 cell.lbl_titleWidth_const.constant = 0.0
             }
+            cell.act_cancel.isHidden = true
             var str = ""
             if let days = self.arr_cartData[indexPath.row].cart_Days {
                 if days != "" {

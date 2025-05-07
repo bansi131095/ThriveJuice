@@ -19,6 +19,9 @@ class OrderProduct_cell: UITableViewCell {
     @IBOutlet weak var lbl_titleWidth_const: NSLayoutConstraint!
     @IBOutlet weak var act_cancel: UIButton!
     
+    @IBOutlet weak var imgWrong: NSLayoutConstraint!
+    @IBOutlet weak var priceleding: NSLayoutConstraint!
+    @IBOutlet weak var imgLeding: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -53,6 +53,27 @@ class OrderDetails_VC: UIViewController {
     @IBOutlet weak var vwTimeHeight: NSLayoutConstraint!
     
     @IBOutlet weak var lblTime: UILabel!
+    @IBOutlet weak var lblTimeText: UILabel!
+    
+    @IBOutlet weak var lbl_OrderType: UILabel!
+    
+    @IBOutlet weak var vwSpecial_Discount: UIView!
+    
+    @IBOutlet weak var lblSpecial_Discount: UILabel!
+    @IBOutlet weak var vwReward_PointDiscount: UIView!
+    
+    @IBOutlet weak var lblRewardPoint_Discount: UILabel!
+    
+    
+    @IBOutlet weak var vw_Special_Discount_Description: UIView!
+    @IBOutlet weak var lbl_SpecialDiscountDescription: UILabel!
+    
+    @IBOutlet weak var vw_Special_Instructions: UIView!
+    @IBOutlet weak var lbl_Note: UILabel!
+    
+    @IBOutlet weak var vw_Payment_Mode: UIView!
+    @IBOutlet weak var lbl_PaymentMode: UILabel!
+    
     
     var subscribe_Week : String?
     var subscribe_Week_Cancel : String?
@@ -63,11 +84,11 @@ class OrderDetails_VC: UIViewController {
     var OrderId = String()
     
     
+    
     //MARK:- View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
+        lbl_week.text = ""
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -103,7 +124,7 @@ class OrderDetails_VC: UIViewController {
             if let id = dict.order_Id {
                 self.showAlertwithOptions(Title: "", optionTitle: "YES", cancelTitle: "NO", message: "Are you sure you want to cancel this subscription?", completion: { tap in
                     if tap{
-                        //LOgout
+                        //Logout
                         self.call_CancelSubscriptionAPI(OrderId: id)
                     } else {
                         //do nothing
@@ -134,7 +155,14 @@ class OrderDetails_VC: UIViewController {
     func SetData() {
         if let dict = self.dict_order {
             self.lbl_orderNo.text = "#" + (dict.order_Id ?? "0")
-            self.lbl_date.text = dict.order_Added_At ?? ""
+            
+            
+            if dict.order_Added_At != nil{
+                self.lbl_date.text = dict.order_Added_At ?? ""
+            }else{
+                self.lbl_date.text = ""
+            }
+            
             if let status = dict.order_Status {
                 /*if status == "Pending" {
                     self.lbl_status.textColor = UIColor(named: "Green")
@@ -168,10 +196,56 @@ class OrderDetails_VC: UIViewController {
             if let delivery = dict.delivery_Time {
                 if delivery == "" {
                     self.vwTimeHeight.constant = 0
+                    self.lblTime.text = ""
+                    self.lblTimeText.text = ""
                 } else {
                     self.vwTimeHeight.constant = 30
                     self.lblTime.text = dict.delivery_Time ?? ""
                 }
+            }
+            
+            
+            if dict.orderType != ""{
+                if dict.orderType == "Local_Delivery" {
+                    self.lbl_OrderType.text = "Local Delivery"
+                }else if dict.orderType == "Store_Pickup" {
+                    self.lbl_OrderType.text = "Store Pickup"
+                }else if dict.orderType == "Right_Away"{
+                    self.lbl_OrderType.text = "Pickup Today"
+                }
+            }else{
+                self.lbl_OrderType.text = ""
+            }
+            
+            
+            if dict.special_Discount_Description != "" {
+                self.vw_Special_Discount_Description.isHidden = false
+                self.lbl_SpecialDiscountDescription.text = dict.special_Discount_Description ?? ""
+            }else{
+                self.vw_Special_Discount_Description.isHidden = true
+                self.lbl_SpecialDiscountDescription.text = ""
+            }
+            
+            if dict.orderNotes != "" {
+                self.vw_Special_Instructions.isHidden = false
+                self.lbl_Note.text = dict.orderNotes
+            }else{
+                self.vw_Special_Instructions.isHidden = true
+                self.lbl_Note.text = ""
+            }
+            
+            if dict.Payment_Mode != "" {
+                self.vw_Payment_Mode.isHidden = false
+                if dict.Payment_Mode == "Cash" {
+                    self.lbl_PaymentMode.text = "\(dict.Payment_Mode ?? "")"
+                }else if dict.Payment_Mode == "Card" {
+                    self.lbl_PaymentMode.text = "\(dict.Payment_Mode ?? "")" + " (\(dict.Payment_Card_Type ?? "0")) "
+                }else {
+                    self.lbl_PaymentMode.text = "\(dict.Payment_Mode ?? "") " + " ( Cash : $\(dict.Cash_Collect ?? "0") | Card : $\(dict.Card_Collect ?? "0") ) "
+                }
+            }else{
+                self.vw_Payment_Mode.isHidden = true
+                self.lbl_PaymentMode.text = ""
             }
             
             self.lbl_SubTotal.text = "$" + (dict.product_Total ?? "")
@@ -198,7 +272,6 @@ class OrderDetails_VC: UIViewController {
                 data.append(val)
             }
             self.lbl_email.text = data
-            self.lbl_line.isHidden = true
             var heights = 0
             if let arr = dict.cart_Data {
                 self.arrCartProduct = arr
@@ -206,7 +279,7 @@ class OrderDetails_VC: UIViewController {
                 let count = self.arrCartProduct.count
                 if count != 0 {
                     for i in 0..<self.arrCartProduct.count {
-                        heights += 60
+                        heights += 55
                         if let arr = self.arrCartProduct[i].cart_Addons_Price, arr.count != 0 {
                             var str = ""
                             for i in 0..<arr.count {
@@ -218,16 +291,19 @@ class OrderDetails_VC: UIViewController {
                                 }
                             }
                             print("Addon: ", str)
-                            let widths = 255.0
+                            let widths = 240.0
                             let height = str.textHeight(withWidth: widths)
                             heights += Int(height)
                         }
                     }
                 }
-                self.tbl_height_const.constant = CGFloat(heights)
                 self.tbl_vw.delegate = self
                 self.tbl_vw.dataSource = self
+                self.tbl_vw.rowHeight = UITableView.automaticDimension
+                self.tbl_vw.estimatedRowHeight = 60
                 self.tbl_vw.reloadData()
+                self.tbl_vw.layoutIfNeeded()
+                self.tbl_height_const.constant = CGFloat(heights)
             }
             if let subweek = self.subscribe_Week {
                 if Int(subweek)! > 0 {
@@ -240,6 +316,7 @@ class OrderDetails_VC: UIViewController {
                             self.btn_repeatOrder.isHidden = true
                         }
                     }
+                    
                     self.lbl_week.text = subweek + " Weeks"
                     self.btn_cancelOrder.isHidden = true
                 } else {
@@ -355,6 +432,16 @@ class OrderDetails_VC: UIViewController {
                     self.lbl_ShippingCharge.text = "$" + shippingCharge
                 }
             }
+            
+            
+            /*if let reward_Points_Amount = dict.reward_Points_Amount, let double = Double(reward_Points_Amount) {
+                if double == 0 {
+                    self.vwReward_PointDiscount.isHidden = true
+                }else{
+                    self.vwReward_PointDiscount.isHidden = false
+                    self.lblRewardPoint_Discount.text = "- $" + reward_Points_Amount
+                }
+            }*/
         }
     }
 
@@ -472,6 +559,10 @@ extension OrderDetails_VC: UITableViewDelegate, UITableViewDataSource {
                 cell.lbl_title.text = ""
                 cell.lbl_titleWidth_const.constant = 0.0
             }
+            cell.imgWrong.constant = 0
+            cell.priceleding.constant = 0
+            cell.imgLeding.constant = 3
+            cell.act_cancel.isHidden = true
             var str = ""
             if let days = self.arrCartProduct[indexPath.row].cart_Days {
                 if days != "" {

@@ -33,6 +33,8 @@ struct OrderListModel : Mappable {
 
 struct Orders : Mappable {
     var order_Id : String?
+    var orderType : String?
+    var orderNotes : String?
     var delivery_Date : String?
     var delivery_Time : String?
     var order_Status : String?
@@ -49,13 +51,19 @@ struct Orders : Mappable {
     var discount_Amount : String?
     var reward_Points_Amount : String?
     var subscribe_Discount_Amount : String?
+    var special_Discount_Description : String?
     var _Address_Id : String?
     var _Store_Id : String?
     var address : Addresses?
     var store : Stores?
     var bottle_Environment_Fees : String?
     var bottle_Return_Amount : String?
-
+    var Payment_Mode : String?
+    var Cash_Change_Return : String?
+    var Cash_Collect : String?
+    var Payment_Card_Type : String?
+    var Card_Collect : String?
+    
     init?(map: Map) {
 
     }
@@ -63,6 +71,8 @@ struct Orders : Mappable {
     mutating func mapping(map: Map) {
 
         order_Id <- map["Order_Id"]
+        orderType <- map["Order_Type"]
+        orderNotes <- map["Order_Notes"]
         delivery_Date <- map["Delivery_Date"]
         delivery_Time <- map["Delivery_Time"]
         order_Status <- map["Order_Status"]
@@ -79,12 +89,18 @@ struct Orders : Mappable {
         discount_Amount <- map["Discount_Amount"]
         reward_Points_Amount <- map["Reward_Points_Amount"]
         subscribe_Discount_Amount <- map["Subscribe_Discount_Amount"]
+        special_Discount_Description <- map["Special_Discount_Description"]
         _Address_Id <- map["_Address_Id"]
         _Store_Id <- map["_Store_Id"]
         address <- map["Address"]
         store <- map["Store"]
         bottle_Environment_Fees <- map["Bottle_Environment_Fees"]
         bottle_Return_Amount <- map["Bottle_Return_Amount"]
+        Cash_Change_Return <- map["Cash_Change_Return"]
+        Cash_Collect <- map["Cash_Collect"]
+        Card_Collect <- map["Card_Collect"]
+        Payment_Card_Type <- map["Payment_Card_Type"]
+        Payment_Mode <- map["Payment_Mode"]
     }
     
 

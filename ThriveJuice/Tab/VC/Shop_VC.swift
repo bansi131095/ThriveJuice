@@ -31,6 +31,12 @@ class Shop_VC: UIViewController {
     
     var arrCartData: [CartData] = []
     
+    
+    var timer: Timer?
+        
+    let items = Array(1...10).map { "Item \($0)" }
+    var currentIndex = 0
+    
     //MARK:- View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,8 +53,20 @@ class Shop_VC: UIViewController {
             print("No data found in UserDefaults")
         }
         NotificationCenter.default.addObserver(self, selector: #selector(OrderTypeRedirect),name: NSNotification.Name ("OrderTypeSelect"),object: nil)
-        // Do any additional setup after loading the view.
+        
+        timer = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(slideToNext), userInfo: nil, repeats: true)
     }
+    
+    @objc func slideToNext(){
+        if currentIndex < arr_banner .count - 1{
+            currentIndex = currentIndex + 1
+        }
+        else{
+            currentIndex = 0
+        }
+        collection.scrollToItem(at: IndexPath(item: currentIndex, section: 0), at: .right, animated: true)
+    }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -459,8 +477,10 @@ extension Shop_VC: UICollectionViewDataSource, UICollectionViewDelegate, UIColle
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == self.collect_category {
             return CGSize(width: 95, height: 130)
+        }else{
+            return CGSize(width: collection.frame.size.width, height: 160)
         }
-        return self.collection.frame.insetBy(dx: 40, dy: 0).size
+//        return self.collection.frame.insetBy(dx: 40, dy: 0).size
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

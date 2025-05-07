@@ -34,7 +34,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nP5-MG-Sss">
-                        <rect key="frame" x="12" y="5" width="371" height="216.33333333333334"/>
+                        <rect key="frame" x="12" y="5" width="371" height="190"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#123456" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LlB-DO-jB3">
                                 <rect key="frame" x="11.999999999999996" y="11.999999999999998" width="62.666666666666657" height="20.333333333333329"/>
@@ -71,14 +71,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Tl0-v7-tKd">
-                                <rect key="frame" x="0.0" y="66.333333333333329" width="289" height="60"/>
+                                <rect key="frame" x="0.0" y="61.333333333333329" width="289" height="60"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="xU9-Sh-m9m"/>
                                 </constraints>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nNh-0M-B3e">
-                                <rect key="frame" x="289" y="74" width="70" height="45"/>
+                                <rect key="frame" x="289" y="69" width="70" height="45"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbN-vZ-eL4">
                                         <rect key="frame" x="13.333333333333318" y="5" width="43.333333333333343" height="35"/>
@@ -104,7 +104,7 @@ $84.00</string>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XI0-Fj-x0R">
-                                <rect key="frame" x="12" y="136.33333333333334" width="347" height="1"/>
+                                <rect key="frame" x="12" y="126.33333333333334" width="347" height="1"/>
                                 <color key="backgroundColor" name="TextGray"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="Qow-56-A3y"/>
@@ -114,28 +114,34 @@ $84.00</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delivery Date:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9yU-93-QFb">
-                                <rect key="frame" x="12" y="145.33333333333334" width="83.666666666666671" height="31"/>
+                                <rect key="frame" x="12" y="134.66666666666666" width="83.666666666666671" height="20.333333333333343"/>
                                 <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="14"/>
                                 <color key="textColor" name="TextGray"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25 Jun 2023" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PSm-km-MT8">
-                                <rect key="frame" x="97.666666666666657" y="145.33333333333334" width="83.666666666666657" height="31"/>
+                                <rect key="frame" x="97.666666666666657" y="134.66666666666666" width="83.666666666666657" height="20.333333333333343"/>
                                 <fontDescription key="fontDescription" name="Jost-Bold" family="Jost" pointSize="14"/>
                                 <color key="textColor" name="TextGray"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yuu-Lz-LIW">
-                                <rect key="frame" x="12" y="181.33333333333334" width="349" height="30"/>
+                                <rect key="frame" x="12" y="155" width="349" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delivery Time:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r4e-wB-ybf">
                                         <rect key="frame" x="0.0" y="5" width="85" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="nyN-zs-V4w"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="14"/>
                                         <color key="textColor" name="TextGray"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14:00 - 17:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K9D-DR-hwl">
-                                        <rect key="frame" x="85" y="5" width="91" height="20.333333333333332"/>
+                                        <rect key="frame" x="85" y="4.6666666666666572" width="90.333333333333314" height="20.666666666666668"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20.670000000000002" id="pgZ-0G-lU4"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="Jost-Bold" family="Jost" pointSize="14"/>
                                         <color key="textColor" name="TextGray"/>
                                         <nil key="highlightedColor"/>
@@ -153,7 +159,7 @@ $84.00</string>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qgo-Ke-NLr">
-                                <rect key="frame" x="191.33333333333337" y="145.33333333333334" width="167.66666666666663" height="31"/>
+                                <rect key="frame" x="191.33333333333337" y="129.33333333333334" width="167.66666666666663" height="31"/>
                                 <fontDescription key="fontDescription" name="Jost-Medium" family="Jost" pointSize="13"/>
                                 <inset key="titleEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -165,7 +171,7 @@ $84.00</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fb8-XR-vBU">
-                                <rect key="frame" x="299" y="145.33333333333334" width="60" height="31"/>
+                                <rect key="frame" x="299" y="129.33333333333334" width="60" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="NM1-AU-5zb"/>
                                 </constraints>
@@ -184,8 +190,8 @@ $84.00</string>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="Yuu-Lz-LIW" secondAttribute="bottom" constant="5" id="0FK-bM-7z1"/>
                             <constraint firstAttribute="trailing" secondItem="XI0-Fj-x0R" secondAttribute="trailing" constant="12" id="3Uv-B3-xea"/>
+                            <constraint firstItem="9yU-93-QFb" firstAttribute="centerY" secondItem="Qgo-Ke-NLr" secondAttribute="centerY" id="6dC-AD-8OF"/>
                             <constraint firstItem="nNh-0M-B3e" firstAttribute="centerY" secondItem="Tl0-v7-tKd" secondAttribute="centerY" id="8ps-XF-9vK"/>
-                            <constraint firstItem="PSm-km-MT8" firstAttribute="centerY" secondItem="Qgo-Ke-NLr" secondAttribute="centerY" id="8xu-dR-pOP"/>
                             <constraint firstItem="jz5-LT-qaw" firstAttribute="top" secondItem="nP5-MG-Sss" secondAttribute="top" constant="12" id="97s-6Q-0WD"/>
                             <constraint firstItem="9yU-93-QFb" firstAttribute="leading" secondItem="nP5-MG-Sss" secondAttribute="leading" constant="12" id="Aeo-Ai-4WY"/>
                             <constraint firstItem="jZ7-j0-60D" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="AMx-SO-huG" secondAttribute="trailing" constant="10" id="E2E-hZ-5Kn"/>
@@ -195,10 +201,8 @@ $84.00</string>
                             <constraint firstItem="jZ7-j0-60D" firstAttribute="top" secondItem="jz5-LT-qaw" secondAttribute="bottom" constant="2" id="FEy-IP-eky"/>
                             <constraint firstItem="XI0-Fj-x0R" firstAttribute="leading" secondItem="nP5-MG-Sss" secondAttribute="leading" constant="12" id="IHx-2Q-OtB"/>
                             <constraint firstItem="fb8-XR-vBU" firstAttribute="bottom" secondItem="Qgo-Ke-NLr" secondAttribute="bottom" id="IQe-Ug-Qx2"/>
-                            <constraint firstItem="9yU-93-QFb" firstAttribute="top" secondItem="XI0-Fj-x0R" secondAttribute="bottom" constant="8" id="KzA-DN-U6r"/>
-                            <constraint firstItem="Yuu-Lz-LIW" firstAttribute="top" secondItem="9yU-93-QFb" secondAttribute="bottom" constant="5" id="NS2-yO-aEF"/>
+                            <constraint firstItem="Yuu-Lz-LIW" firstAttribute="top" secondItem="9yU-93-QFb" secondAttribute="bottom" id="NS2-yO-aEF"/>
                             <constraint firstAttribute="trailing" secondItem="jZ7-j0-60D" secondAttribute="trailing" constant="12" id="O1G-aR-bfQ"/>
-                            <constraint firstItem="9yU-93-QFb" firstAttribute="baseline" secondItem="PSm-km-MT8" secondAttribute="baseline" id="P26-tF-Cq8"/>
                             <constraint firstItem="Tl0-v7-tKd" firstAttribute="leading" secondItem="nP5-MG-Sss" secondAttribute="leading" id="SB2-uo-jgj"/>
                             <constraint firstItem="AMx-SO-huG" firstAttribute="top" secondItem="LlB-DO-jB3" secondAttribute="bottom" constant="2" id="Uxo-iI-qPf"/>
                             <constraint firstAttribute="trailing" secondItem="jz5-LT-qaw" secondAttribute="trailing" constant="12" id="W0e-ng-1xi"/>
@@ -210,15 +214,15 @@ $84.00</string>
                             <constraint firstItem="fYe-1Z-Yo5" firstAttribute="top" secondItem="AMx-SO-huG" secondAttribute="bottom" constant="5" id="hqO-v4-v1G"/>
                             <constraint firstAttribute="trailing" secondItem="nNh-0M-B3e" secondAttribute="trailing" constant="12" id="khB-Rw-hd6"/>
                             <constraint firstItem="LlB-DO-jB3" firstAttribute="leading" secondItem="nP5-MG-Sss" secondAttribute="leading" constant="12" id="llR-4v-zbp"/>
-                            <constraint firstItem="Qgo-Ke-NLr" firstAttribute="top" secondItem="XI0-Fj-x0R" secondAttribute="bottom" constant="8" id="nTS-VB-iGh"/>
+                            <constraint firstItem="Qgo-Ke-NLr" firstAttribute="top" secondItem="XI0-Fj-x0R" secondAttribute="bottom" constant="2" id="nTS-VB-iGh"/>
                             <constraint firstAttribute="trailing" secondItem="Yuu-Lz-LIW" secondAttribute="trailing" constant="10" id="pKr-UX-1wx"/>
-                            <constraint firstItem="Tl0-v7-tKd" firstAttribute="top" secondItem="fYe-1Z-Yo5" secondAttribute="bottom" constant="10" id="qbB-6U-ltB"/>
-                            <constraint firstItem="XI0-Fj-x0R" firstAttribute="top" secondItem="Tl0-v7-tKd" secondAttribute="bottom" constant="10" id="rw1-vS-ZP9"/>
+                            <constraint firstItem="Tl0-v7-tKd" firstAttribute="top" secondItem="fYe-1Z-Yo5" secondAttribute="bottom" constant="5" id="qbB-6U-ltB"/>
+                            <constraint firstItem="XI0-Fj-x0R" firstAttribute="top" secondItem="Tl0-v7-tKd" secondAttribute="bottom" constant="5" id="rw1-vS-ZP9"/>
                             <constraint firstItem="nNh-0M-B3e" firstAttribute="leading" secondItem="Tl0-v7-tKd" secondAttribute="trailing" id="tWj-Mn-Yin"/>
                             <constraint firstItem="fYe-1Z-Yo5" firstAttribute="leading" secondItem="nP5-MG-Sss" secondAttribute="leading" constant="12" id="umc-Pn-R1u"/>
-                            <constraint firstItem="PSm-km-MT8" firstAttribute="top" secondItem="XI0-Fj-x0R" secondAttribute="bottom" constant="8" id="uwz-b3-Yo2"/>
                             <constraint firstItem="LlB-DO-jB3" firstAttribute="top" secondItem="nP5-MG-Sss" secondAttribute="top" constant="12" id="xA0-mW-LRP"/>
                             <constraint firstItem="PSm-km-MT8" firstAttribute="leading" secondItem="9yU-93-QFb" secondAttribute="trailing" constant="2" id="y9K-Ag-OVm"/>
+                            <constraint firstItem="PSm-km-MT8" firstAttribute="centerY" secondItem="9yU-93-QFb" secondAttribute="centerY" id="yU6-RP-Krk"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -251,6 +255,7 @@ $84.00</string>
                 <outlet property="tbl_vw" destination="Tl0-v7-tKd" id="hI9-VR-PHh"/>
                 <outlet property="vwDeliveryTime" destination="Yuu-Lz-LIW" id="WT9-v1-Ebk"/>
                 <outlet property="vwHeight" destination="Rps-Kz-5Cc" id="1Zn-cf-DYC"/>
+                <outlet property="vwWidthTotal" destination="SZs-wd-qKv" id="ajs-aG-Hxu"/>
             </connections>
             <point key="canvasLocation" x="183.96946564885496" y="88.732394366197184"/>
         </tableViewCell>
