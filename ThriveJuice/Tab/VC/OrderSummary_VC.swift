@@ -474,7 +474,8 @@ extension OrderSummary_VC: UITableViewDelegate, UITableViewDataSource {
                 cell.lbl_title.text = ""
                 cell.lbl_titleWidth_const.constant = 0.0
             }
-            cell.Act_cancel = {
+            cell.act_cancel.isHidden = true
+            /*cell.Act_cancel = {
                 if let id = data.product_Id {
                     let arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
                     if arrCart.count != 0 {
@@ -490,7 +491,7 @@ extension OrderSummary_VC: UITableViewDelegate, UITableViewDataSource {
                 self.call_CartAPI()
                 print("Arr data \(global.shared.arr_AddCartData)")
                 print("Arr data count \(global.shared.arr_AddCartData.count)")
-            }
+            } */
             return cell
         }
         return UITableViewCell()

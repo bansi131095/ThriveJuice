@@ -36,7 +36,7 @@ class OrderProduct_cell: UITableViewCell {
     
     var Act_cancel:(()->Void)?
     @IBAction func act_Cancel(_ sender: Any) {
-        self.Act_cancel?()
+//        self.Act_cancel?()
     }
     
     

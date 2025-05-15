@@ -58,7 +58,7 @@ class AddNewAddress_VC: UIViewController {
     
     @IBAction func act_SavePickupAddress(_ sender: UIButton) {
         if self.txt_FlatName.text == "" {
-            self.showAlertToast(message: "Please provide Landmark")
+            self.showAlertToast(message: "Please provide nearby location")
         } else if self.txt_city.text == "" {
             self.showAlertToast(message: "Please provide City")
         } else if self.txt_Pincode.text == "" {
@@ -148,10 +148,33 @@ class AddNewAddress_VC: UIViewController {
                 } else { }
             }
             
-        } else { }
+        } else {
+            self.showLocationPermissionAlert()
+        }
         }
     }
     
+    func showLocationPermissionAlert() {
+        let alert = UIAlertController(title: "Location Permission Required",
+                                      message: "Please enable location access in Settings to use this feature.",
+                                      preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+                // Pop the current view controller
+                self.navigationController?.popViewController(animated: true)
+            }))
+        alert.addAction(UIAlertAction(title: "Settings", style: .default, handler: { _ in
+            
+            if let appSettings = URL(string: UIApplication.openSettingsURLString),
+               UIApplication.shared.canOpenURL(appSettings) {
+                UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
+            }
+        }))
+
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
     
     //MARK:- Map Function
     func reverseGeocode(coordinate: CLLocationCoordinate2D) {

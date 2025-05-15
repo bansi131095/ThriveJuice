@@ -1984,7 +1984,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stores" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="heu-1o-fgK">
-                                        <rect key="frame" x="173.33333333333334" y="15.666666666666673" width="46.333333333333343" height="18.666666666666679"/>
+                                        <rect key="frame" x="174.66666666666666" y="13.333333333333327" width="44" height="23.333333333333329"/>
                                         <fontDescription key="fontDescription" name="Jost-Medium" family="Jost" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -2002,7 +2002,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dKg-p6-GRe">
-                                        <rect key="frame" x="361" y="20.666666666666671" width="7" height="14"/>
+                                        <rect key="frame" x="360.66666666666669" y="18.666666666666671" width="8" height="17.666666666666671"/>
                                         <fontDescription key="fontDescription" name="Jost-SemiBold" family="Jost" pointSize="12"/>
                                         <color key="textColor" name="AccentColor"/>
                                         <nil key="highlightedColor"/>
@@ -2038,7 +2038,7 @@
                                 <rect key="frame" x="0.0" y="109" width="393" height="4357"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NyE-dj-Umt">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="4420"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="4750.666666666667"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="DjV-a2-i5f">
                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="400"/>
@@ -2061,40 +2061,40 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EVERYTHING YOU EVER WANTED TO KNOW ABOUT CLEANSING... BUT WERE AFRAID TO ASK" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wYO-zd-7Z1">
-                                                <rect key="frame" x="16" y="550" width="361" height="35"/>
+                                                <rect key="frame" x="16" y="550" width="361" height="43.666666666666629"/>
                                                 <fontDescription key="fontDescription" name="Jost-Medium" family="Jost" pointSize="15"/>
                                                 <color key="textColor" name="TextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cleanseBg" translatesAutoresizingMaskIntoConstraints="NO" id="GqE-KX-1DW">
-                                                <rect key="frame" x="121.66666666666669" y="593" width="150" height="140"/>
+                                                <rect key="frame" x="121.66666666666669" y="601.66666666666663" width="150" height="140"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="140" id="8tN-z4-Kja"/>
                                                     <constraint firstAttribute="width" constant="150" id="sgN-ll-iVF"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WHAT’S A CLEANSE?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3uW-lU-10E">
-                                                <rect key="frame" x="16" y="743" width="361" height="16.333333333333371"/>
+                                                <rect key="frame" x="16" y="751.66666666666663" width="361" height="20.333333333333371"/>
                                                 <fontDescription key="fontDescription" name="Jost-SemiBold" family="Jost" pointSize="14"/>
                                                 <color key="textColor" name="TextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f1K-v0-6ZL">
-                                                <rect key="frame" x="16" y="771.33333333333337" width="361" height="154"/>
+                                                <rect key="frame" x="16" y="784" width="361" height="191"/>
                                                 <string key="text">A liquid feast! Your regular chop, cook (or order!) + chew food routine hits the pause button for a short period of time. Yup, you heard that right... no solid foods. Just like when you were a babe in your mother's arms. We’ll do the heavy lifting of ensuring you get what your body needs by serving you a colorful selection of raw, cold-pressed fruit and veggie juices that’ll flood your body with a high volume of easily-assimilated nutrients. Your digestive system will sigh in relief... getting a well-deserved rest from its never-ending to-do list of breaking down solid foods + processing the toxins of your daily diet. That takes a whole lotta energy, that’ll now be refocused on healing and restoring. Doesn’t that sound smart?</string>
                                                 <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="12"/>
                                                 <color key="textColor" name="TextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cleanseBg" translatesAutoresizingMaskIntoConstraints="NO" id="b4b-wW-uWf">
-                                                <rect key="frame" x="121.66666666666669" y="933.33333333333326" width="150" height="140"/>
+                                                <rect key="frame" x="121.66666666666669" y="983" width="150" height="140"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="140" id="Kyx-dS-e00"/>
                                                     <constraint firstAttribute="width" constant="150" id="ZCg-LP-61G"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v1Q-qc-9MY">
-                                                <rect key="frame" x="16" y="1083.3333333333333" width="361" height="16.333333333333258"/>
+                                                <rect key="frame" x="16" y="1133" width="361" height="20.333333333333258"/>
                                                 <string key="text">WHY CLEANSE?
 </string>
                                                 <fontDescription key="fontDescription" name="Jost-SemiBold" family="Jost" pointSize="14"/>
@@ -2102,165 +2102,165 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTw-Oc-Oaq">
-                                                <rect key="frame" x="16" y="1111.6666666666667" width="361" height="140"/>
+                                                <rect key="frame" x="16" y="1165.3333333333333" width="361" height="156.33333333333326"/>
                                                 <string key="text">Better out than in! Our bodies absorb all types of toxins on a daily basis; from processed food, chemical additives and pollutants in the air, to the skincare + cleaning products we use. Our body’s elimination organs work hard to remove these toxins, but sometimes they get overwhelmed and need some support. When you choose to embark on the adventure of a Thrive Juice Cleanse, you’re giving your body the support it craves. Our nutrient-dense selection of juices helps reduce inflammation, conquer cravings, detoxify the body, and flood your cells with easily absorbed vitamins + nutrients.</string>
                                                 <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="12"/>
                                                 <color key="textColor" name="TextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BEFORE, DURING &amp; AFTER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TSI-6m-3w1">
-                                                <rect key="frame" x="16" y="1267.6666666666667" width="361" height="14"/>
+                                                <rect key="frame" x="16" y="1337.6666666666667" width="361" height="17.666666666666742"/>
                                                 <fontDescription key="fontDescription" name="Jost-Medium" family="Jost" pointSize="12"/>
                                                 <color key="textColor" name="TextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ease in, don’t overdo it, and stay calm!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9I1-Oa-PVD">
-                                                <rect key="frame" x="16" y="1297.6666666666667" width="361" height="14"/>
+                                                <rect key="frame" x="16" y="1371.3333333333333" width="361" height="17.666666666666742"/>
                                                 <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="12"/>
                                                 <color key="textColor" name="TextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cleanseBg" translatesAutoresizingMaskIntoConstraints="NO" id="lk1-Je-FZg">
-                                                <rect key="frame" x="121.66666666666669" y="1321.6666666666667" width="150" height="140"/>
+                                                <rect key="frame" x="121.66666666666669" y="1399" width="150" height="140"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="140" id="37K-iP-1St"/>
                                                     <constraint firstAttribute="width" constant="150" id="yhj-yh-JJG"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BEFORE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wuX-R5-9nP">
-                                                <rect key="frame" x="16" y="1471.6666666666667" width="361" height="14"/>
+                                                <rect key="frame" x="16" y="1549" width="361" height="17.666666666666742"/>
                                                 <fontDescription key="fontDescription" name="Jost-SemiBold" family="Jost" pointSize="12"/>
                                                 <color key="textColor" name="TextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="42D-Ob-NiU">
-                                                <rect key="frame" x="16" y="1501.6666666666667" width="361" height="140"/>
+                                                <rect key="frame" x="16" y="1582.6666666666667" width="361" height="173.66666666666674"/>
                                                 <string key="text">It’s good to ease into a cleanse by eliminating foods that are hard to digest, like: processed and fried foods, animal proteins, gluten, dairy, coffee, alcohol, and sugar. So for a few days before you begin your cleanse, load up on fresh, whole foods like: veggies, fruit, simple grains + legumes. Oh... and up your aqua intake, which is essential to flush your system and ease elimination. Bonus... it’ll help you get your glow on! Our best recommendation: Drink herbal tea or warm water with lemon upon rising, or try one of our detox waters. Ditch the soda + caffeine and gulp at least two litres of water (filtered, is best) per day.</string>
                                                 <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="12"/>
                                                 <color key="textColor" name="TextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cleanseBg" translatesAutoresizingMaskIntoConstraints="NO" id="hEy-Kc-IDD">
-                                                <rect key="frame" x="121.66666666666669" y="1651.6666666666667" width="150" height="140"/>
+                                                <rect key="frame" x="121.66666666666669" y="1766.3333333333333" width="150" height="140"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="2Y2-re-iDG"/>
                                                     <constraint firstAttribute="height" constant="140" id="HEZ-4i-Bwp"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DURING" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZhM-hd-3Sq">
-                                                <rect key="frame" x="16" y="1801.6666666666667" width="361" height="14"/>
+                                                <rect key="frame" x="16" y="1916.3333333333333" width="361" height="17.666666666666742"/>
                                                 <fontDescription key="fontDescription" name="Jost-SemiBold" family="Jost" pointSize="12"/>
                                                 <color key="textColor" name="TextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Qa-yn-Vgu">
-                                                <rect key="frame" x="16" y="1831.6666666666667" width="361" height="98"/>
+                                                <rect key="frame" x="16" y="1950" width="361" height="121.66666666666652"/>
                                                 <string key="text">Yay! You’re off to great places, you’re off and away! Besides taking in the delicious benefits of cold-pressed juicing, you’re saving tons of time usually spent shopping, chopping + chewing! Time to put your feet up, take an epsom salt soak in the tub + REST! Be sure to keep your water intake high and get lots of sleep! Feeling irritable? Uncomfortable? Stay Calm! Be patient with your body as it adjusts to the elimination process.</string>
                                                 <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="12"/>
                                                 <color key="textColor" name="TextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cleanseBg" translatesAutoresizingMaskIntoConstraints="NO" id="GFW-Dt-86F">
-                                                <rect key="frame" x="121.66666666666669" y="1939.6666666666665" width="150" height="140"/>
+                                                <rect key="frame" x="121.66666666666669" y="2081.6666666666665" width="150" height="140"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="140" id="AjP-Ng-PSP"/>
                                                     <constraint firstAttribute="width" constant="150" id="bPZ-VH-bgE"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AFTER" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tyK-U4-yl6">
-                                                <rect key="frame" x="16" y="2089.6666666666665" width="361" height="14"/>
+                                                <rect key="frame" x="16" y="2231.6666666666665" width="361" height="17.666666666666515"/>
                                                 <fontDescription key="fontDescription" name="Jost-SemiBold" family="Jost" pointSize="12"/>
                                                 <color key="textColor" name="TextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vsX-di-7xv">
-                                                <rect key="frame" x="16" y="2119.6666666666665" width="361" height="126"/>
+                                                <rect key="frame" x="16" y="2265.3333333333335" width="361" height="139"/>
                                                 <string key="text">Exit your cleanse in the same way you eased into it, keeping processed and refined foods, alcohol, caffeine, dairy, and meat out of your diet for at least a few days, making whole fruits + veggies a priority. We suggest simple meals like soup, smoothies and steamed vegetables. We’ve got epic grab-and-go options in-store for you, too. Use this time as an opportunity to get rid of old habits, clean out your fridge + cupboards and start fresh. It can be helpful to re-introduce one food at a time to help discover any food sensitivities you may have.</string>
                                                 <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="12"/>
                                                 <color key="textColor" name="TextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="THE BENEFITS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v3g-01-KFV">
-                                                <rect key="frame" x="16" y="2275.6666666666665" width="361" height="14"/>
+                                                <rect key="frame" x="16" y="2434.3333333333335" width="361" height="17.666666666666515"/>
                                                 <fontDescription key="fontDescription" name="Jost-Medium" family="Jost" pointSize="12"/>
                                                 <color key="textColor" name="TextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A renewed + radiant you!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K8N-dD-WZf">
-                                                <rect key="frame" x="16" y="2299.6666666666665" width="361" height="13"/>
+                                                <rect key="frame" x="16" y="2462" width="361" height="16"/>
                                                 <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="11"/>
                                                 <color key="textColor" name="TextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nutrition" translatesAutoresizingMaskIntoConstraints="NO" id="35O-xB-HzI">
-                                                <rect key="frame" x="161.66666666666666" y="2352.6666666666665" width="70" height="80"/>
+                                                <rect key="frame" x="161.66666666666666" y="2518" width="70" height="80"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="70" id="VCp-WV-51V"/>
                                                     <constraint firstAttribute="height" constant="80" id="bEs-gW-Wvt"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NUTRITION" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MBo-gQ-9PZ">
-                                                <rect key="frame" x="16" y="2452.6666666666665" width="361" height="14"/>
+                                                <rect key="frame" x="16" y="2618" width="361" height="17.666666666666515"/>
                                                 <fontDescription key="fontDescription" name="Jost-SemiBold" family="Jost" pointSize="12"/>
                                                 <color key="textColor" name="TextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vej-he-l7l">
-                                                <rect key="frame" x="16" y="2482.6666666666665" width="361" height="112"/>
+                                                <rect key="frame" x="16" y="2651.6666666666665" width="361" height="139"/>
                                                 <string key="text">During a juice cleanse your body’ll receive a deliciously-dense dose of vitamins and nutrients that’ll help curb unwanted cravings and increase your energy. This boost of energy from a short juice cleanse can give you the motivation you need to stick to a healthy diet — or start eating healthy once the cleanse is over. Part of the boost is from finally giving your body the fluid it needs, giving you many benefits like flushing toxins, improving joint and muscle function, and better cardiovascular health.</string>
                                                 <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="12"/>
                                                 <color key="textColor" name="TextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hydration" translatesAutoresizingMaskIntoConstraints="NO" id="p2W-q8-sfi">
-                                                <rect key="frame" x="161.66666666666666" y="2610.6666666666665" width="70" height="80"/>
+                                                <rect key="frame" x="161.66666666666666" y="2806.6666666666665" width="70" height="80"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="70" id="3ck-ss-XOm"/>
                                                     <constraint firstAttribute="height" constant="80" id="E9t-h1-fLo"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HYDRATION" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MbD-6F-fdk">
-                                                <rect key="frame" x="16" y="2710.6666666666665" width="361" height="14"/>
+                                                <rect key="frame" x="16" y="2906.6666666666665" width="361" height="17.666666666666515"/>
                                                 <fontDescription key="fontDescription" name="Jost-SemiBold" family="Jost" pointSize="12"/>
                                                 <color key="textColor" name="TextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZIr-Qj-BoS">
-                                                <rect key="frame" x="16" y="2740.6666666666665" width="361" height="70"/>
+                                                <rect key="frame" x="16" y="2940.3333333333335" width="361" height="87"/>
                                                 <string key="text">Many of us simply don’t drink enough water and other hydrating fluids in a day. Following the Thrive Cleanse guidelines ensures you’ll easily meet your body’s hydration needs. You’ll also be drinking plenty of water between juices, creating a natural glow and keeping your blood healthy and clean.</string>
                                                 <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="12"/>
                                                 <color key="textColor" name="TextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="digestion" translatesAutoresizingMaskIntoConstraints="NO" id="RVa-BN-mjp">
-                                                <rect key="frame" x="161.66666666666666" y="2826.6666666666665" width="70" height="80"/>
+                                                <rect key="frame" x="161.66666666666666" y="3043.3333333333335" width="70" height="80"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="70" id="657-1G-924"/>
                                                     <constraint firstAttribute="height" constant="80" id="MlJ-av-mv2"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DIGESTION" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xm5-PQ-wLT">
-                                                <rect key="frame" x="16" y="2926.6666666666665" width="361" height="14"/>
+                                                <rect key="frame" x="16" y="3143.3333333333335" width="361" height="17.666666666666515"/>
                                                 <fontDescription key="fontDescription" name="Jost-SemiBold" family="Jost" pointSize="12"/>
                                                 <color key="textColor" name="TextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N1A-w3-c2b">
-                                                <rect key="frame" x="16" y="2956.6666666666665" width="361" height="112"/>
+                                                <rect key="frame" x="16" y="3177" width="361" height="139"/>
                                                 <string key="text">During a juice cleanse your body’ll receive a deliciously-dense dose of vitamins and nutrients that’ll help curb unwanted cravings and increase your energy. This boost of energy from a short juice cleanse can give you the motivation you need to stick to a healthy diet — or start eating healthy once the cleanse is over. Part of the boost is from finally giving your body the fluid it needs, giving you many benefits like flushing toxins, improving joint and muscle function, and better cardiovascular health.</string>
                                                 <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="12"/>
                                                 <color key="textColor" name="TextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fresh_start" translatesAutoresizingMaskIntoConstraints="NO" id="r15-uG-Jti">
-                                                <rect key="frame" x="161.66666666666666" y="3084.6666666666665" width="70" height="80"/>
+                                                <rect key="frame" x="161.66666666666666" y="3332" width="70" height="80"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="80" id="G6a-Nj-yqT"/>
                                                     <constraint firstAttribute="width" constant="70" id="crb-i7-fgL"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eed-Ra-GVy">
-                                                <rect key="frame" x="16" y="3184.6666666666665" width="361" height="14"/>
+                                                <rect key="frame" x="16" y="3432" width="361" height="17.666666666666515"/>
                                                 <string key="text">FRESH START
 </string>
                                                 <fontDescription key="fontDescription" name="Jost-SemiBold" family="Jost" pointSize="12"/>
@@ -2268,21 +2268,21 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YZp-OQ-0LT">
-                                                <rect key="frame" x="16" y="3214.6666666666665" width="361" height="70"/>
+                                                <rect key="frame" x="16" y="3465.6666666666665" width="361" height="87"/>
                                                 <string key="text">Many of us simply don’t drink enough water and other hydrating fluids in a day. Following the Thrive Cleanse guidelines ensures you’ll easily meet your body’s hydration needs. You’ll also be drinking plenty of water between juices, creating a natural glow and keeping your blood healthy and clean.</string>
                                                 <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="12"/>
                                                 <color key="textColor" name="TextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mentalclarity" translatesAutoresizingMaskIntoConstraints="NO" id="xpl-Uk-l0u">
-                                                <rect key="frame" x="161.66666666666666" y="3300.6666666666665" width="70" height="80"/>
+                                                <rect key="frame" x="161.66666666666666" y="3568.6666666666665" width="70" height="80"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="80" id="oAY-Ng-exT"/>
                                                     <constraint firstAttribute="width" constant="70" id="rJX-h0-77s"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3U2-MP-fHO">
-                                                <rect key="frame" x="16" y="3400.6666666666665" width="361" height="14"/>
+                                                <rect key="frame" x="16" y="3668.6666666666665" width="361" height="17.666666666666515"/>
                                                 <string key="text">MENTAL CLARITY
 </string>
                                                 <fontDescription key="fontDescription" name="Jost-SemiBold" family="Jost" pointSize="12"/>
@@ -2290,7 +2290,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xea-0d-xEV">
-                                                <rect key="frame" x="16" y="3430.6666666666665" width="361" height="42"/>
+                                                <rect key="frame" x="16" y="3702.3333333333335" width="361" height="52.333333333333485"/>
                                                 <string key="text">Drinking raw juice can eliminate mind fog, making you feel light and clear.
 </string>
                                                 <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="12"/>
@@ -2298,34 +2298,34 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="librating" translatesAutoresizingMaskIntoConstraints="NO" id="iy6-Il-Ypa">
-                                                <rect key="frame" x="161.66666666666666" y="3488.6666666666665" width="70" height="80"/>
+                                                <rect key="frame" x="161.66666666666666" y="3770.6666666666665" width="70" height="80"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="80" id="IZ4-Nf-mff"/>
                                                     <constraint firstAttribute="width" constant="70" id="oH9-SA-Es7"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LIBERATING" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLW-vl-mak">
-                                                <rect key="frame" x="16" y="3588.6666666666665" width="361" height="14"/>
+                                                <rect key="frame" x="16" y="3870.6666666666665" width="361" height="17.666666666666515"/>
                                                 <fontDescription key="fontDescription" name="Jost-SemiBold" family="Jost" pointSize="12"/>
                                                 <color key="textColor" name="TextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Oa-Xl-zHc">
-                                                <rect key="frame" x="16" y="3618.6666666666665" width="361" height="42"/>
+                                                <rect key="frame" x="16" y="3904.3333333333335" width="361" height="52.333333333333485"/>
                                                 <string key="text">You’ll be amazed at how much free time you have when you don’t need to meal plan... and COOK! This means more time to do the things you WANT to do.</string>
                                                 <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="12"/>
                                                 <color key="textColor" name="TextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weightloss" translatesAutoresizingMaskIntoConstraints="NO" id="Rcb-qL-9MG">
-                                                <rect key="frame" x="161.66666666666666" y="3676.6666666666665" width="70" height="80"/>
+                                                <rect key="frame" x="161.66666666666666" y="3972.6666666666665" width="70" height="80"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="80" id="TdK-mY-0ax"/>
                                                     <constraint firstAttribute="width" constant="70" id="pWZ-gZ-Xpc"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zoP-MQ-awq">
-                                                <rect key="frame" x="16" y="3776.6666666666665" width="361" height="14"/>
+                                                <rect key="frame" x="16" y="4072.666666666667" width="361" height="17.666666666666515"/>
                                                 <string key="text">WEIGHT LOSS
 </string>
                                                 <fontDescription key="fontDescription" name="Jost-SemiBold" family="Jost" pointSize="12"/>
@@ -2333,7 +2333,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DRj-bM-dqJ">
-                                                <rect key="frame" x="16" y="3806.6666666666665" width="361" height="42"/>
+                                                <rect key="frame" x="16" y="4106.333333333333" width="361" height="52.33333333333303"/>
                                                 <string key="text">Although we don’t promote this as one of the cleansing benefits, it’s often a side effect.
 </string>
                                                 <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="12"/>
@@ -2341,14 +2341,14 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="anchor" translatesAutoresizingMaskIntoConstraints="NO" id="tZ1-Lc-ihH">
-                                                <rect key="frame" x="161.66666666666666" y="3864.6666666666665" width="70" height="80"/>
+                                                <rect key="frame" x="161.66666666666666" y="4174.666666666667" width="70" height="80"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="70" id="8RM-yF-nBo"/>
                                                     <constraint firstAttribute="height" constant="80" id="w1r-fq-FgI"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sCD-0N-qDV">
-                                                <rect key="frame" x="16" y="3964.6666666666665" width="361" height="14"/>
+                                                <rect key="frame" x="16" y="4274.666666666667" width="361" height="17.66666666666697"/>
                                                 <string key="text">YOUR ANCHOR
 </string>
                                                 <fontDescription key="fontDescription" name="Jost-SemiBold" family="Jost" pointSize="12"/>
@@ -2356,7 +2356,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aYF-dX-9TB">
-                                                <rect key="frame" x="16" y="3994.666666666667" width="361" height="42"/>
+                                                <rect key="frame" x="16" y="4308.333333333333" width="361" height="52.33333333333303"/>
                                                 <string key="text">It is something you can come back to whenever you feel the need to reset, renew, or recharge.
 </string>
                                                 <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="12"/>
@@ -2364,7 +2364,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gt3-I9-y5h">
-                                                <rect key="frame" x="116.66666666666669" y="4036.666666666667" width="160" height="0.0"/>
+                                                <rect key="frame" x="116.66666666666669" y="4360.666666666667" width="160" height="0.0"/>
                                                 <color key="backgroundColor" name="AccentColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" id="9Tn-gz-sva"/>
@@ -2382,19 +2382,19 @@
                                                 </userDefinedRuntimeAttributes>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FAQS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bxy-pQ-cL1">
-                                                <rect key="frame" x="16" y="4046.666666666667" width="361" height="15.333333333333485"/>
+                                                <rect key="frame" x="16" y="4370.666666666667" width="361" height="19"/>
                                                 <fontDescription key="fontDescription" name="Jost-Medium" family="Jost" pointSize="13"/>
                                                 <color key="textColor" name="TextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We can help! Get the low down on cleansing." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mwT-js-tPw">
-                                                <rect key="frame" x="16" y="4072" width="361" height="13"/>
+                                                <rect key="frame" x="16" y="4399.666666666667" width="361" height="16"/>
                                                 <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="11"/>
                                                 <color key="textColor" name="TextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" estimatedSectionHeaderHeight="1" sectionFooterHeight="1" estimatedSectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="TSx-9P-rPE">
-                                                <rect key="frame" x="16" y="4095" width="361" height="320"/>
+                                                <rect key="frame" x="16" y="4425.666666666667" width="361" height="320"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="320" id="cdx-cf-qUC"/>
@@ -6531,7 +6531,7 @@ Saskatoon, SK S7V 0R6</string>
                                                     <action selector="act_Change:" destination="DZt-Wa-MfT" eventType="touchUpInside" id="6sD-5V-LtV"/>
                                                 </connections>
                                             </button>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Landmark" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eqc-Ue-C8U" customClass="CustomTextField" customModule="ThriveJuice" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nearby Location" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eqc-Ue-C8U" customClass="CustomTextField" customModule="ThriveJuice" customModuleProvider="target">
                                                 <rect key="frame" x="16" y="434.66666666666663" width="361" height="35"/>
                                                 <color key="tintColor" name="AccentColor"/>
                                                 <constraints>
