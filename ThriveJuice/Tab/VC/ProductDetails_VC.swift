@@ -67,6 +67,9 @@ class ProductDetails_VC: UIViewController {
     var arr_ProductSizes: [Product_Size] = []
     var selectAddonId: [String] = []
     var editSelectAddonId: [String] = []
+    var selectedDays: String = ""
+    var selectedSize: String = ""
+    var selectedDetox: String = ""
     
     var arrCartData: [CartData] = []
     
@@ -472,7 +475,7 @@ class ProductDetails_VC: UIViewController {
         // Assign the picker view as the input view for the text field
         self.txt_size.inputView = pickerView
         self.txt_size.text = self.arr_ProductSize[0].product_Size ?? "0"
-        
+        self.selectedSize = self.arr_ProductSize[0].product_Size ?? ""
     }
     
     func SetPickerVWDays() {
@@ -482,7 +485,7 @@ class ProductDetails_VC: UIViewController {
         // Assign the picker view as the input view for the text field
         self.txt_days.inputView = pickerDaysView
         self.txt_days.text = self.arr_ProductDays[0].product_Days ?? ""
-        
+        self.selectedDays = self.arr_ProductDays[0].product_Days ?? ""
     }
     
     func SetPickerVWSizes() {
@@ -492,7 +495,7 @@ class ProductDetails_VC: UIViewController {
         // Assign the picker view as the input view for the text field
         self.txt_detox.inputView = pickerSizesView
         self.txt_detox.text = self.arr_ProductSizes[0].product_Size ?? ""
-        
+        self.selectedDetox = self.arr_ProductSizes[0].product_Size ?? ""
     }
     
     func SetData(fromCart:Bool) {
@@ -1256,6 +1259,13 @@ extension ProductDetails_VC: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == self.pickerView {
             self.txt_size.text = self.arr_ProductSize[row].product_Size ?? "" // Update the text field's text
+            if (self.selectedSize != self.txt_size.text) {
+                self.vw_cart.isHidden = true
+                self.btn_AddToCart.isHidden = false
+            } else {
+                self.vw_cart.isHidden = false
+                self.btn_AddToCart.isHidden = true
+            }
             self.lbl_price.text = "$" + (self.arr_ProductSize[row].product_Price ?? "0")
         } else if pickerView == self.pickerDaysView {
             self.txt_days.text = self.arr_ProductDays[row].product_Days ?? "" // Update the text field's text
@@ -1263,10 +1273,24 @@ extension ProductDetails_VC: UIPickerViewDelegate, UIPickerViewDataSource {
             let filteredData = self.arr_ProductSize.filter { Data in
                 return Data.product_Days == (self.arr_ProductDays[row].product_Days ?? "")
             }
+            if (self.selectedDays != self.txt_days.text) {
+                self.vw_cart.isHidden = true
+                self.btn_AddToCart.isHidden = false
+            } else {
+                self.vw_cart.isHidden = false
+                self.btn_AddToCart.isHidden = true
+            }
             self.arr_ProductSizes = filteredData
             self.pickerSizesView.reloadAllComponents()
         } else if pickerView == self.pickerSizesView {
             self.txt_detox.text = self.arr_ProductSizes[row].product_Size ?? "" // Update the text field's text
+            if (self.selectedDetox != self.txt_detox.text) {
+                self.vw_cart.isHidden = true
+                self.btn_AddToCart.isHidden = false
+            } else {
+                self.vw_cart.isHidden = false
+                self.btn_AddToCart.isHidden = true
+            }
             self.lbl_price.text = "$" + (self.arr_ProductSizes[row].product_Price ?? "0")
         }
         

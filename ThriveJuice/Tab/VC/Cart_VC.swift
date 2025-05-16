@@ -192,7 +192,7 @@ class Cart_VC: UIViewController {
     
     
     func call_CartAddAPI() {
-            
+        global.shared.cleanCartDuplicates()
         let arrCartData = global.shared.arr_AddCartData
         var JsonData_Cart = String()
         do {
@@ -400,10 +400,10 @@ extension Cart_VC: UITableViewDelegate, UITableViewDataSource {
                     print("Arr data count \(global.shared.arr_AddCartData.count)")
                 }
                 cell.Act_ChangeDays = { str in
-                    if let id = data.product_Id {
-                        let arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
+                    if let id = data.cart_Days {
+                        let arrCart = global.shared.arr_AddCartData.filter{$0.Cart_Days == id}
                         if arrCart.count != 0 && arrCart.count == 1 {
-                            if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Product_Id == id }) {
+                            if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Cart_Days == id }) {
                                 global.shared.arr_AddCartData[index].Cart_Days = "\(str)"
                             }
                         } else {
@@ -418,10 +418,10 @@ extension Cart_VC: UITableViewDelegate, UITableViewDataSource {
                     print("Arr data count \(global.shared.arr_AddCartData.count)")
                 }
                 cell.Act_ChangeSize = { str in
-                    if let id = data.product_Id {
-                        let arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
+                    if let id = data.cart_Product_Size {
+                        let arrCart = global.shared.arr_AddCartData.filter{$0.Cart_Product_Size == id}
                         if arrCart.count != 0 && arrCart.count == 1 {
-                            if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Product_Id == id }) {
+                            if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Cart_Product_Size == id }) {
                                 global.shared.arr_AddCartData[index].Cart_Product_Size = "\(str)"
                             }
                         } else {
@@ -643,10 +643,10 @@ extension Cart_VC: UITableViewDelegate, UITableViewDataSource {
                     print("Arr data count \(global.shared.arr_AddCartData.count)")
                 }
                 cell.Act_ChangeDays = { str in
-                    if let id = data.product_Id {
-                        let arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
-                        if arrCart.count != 0 && arrCart.count == 1 {
-                            if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Product_Id == id }) {
+                    if let id = data.cart_Days {
+                        let arrCart = global.shared.arr_AddCartData.filter{$0.Cart_Days == id}
+                        if arrCart.count != 0 {
+                            if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Cart_Days == id }) {
                                 global.shared.arr_AddCartData[index].Cart_Days = "\(str)"
                             }
                         } else {
@@ -661,10 +661,10 @@ extension Cart_VC: UITableViewDelegate, UITableViewDataSource {
                     print("Arr data count \(global.shared.arr_AddCartData.count)")
                 }
                 cell.Act_ChangeSize = { str in
-                    if let id = data.product_Id {
-                        let arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
-                        if arrCart.count != 0 && arrCart.count == 1 {
-                            if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Product_Id == id }) {
+                    if let id = data.cart_Product_Size {
+                        let arrCart = global.shared.arr_AddCartData.filter{$0.Cart_Product_Size == id}
+                        if arrCart.count != 0 {
+                           if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Cart_Product_Size == id }) {
                                 global.shared.arr_AddCartData[index].Cart_Product_Size = "\(str)"
                             }
                         } else {

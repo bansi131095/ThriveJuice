@@ -176,7 +176,31 @@ class global: NSObject
         }
         return dist
     }
-    
+
+
+    func cleanCartDuplicates() {
+        var uniqueCart: [CartData] = []
+
+        for item in arr_AddCartData {
+            if let index = uniqueCart.firstIndex(where: {
+                $0.Product_Id == item.Product_Id &&
+                $0.Cart_Product_Size == item.Cart_Product_Size &&
+                $0.Cart_Days == item.Cart_Days &&
+                $0.Cart_Addons == item.Cart_Addons
+            }) {
+                // If duplicate found, update quantity
+                let existingQty = Int(uniqueCart[index].Cart_Qty) ?? 0
+                let newQty = Int(item.Cart_Qty) ?? 0
+                uniqueCart[index].Cart_Qty = String(existingQty + newQty)
+            } else {
+                // Add as unique entry
+                uniqueCart.append(item)
+            }
+        }
+
+        arr_AddCartData = uniqueCart
+    }
+
     
     /*
      print(distance(Double(32.9697), lon1: Double(-96.80322), lat2: Double(29.46786), lon2: Double(-98.53506), unit: "M"), "Miles")
