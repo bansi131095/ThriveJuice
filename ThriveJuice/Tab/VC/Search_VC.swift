@@ -340,7 +340,7 @@ extension Search_VC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
             cell1.Act_AddPlus = {
                 if let arr = dict.product_Size, arr.count != 0 {
                     if let stock = arr[0].available_Stock {
-                        if stock != 0 {
+                        if stock != 0 && self.Totalcart < stock {
                             self.Totalcart += 1
                             cell1.lbl_cart.text = "\(self.Totalcart)"
                             if let id = dict.product_Id {

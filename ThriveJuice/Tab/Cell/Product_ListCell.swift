@@ -125,7 +125,7 @@ extension Product_ListCell: UICollectionViewDataSource, UICollectionViewDelegate
                 if userId != "" {
                     if let arr = dict.product_Size, arr.count != 0 {
                         if let stock = arr[0].available_Stock {
-                            if stock != 0 {
+                            if stock != 0 && Cellcart < stock {
                                 cell1.vw_cart.isHidden = false
                                 Cellcart += 1
                                 cell1.lbl_cart.text = "\(Cellcart)"
@@ -185,11 +185,11 @@ extension Product_ListCell: UICollectionViewDataSource, UICollectionViewDelegate
             cell1.Act_AddPlus = {
                 if let arr = dict.product_Size, arr.count != 0 {
                     if let stock = arr[0].available_Stock {
-                        if stock != 0 {
+                        if stock != 0 && Cellcart < stock {
                             Cellcart += 1
                             cell1.lbl_cart.text = "\(Cellcart)"
                             if let id = dict.product_Id {
-                                var arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
+                                let arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
                                 if arrCart.count != 0 && arrCart.count == 1 {
                                     if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Product_Id == id }) {
                                         global.shared.arr_AddCartData[index].Cart_Qty = "\(Cellcart)"

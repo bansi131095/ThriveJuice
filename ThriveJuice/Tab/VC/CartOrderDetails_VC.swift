@@ -17,6 +17,8 @@ class CartOrderDetails_VC: UIViewController {
     @IBOutlet weak var btn_OTPurchase: UIButton!
     @IBOutlet weak var btn_Subscribe: UIButton!
     @IBOutlet weak var lbl_Subscription: UILabel!
+    @IBOutlet weak var vw_SubscribeBtn: UIView!
+    @IBOutlet weak var vw_height_subscribeBtn: NSLayoutConstraint!
     @IBOutlet weak var vw_Subscribe: UIView!
     @IBOutlet weak var vw_height_subscribe: NSLayoutConstraint!
     @IBOutlet weak var txt_week: UITextField!
@@ -44,6 +46,7 @@ class CartOrderDetails_VC: UIViewController {
     @IBOutlet weak var vw_deliveryDateHeight_const: NSLayoutConstraint!
     @IBOutlet weak var vw_TimeSlots: UIView!
     @IBOutlet weak var vw_timeSlotsHeight_const: NSLayoutConstraint!
+    @IBOutlet weak var lbl_timeslots: UILabel!
     @IBOutlet weak var btn_checkOut: UIButton!
     @IBOutlet weak var btn_checkout_height_const: NSLayoutConstraint!
     
@@ -67,6 +70,7 @@ class CartOrderDetails_VC: UIViewController {
     var selectDate: Date!
     var OrderType = String()
     var SubscribeWeek = String()
+    var str_msg = String()
 
     
 //    lazy var  calenderView: CalenderView = {
@@ -185,6 +189,8 @@ class CartOrderDetails_VC: UIViewController {
         self.vw_timeSlotsHeight_const.constant = 0.0
         self.OrderType = "Local_Delivery"
         self.call_CartAPI(str_data: true)
+        self.vw_SubscribeBtn.isHidden = false
+        self.vw_height_subscribeBtn.constant = 25.0
     }
     
     @IBAction func act_storePickup(_ sender: UIButton) {
@@ -207,6 +213,8 @@ class CartOrderDetails_VC: UIViewController {
         self.vw_timeSlotsHeight_const.constant = 0.0
         self.OrderType = "Store_Pickup"
         self.call_CartAPI(str_data: true)
+        self.vw_SubscribeBtn.isHidden = false
+        self.vw_height_subscribeBtn.constant = 25.0
     }
     
     @IBAction func act_pickupToday(_ sender: UIButton) {
@@ -229,6 +237,12 @@ class CartOrderDetails_VC: UIViewController {
         self.vw_timeSlotsHeight_const.constant = 0.0
         self.OrderType = "Right_Away"
         self.call_CartAPI(str_data: true)
+        self.vw_SubscribeBtn.isHidden = true
+        self.vw_height_subscribeBtn.constant = 0.0
+        self.btn_OTPurchase.setImage(UIImage(named: "Check"), for: .normal)
+        self.btn_Subscribe.setImage(UIImage(named: "Uncheck"), for: .normal)
+        self.vw_Subscribe.isHidden = true
+        self.vw_height_subscribe.constant = 0.0
     }
     
     @IBAction func act_OK(_ sender: UIButton) {
@@ -289,10 +303,28 @@ class CartOrderDetails_VC: UIViewController {
         } else {
             paramer["Cart_Data"] = JsonData_Cart
         }
+        paramer["Page"] = "Check_Out"
         
         WebService.call.POSTT(filePath: global.shared.URL_Cart, params: paramer, enableInteraction: false, showLoader: true, viewObj: self, onSuccess: { (result, success) in
             print(result)
             if let eventResponseModel:CartModel = Mapper<CartModel>().map(JSONObject: result) {
+                if let status = eventResponseModel.status, status == "0" {
+                    if let msg = eventResponseModel.message, msg != "" {
+                        self.str_msg = msg
+                        self.vw_TimeSlots.isHidden = false
+                        self.vw_timeSlotsHeight_const.constant = 45.0
+                        self.btn_checkOut.isHidden = true
+                        self.btn_checkout_height_const.constant = 0.0
+                        self.lbl_timeslots.text = msg
+                    }
+                } else {
+                    self.str_msg = ""
+                    self.vw_TimeSlots.isHidden = true
+                    self.vw_timeSlotsHeight_const.constant = 0.0
+                    self.btn_checkOut.isHidden = false
+                    self.btn_checkout_height_const.constant = 44.0
+                    self.lbl_timeslots.text = ""
+                }
                 if let arr = eventResponseModel.stores, arr.count != 0 {
                     self.arr_Store = arr
                     self.arrSelectedStore.removeAll()
@@ -379,8 +411,13 @@ class CartOrderDetails_VC: UIViewController {
                     self.lbl_deliveryDate.text = ""
                     self.vw_deliveryDate.isHidden = true
                     self.vw_deliveryDateHeight_const.constant = 0.0
+                    self.vw_SubscribeBtn.isHidden = true
+                    self.vw_height_subscribeBtn.constant = 0.0
+                    self.btn_OTPurchase.setImage(UIImage(named: "Check"), for: .normal)
+                    self.btn_Subscribe.setImage(UIImage(named: "Uncheck"), for: .normal)
+                    self.vw_Subscribe.isHidden = true
+                    self.vw_height_subscribe.constant = 0.0
                 }
-                
             }
             self.call_ScheduleDateAPI()
         }) {
@@ -441,6 +478,7 @@ class CartOrderDetails_VC: UIViewController {
                         self.btn_checkout_height_const.constant = 44.0
                     } else {
                         self.vw_TimeSlots.isHidden = false
+                        self.lbl_timeslots.text = "Time slots not available"
                         self.vw_timeSlotsHeight_const.constant = 45.0
                         self.vw_TimeSlot.isHidden = true
                         self.vw_timeHeight_const.constant = 0.0
@@ -468,6 +506,19 @@ class CartOrderDetails_VC: UIViewController {
                 let dateString = dateFormatter1.string(from: self.minimumDate)
                 self.lbl_date.text = dateString
                 calendar.reloadData()
+                if self.str_msg != "" {
+                    self.vw_TimeSlots.isHidden = false
+                    self.vw_timeSlotsHeight_const.constant = 45.0
+                    self.btn_checkOut.isHidden = true
+                    self.btn_checkout_height_const.constant = 0.0
+                    self.lbl_timeslots.text = str_msg
+                } else {
+                    self.vw_TimeSlots.isHidden = true
+                    self.vw_timeSlotsHeight_const.constant = 0.0
+                    self.btn_checkOut.isHidden = false
+                    self.btn_checkout_height_const.constant = 44.0
+                    self.lbl_timeslots.text = ""
+                }
             }
         }) {
             

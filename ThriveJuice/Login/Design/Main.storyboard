@@ -110,8 +110,61 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="65J-hj-w8W">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n1K-PN-tHM">
                                                 <rect key="frame" x="0.0" y="225.00000000000003" width="393" height="89.333333333333343"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ALI-m7-jik">
+                                                        <rect key="frame" x="16.000000000000004" y="9.9999999999999982" width="32.333333333333343" height="20.333333333333329"/>
+                                                        <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="14"/>
+                                                        <color key="textColor" name="TextColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1NN-QQ-sT8">
+                                                        <rect key="frame" x="16" y="38.333333333333314" width="361" height="43"/>
+                                                        <color key="backgroundColor" name="White"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="43" id="hfh-W8-hM9"/>
+                                                        </constraints>
+                                                        <color key="textColor" name="Black"/>
+                                                        <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="12"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="22"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" name="BorderColor"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="padding_left">
+                                                                <real key="value" value="20"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                                <color key="value" name="BorderColor"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </textField>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="1NN-QQ-sT8" secondAttribute="trailing" constant="16" id="BNI-vu-UQO"/>
+                                                    <constraint firstItem="ALI-m7-jik" firstAttribute="top" secondItem="n1K-PN-tHM" secondAttribute="top" constant="10" id="Ewx-rB-AD0"/>
+                                                    <constraint firstItem="ALI-m7-jik" firstAttribute="leading" secondItem="n1K-PN-tHM" secondAttribute="leading" constant="16" id="kvn-7I-8pT"/>
+                                                    <constraint firstAttribute="bottom" secondItem="1NN-QQ-sT8" secondAttribute="bottom" constant="8" id="s4Z-Xz-eEs"/>
+                                                    <constraint firstItem="1NN-QQ-sT8" firstAttribute="leading" secondItem="n1K-PN-tHM" secondAttribute="leading" constant="16" id="uJM-Xk-PoC"/>
+                                                    <constraint firstItem="1NN-QQ-sT8" firstAttribute="top" secondItem="ALI-m7-jik" secondAttribute="bottom" constant="8" id="xCe-cw-31c"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ef-yL-ivp">
+                                                <rect key="frame" x="20" y="322.33333333333331" width="353" height="24.666666666666686"/>
+                                                <fontDescription key="fontDescription" name="Jost-Medium" family="Jost" pointSize="17"/>
+                                                <color key="textColor" name="TextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="65J-hj-w8W">
+                                                <rect key="frame" x="0.0" y="355" width="393" height="89.333333333333314"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U4D-tA-buV">
                                                         <rect key="frame" x="16" y="9.9999999999999982" width="90.666666666666671" height="20.333333333333329"/>
@@ -158,7 +211,7 @@
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3bQ-2g-hFm">
-                                                <rect key="frame" x="16" y="324.33333333333331" width="361" height="43"/>
+                                                <rect key="frame" x="16" y="454.33333333333337" width="361" height="43"/>
                                                 <color key="backgroundColor" name="AccentColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="43" id="uX7-Eg-g4o"/>
@@ -178,7 +231,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kKd-yV-eXs">
-                                                <rect key="frame" x="16" y="397.33333333333331" width="361" height="60"/>
+                                                <rect key="frame" x="16" y="527.33333333333337" width="361" height="60"/>
                                                 <color key="backgroundColor" name="White"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="60" id="VzK-rj-sUV"/>
@@ -221,10 +274,15 @@
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstItem="65J-hj-w8W" firstAttribute="top" secondItem="mZm-oi-ELD" secondAttribute="bottom" constant="10" id="BS8-9m-p4x"/>
+                                            <constraint firstItem="65J-hj-w8W" firstAttribute="top" secondItem="7ef-yL-ivp" secondAttribute="bottom" constant="8" id="0mk-ub-DOi"/>
+                                            <constraint firstItem="7ef-yL-ivp" firstAttribute="leading" secondItem="ywP-Ts-6w2" secondAttribute="leading" constant="20" id="1nC-L2-vdA"/>
+                                            <constraint firstItem="n1K-PN-tHM" firstAttribute="leading" secondItem="ywP-Ts-6w2" secondAttribute="leading" id="3Cq-YQ-TQ7"/>
+                                            <constraint firstItem="n1K-PN-tHM" firstAttribute="top" secondItem="mZm-oi-ELD" secondAttribute="bottom" constant="10" id="4Xl-fg-6rz"/>
+                                            <constraint firstAttribute="trailing" secondItem="n1K-PN-tHM" secondAttribute="trailing" id="5Fd-rg-c2i"/>
                                             <constraint firstAttribute="trailing" secondItem="3bQ-2g-hFm" secondAttribute="trailing" constant="16" id="BdM-PI-iHE"/>
                                             <constraint firstAttribute="trailing" secondItem="kKd-yV-eXs" secondAttribute="trailing" constant="16" id="DKo-Xx-3q0"/>
                                             <constraint firstItem="PPX-EX-Org" firstAttribute="top" secondItem="ywP-Ts-6w2" secondAttribute="top" constant="55" id="E5X-vC-iTu"/>
+                                            <constraint firstAttribute="trailing" secondItem="7ef-yL-ivp" secondAttribute="trailing" constant="20" id="ETp-DU-AoI"/>
                                             <constraint firstItem="3bQ-2g-hFm" firstAttribute="top" secondItem="65J-hj-w8W" secondAttribute="bottom" constant="10" id="GAM-GB-uOC"/>
                                             <constraint firstAttribute="trailing" secondItem="65J-hj-w8W" secondAttribute="trailing" id="H3M-kj-M1w"/>
                                             <constraint firstItem="kKd-yV-eXs" firstAttribute="top" secondItem="3bQ-2g-hFm" secondAttribute="bottom" constant="30" id="H4w-63-qJ1"/>
@@ -235,6 +293,7 @@
                                             <constraint firstItem="mZm-oi-ELD" firstAttribute="leading" secondItem="ywP-Ts-6w2" secondAttribute="leading" constant="16" id="nQT-Rd-qcg"/>
                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="kKd-yV-eXs" secondAttribute="bottom" constant="30" id="riD-Cj-eav"/>
                                             <constraint firstItem="mZm-oi-ELD" firstAttribute="top" secondItem="PPX-EX-Org" secondAttribute="bottom" constant="30" id="vgV-aX-GOy"/>
+                                            <constraint firstItem="7ef-yL-ivp" firstAttribute="top" secondItem="n1K-PN-tHM" secondAttribute="bottom" constant="8" id="wxP-QC-Lwr"/>
                                             <constraint firstItem="3bQ-2g-hFm" firstAttribute="leading" secondItem="ywP-Ts-6w2" secondAttribute="leading" constant="16" id="zct-wz-zUR"/>
                                         </constraints>
                                     </view>
@@ -260,6 +319,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="iNC-hL-6mX"/>
                     <connections>
+                        <outlet property="txt_email" destination="1NN-QQ-sT8" id="HUB-kE-ONS"/>
                         <outlet property="txt_mobileNo" destination="ogA-nR-hGA" id="QbS-EE-4B3"/>
                     </connections>
                 </viewController>

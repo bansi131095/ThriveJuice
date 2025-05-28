@@ -14,6 +14,7 @@ class OrderSummary_VC: UIViewController {
 
     @IBOutlet weak var lbl_CouponStatus: UILabel!
     @IBOutlet weak var txt_couponCode: UITextField!
+    @IBOutlet weak var btn_apply: UIButton!
     @IBOutlet weak var vw_Reward: CardView!
     @IBOutlet weak var vw_rewards_height_const: NSLayoutConstraint!
     @IBOutlet weak var btn_rewards: UIButton!
@@ -68,8 +69,14 @@ class OrderSummary_VC: UIViewController {
     }
     
     @IBAction func act_Apply(_ sender: UIButton) {
-        if self.txt_couponCode.text != "" {
-            self.view.endEditing(true)
+        if self.btn_apply.currentTitle == "APPLY" {
+            if self.txt_couponCode.text != "" {
+                self.view.endEditing(true)
+                self.call_CartAPI()
+            }
+        } else {
+            self.btn_apply.setTitle("APPLY", for: .normal)
+            self.txt_couponCode.text = ""
             self.call_CartAPI()
         }
     }
@@ -110,6 +117,7 @@ class OrderSummary_VC: UIViewController {
         
         var paramer: [String: Any] = [:]
         paramer["Cart_Data"] = JsonData_Cart
+        paramer["Page"] = "Check_Out"
         paramer["Order_Type"] = self.OrderData_dict?.OrderType
         if self.OrderData_dict?.SubscribeWeek != ""{
             paramer["Subscribe_Week"] = self.OrderData_dict?.SubscribeWeek
@@ -123,7 +131,7 @@ class OrderSummary_VC: UIViewController {
             print(result)
             
             if let eventResponseModel:CartModel = Mapper<CartModel>().map(JSONObject: result) {
-                if let status = eventResponseModel.status, status == "1" {
+                if let status = eventResponseModel.status, status == "1" || status == "-1" {
                     self.vw_cartEmpty.isHidden = true
                     if let rewardPointRate = eventResponseModel.available_Reward_Points_Rate {
                         self.RewardPointRate = rewardPointRate
@@ -164,7 +172,7 @@ class OrderSummary_VC: UIViewController {
                         self.lbl_subTotal.text = "$" + subTotal
                     }
                     if let Total = eventResponseModel.grand_Total {
-                        self.lbl_TotalPrice.text = "$" + Total
+                        self.lbl_TotalPrice.text = "$" + Total + " CAD"
                     }
                     if let availableRewards = eventResponseModel.available_Reward_Points_Rate,let double = Double(availableRewards), let minumumPoints = eventResponseModel.minimum_Point_Usage, let MinimumPoints = Double(minumumPoints) {
                         if double > 0 {
@@ -241,6 +249,7 @@ class OrderSummary_VC: UIViewController {
                             self.vw_Discount.isHidden = false
                             self.lbl_discount.text = "Discount"
                             self.lbl_DiscountPrice.text = "- $" + discount
+                            self.btn_apply.setTitle("REMOVE", for: .normal)
                         }
                     }
                     if let shippingCharge = eventResponseModel.shipping_Charge, let double = Double(shippingCharge) {

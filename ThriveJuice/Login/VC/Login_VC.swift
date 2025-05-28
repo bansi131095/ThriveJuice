@@ -13,6 +13,7 @@ import FirebaseAuth
 class Login_VC: UIViewController {
 
     
+    @IBOutlet weak var txt_email: UITextField!
     @IBOutlet weak var txt_mobileNo: UITextField!
     
     
@@ -34,8 +35,10 @@ class Login_VC: UIViewController {
     @IBAction func act_LoginWithOTP(_ sender: UIButton) {
 //        let Otp = self.storyboard?.instantiateViewController(withIdentifier: "OTP_VC") as! OTP_VC
 //        self.navigationController?.pushViewController(Otp, animated: true)
-        if self.txt_mobileNo.text == "" {
-            self.showAlertToast(message: "Please Enter Mobile Number")
+        if self.txt_mobileNo.text == "" && self.txt_email.text == "" {
+            self.showAlertToast(message: "Please provide email or mobile number")
+        } else if self.txt_mobileNo.text != "" && self.txt_email.text != "" {
+            self.showAlertToast(message: "Please provide any one either email or mobile number")
         } else {
             self.call_LoginAPI()
         }
@@ -51,9 +54,13 @@ class Login_VC: UIViewController {
     //MARK:- API Call
     func call_LoginAPI() {
             
-            var paramer: [String: Any] = [:]
-        paramer["Mobile_No"] = self.txt_mobileNo.text ?? ""
-        
+        var paramer: [String: Any] = [:]
+        if self.txt_mobileNo.text != "" {
+            paramer["Mobile_No"] = self.txt_mobileNo.text ?? ""
+        }
+        else if self.txt_email.text != "" {
+            paramer["Email_Id"] = self.txt_email.text ?? ""
+        }
         WebService.call.POSTT(filePath: global.shared.URL_LOGIN, params: paramer, enableInteraction: false, showLoader: true, viewObj: self, onSuccess: { (result, success) in
             print(result)
             if let eventResponseModel:LoginModel = Mapper<LoginModel>().map(JSONObject: result) {
@@ -72,21 +79,32 @@ class Login_VC: UIViewController {
                     navigation.modalPresentationStyle = .fullScreen
                     self.present(navigation, animated: true)
                 } else if eventResponseModel.status == "2" {
-                    
-                    let number = "+1" + (self.txt_mobileNo.text ?? "")
-                    PhoneAuthProvider.provider().verifyPhoneNumber(number, uiDelegate: nil) { (verificationID, error) in
-                        if let error = error {
-                            print(error)
-                            return
+                    if self.txt_mobileNo.text != "" {
+                        let number = "+1" + (self.txt_mobileNo.text ?? "")
+                        PhoneAuthProvider.provider().verifyPhoneNumber(number, uiDelegate: nil) { (verificationID, error) in
+                            if let error = error {
+                                print(error)
+                                self.showAlertToast(message: error.localizedDescription)
+                                return
+                            }
+                            UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
+                            let OTPVC = self.storyboard?.instantiateViewController(withIdentifier: "OTP_VC") as! OTP_VC
+                            OTPVC.MobileNumber = self.txt_mobileNo.text ?? ""
+                            OTPVC.Email = ""
+                            OTPVC.UserId = eventResponseModel.user_Id ?? ""
+                            self.navigationController?.pushViewController(OTPVC, animated: true)
+                            // Sign in using the verificationID and the code sent to the user
+                          // ...
                         }
-                        UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
+                    }
+                    else if self.txt_email.text != "" {
                         let OTPVC = self.storyboard?.instantiateViewController(withIdentifier: "OTP_VC") as! OTP_VC
-                        OTPVC.MobileNumber = self.txt_mobileNo.text ?? ""
+                        OTPVC.Email = self.txt_email.text ?? ""
+                        OTPVC.MobileNumber = ""
                         OTPVC.UserId = eventResponseModel.user_Id ?? ""
                         self.navigationController?.pushViewController(OTPVC, animated: true)
-                        // Sign in using the verificationID and the code sent to the user
-                      // ...
-                    }                    
+                    }
+                                        
                 } else if eventResponseModel.status == "3" {
                     let mobileNo = self.storyboard?.instantiateViewController(withIdentifier: "MobileNo_VC") as! MobileNo_VC
                     mobileNo.UserId = eventResponseModel.user_Id ?? ""

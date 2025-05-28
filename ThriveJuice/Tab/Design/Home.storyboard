@@ -3864,6 +3864,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btn_apply" destination="YoC-rJ-DeJ" id="BLj-dW-qHS"/>
                         <outlet property="btn_rewards" destination="6rS-wP-ebU" id="9N3-v3-CG7"/>
                         <outlet property="lbl_BottleEnvir" destination="Ae0-TO-dn1" id="9XL-MC-VrW"/>
                         <outlet property="lbl_CouponStatus" destination="bv6-WF-UcY" id="JH9-0C-zIC"/>
@@ -8477,9 +8478,9 @@ Saskatoon, SK S7V 0R6</string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ku7-5M-kty">
                                                 <rect key="frame" x="16" y="694.66666666666663" width="361" height="45"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time slots not available" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aZC-N0-tmP">
-                                                        <rect key="frame" x="8" y="10.999999999999998" width="345" height="23.333333333333329"/>
-                                                        <fontDescription key="fontDescription" name="Jost-SemiBold" family="Jost" pointSize="16"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time slots not available " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aZC-N0-tmP">
+                                                        <rect key="frame" x="8" y="11.666666666666742" width="345" height="22"/>
+                                                        <fontDescription key="fontDescription" name="Jost-SemiBold" family="Jost" pointSize="15"/>
                                                         <color key="textColor" name="Red"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -8716,6 +8717,7 @@ Saskatoon, SK S7V 0R6</string>
                         <outlet property="lbl_Subscription" destination="fLH-en-uTe" id="9cy-zV-qbM"/>
                         <outlet property="lbl_date" destination="XFX-f8-cKj" id="BFZ-JV-8rD"/>
                         <outlet property="lbl_deliveryDate" destination="k9e-Y2-bPY" id="tPB-nJ-bMD"/>
+                        <outlet property="lbl_timeslots" destination="aZC-N0-tmP" id="6Si-Re-d1P"/>
                         <outlet property="lbl_year" destination="uOI-1L-jaU" id="rhD-dQ-aMr"/>
                         <outlet property="tbl_height_const" destination="vms-qg-33d" id="dy0-dE-eg1"/>
                         <outlet property="tbl_vw" destination="GQn-qO-LAp" id="LSQ-At-8yT"/>
@@ -8725,6 +8727,7 @@ Saskatoon, SK S7V 0R6</string>
                         <outlet property="txt_week" destination="3zD-Kp-YB0" id="FjJ-E5-ITm"/>
                         <outlet property="vw_Calendar" destination="Nc7-55-se1" id="RsV-pH-Hod"/>
                         <outlet property="vw_Subscribe" destination="QrZ-a9-fgL" id="XAy-cW-Es0"/>
+                        <outlet property="vw_SubscribeBtn" destination="NGT-gc-yRi" id="erm-Ml-XEf"/>
                         <outlet property="vw_TimeSlot" destination="D10-sg-Hsj" id="D0w-63-zYV"/>
                         <outlet property="vw_TimeSlots" destination="ku7-5M-kty" id="vVc-pW-N9l"/>
                         <outlet property="vw_address" destination="h8U-hC-WWR" id="x0r-OY-vY0"/>
@@ -8733,6 +8736,7 @@ Saskatoon, SK S7V 0R6</string>
                         <outlet property="vw_deliveryDate" destination="vaX-OR-JPj" id="L3G-5I-Zn5"/>
                         <outlet property="vw_deliveryDateHeight_const" destination="Yom-ou-c6c" id="ViO-XN-gHI"/>
                         <outlet property="vw_height_subscribe" destination="SBZ-Rp-LKO" id="7yG-CH-aIu"/>
+                        <outlet property="vw_height_subscribeBtn" destination="lbl-hp-jxF" id="moZ-fh-TCu"/>
                         <outlet property="vw_timeHeight_const" destination="xp4-8K-uGB" id="AGF-op-wdi"/>
                         <outlet property="vw_timeSlotsHeight_const" destination="pU1-0b-wKT" id="mAF-tS-16j"/>
                     </connections>

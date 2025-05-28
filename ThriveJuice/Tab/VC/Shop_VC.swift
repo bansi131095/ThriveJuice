@@ -8,6 +8,7 @@
 import UIKit
 import MMBannerLayout
 import ObjectMapper
+import CoreLocation
 
 
 class Shop_VC: UIViewController {
@@ -23,7 +24,9 @@ class Shop_VC: UIViewController {
     @IBOutlet weak var lbl_orderType: UILabel!
     @IBOutlet weak var lbl_cartTotal: UILabel!
     
-    
+    var locationManager = CLLocationManager()
+    var userLatitude:CLLocationDegrees! = 0
+    var userLongitude:CLLocationDegrees! = 0
     var arr_banner: [Banners] = []
     var arr_Category: [Categories] = []
     var arr_RecommendProductList: [ProductsList] = []
@@ -52,10 +55,67 @@ class Shop_VC: UIViewController {
         } else {
             print("No data found in UserDefaults")
         }
+        self.location()
         NotificationCenter.default.addObserver(self, selector: #selector(OrderTypeRedirect),name: NSNotification.Name ("OrderTypeSelect"),object: nil)
         
         timer = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(slideToNext), userInfo: nil, repeats: true)
     }
+    
+    //MARK:- display Map on view
+    func location()
+    {
+        locationManager.startUpdatingLocation()
+        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.requestWhenInUseAuthorization()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        let authorizationStatus: CLAuthorizationStatus
+        if #available(iOS 14, *) {
+            authorizationStatus = self.locationManager.authorizationStatus
+        } else {
+            authorizationStatus = CLLocationManager.authorizationStatus()
+        }
+        
+            if authorizationStatus == CLAuthorizationStatus.authorizedWhenInUse ||
+            authorizationStatus == CLAuthorizationStatus.authorizedAlways {
+            self.locationManager.delegate = self
+            self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            self.locationManager.startMonitoringSignificantLocationChanges()
+            self.locationManager.startUpdatingLocation()
+                if (self.locationManager.location != nil) {
+                    // do your things
+                    self.userLatitude = self.locationManager.location?.coordinate.latitude
+                    self.userLongitude = self.locationManager.location?.coordinate.longitude
+                    self.call_StoreListAPI()
+                } else { }
+        
+        } else {
+            self.showLocationPermissionAlert()
+        }
+        }
+    }
+    
+    func showLocationPermissionAlert() {
+        let alert = UIAlertController(title: "Location Permission Required",
+                                      message: "Please enable location access in Settings to use this feature.",
+                                      preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+                // Pop the current view controller
+//                self.navigationController?.popViewController(animated: true)
+            }))
+        alert.addAction(UIAlertAction(title: "Settings", style: .default, handler: { _ in
+            
+            if let appSettings = URL(string: UIApplication.openSettingsURLString),
+               UIApplication.shared.canOpenURL(appSettings) {
+                UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
+            }
+        }))
+
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
     
     @objc func slideToNext(){
         if currentIndex < arr_banner .count - 1{
@@ -338,8 +398,9 @@ class Shop_VC: UIViewController {
     func call_ProfileAPI() {
             
         // Offset, Type= Category, Category_Id, Product_Id
-        let paramer: [String: Any] = [:]
         
+        let paramer: [String: Any] = [:]
+    
         WebService.call.POSTT(filePath: global.shared.URL_Profile, params: paramer, enableInteraction: false, showLoader: true, viewObj: self, onSuccess: { [self] (result, success) in
             print(result)
             if let eventResponseModel:ProfileModel = Mapper<ProfileModel>().map(JSONObject: result) {
@@ -357,7 +418,10 @@ class Shop_VC: UIViewController {
     func call_StoreListAPI() {
             
         // Offset, Type= Category, Category_Id, Product_Id
-        let paramer: [String: Any] = [:]
+        var paramer: [String: Any] = [:]
+        paramer["Current_Lat"] = String(userLatitude)
+        paramer["Current_Lng"] = String(userLongitude)
+        
         
         WebService.call.POSTT(filePath: global.shared.URL_Stores, params: paramer, enableInteraction: false, showLoader: true, viewObj: self, onSuccess: { [self] (result, success) in
             print(result)
@@ -533,6 +597,73 @@ extension Shop_VC: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
         return UITableViewCell()
+    }
+    
+}
+
+// MARK: - CLLocationManagerDelegate
+extension Shop_VC: CLLocationManagerDelegate {
+
+    //MARK: FOR IOS 13
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!)
+    {
+        userLatitude = (self.locationManager.location?.coordinate.latitude)
+        userLongitude = (self.locationManager.location?.coordinate.longitude)
+        if self.locationManager.location == nil {
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager,
+                         didChangeAuthorization status: CLAuthorizationStatus)
+    {
+        switch status
+        {
+        case .notDetermined:
+            locationManager.requestAlwaysAuthorization()
+            break
+        case .authorizedWhenInUse:
+            locationManager.startUpdatingLocation()
+            self.location()
+            //print("A_lat:\(userLatitude!)")
+            // print("A_long:\(userLongitude!)")
+            //MapView.isMyLocationEnabled = true
+            //MapView.settings.myLocationButton = true
+            break
+        case .authorizedAlways:
+            locationManager.startUpdatingLocation()
+            self.location()
+            break
+        case .restricted:
+            // restricted by e.g. parental controls. User can't enable Location Services
+            break
+        case .denied:
+            // user denied your app access to Location Services, but can grant access from Settings.app
+            if let settingUrl = URL(string:UIApplication.openSettingsURLString) {
+                if #available(iOS 10.0, *) {
+                    UIApplication.shared.open(settingUrl as URL, options: [:], completionHandler: nil)
+                } else {
+                    UIApplication.shared.openURL(settingUrl as URL)
+                }
+            }
+            else {
+                print("Setting URL invalid")
+            }
+            break
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        if #available(iOS 14.0, *) {
+            print(manager.authorizationStatus.rawValue)
+            if manager.authorizationStatus.rawValue == 2 {
+                DispatchQueue.main.async {
+                    self.showAlertToast(message: "msglocation")
+                }
+                return
+            }
+        }
+        print(error)
     }
     
 }

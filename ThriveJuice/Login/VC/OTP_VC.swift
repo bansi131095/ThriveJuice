@@ -23,6 +23,7 @@ class OTP_VC: UIViewController {
     
     var str_forgot = false
     var MobileNumber = String()
+    var Email = String()
     var OTP = String()
     var UserId = String()
     var Password = String()
@@ -54,28 +55,33 @@ class OTP_VC: UIViewController {
             if otpStr != ""
             {
                 self.OTP = otpStr;
-            let verificationID = UserDefaults.standard.string(forKey: "authVerificationID")!
-            let credential = PhoneAuthProvider.provider().credential(
-            withVerificationID: verificationID,
-            verificationCode: otpStr)
-            Auth.auth().signIn(with: credential) { (authResult, error) in
-                if let error = error {
-                    // ...
-                    print(error)
-                    return
-                }
-                if self.str_forgot {
-                    self.call_ForgotPswOTPAPI()
-                } else if self.str_changePsw {
-                    self.call_ChangePswAPI()
+                if MobileNumber != "" {
+            
+                    let verificationID = UserDefaults.standard.string(forKey: "authVerificationID")!
+                    let credential = PhoneAuthProvider.provider().credential(
+                        withVerificationID: verificationID,
+                        verificationCode: otpStr)
+                    Auth.auth().signIn(with: credential) { (authResult, error) in
+                        if let error = error {
+                            // ...
+                            print(error)
+                            return
+                        }
+                        if self.str_forgot {
+                            self.call_ForgotPswOTPAPI()
+                        } else if self.str_changePsw {
+                            self.call_ChangePswAPI()
+                        } else {
+                            self.call_OTPAPI()
+                        }
+                        // User is signed in
+                        // ...
+                    }
+                    
+                    
                 } else {
                     self.call_OTPAPI()
                 }
-              // User is signed in
-              // ...
-            }
-            
-                    
             }
         } else {
             self.showAlertToast(message: "Please Enter 6 Digit OTP")
@@ -87,7 +93,9 @@ class OTP_VC: UIViewController {
         if self.str_forgot {
             self.call_ForgotPswAPI()
         } else {
-            
+            if self.Email != "" {
+                self.call_LoginAPI()
+            }
         }
     }
     
@@ -113,10 +121,14 @@ class OTP_VC: UIViewController {
     
     //MARK:- API Call
     func call_OTPAPI() {
-            
         var paramer: [String: Any] = [:]
-        paramer["Mobile_No"] = self.MobileNumber
-        paramer["OTP"] = "1122"
+        if self.MobileNumber != "" {
+            paramer["Mobile_No"] = self.MobileNumber
+            paramer["OTP"] = "1122"
+        } else if self.Email != "" {
+            paramer["Email_Id"] = self.Email
+            paramer["OTP"] = self.OTP
+        }
         paramer["User_Id"] = self.UserId
         
         WebService.call.POSTT(filePath: global.shared.URL_VerifyOTP, params: paramer, enableInteraction: false, showLoader: true, viewObj: self, onSuccess: { (result, success) in
@@ -202,6 +214,46 @@ class OTP_VC: UIViewController {
                     let changePsw = self.storyboard?.instantiateViewController(withIdentifier: "ChangePassword_VC") as! ChangePassword_VC
                     changePsw.UserId = self.UserId
                     self.navigationController?.pushViewController(changePsw, animated: true)
+                } else {
+                    self.show_alert(msg: eventResponseModel.message ?? "")
+                }
+            }
+        }) {
+            
+        }
+            
+    }
+    
+    
+    func call_LoginAPI() {
+            
+        var paramer: [String: Any] = [:]
+        if self.Email != "" {
+            paramer["Email_Id"] = self.Email ?? ""
+        }
+        WebService.call.POSTT(filePath: global.shared.URL_LOGIN, params: paramer, enableInteraction: false, showLoader: true, viewObj: self, onSuccess: { (result, success) in
+            print(result)
+            if let eventResponseModel:LoginModel = Mapper<LoginModel>().map(JSONObject: result) {
+                if eventResponseModel.status == "1" {
+                    if let time = eventResponseModel.timestamp {
+                        UserDefaults.standard.setValue(time, forKey: "timeStamp")
+                    }
+                    if let UserId = eventResponseModel.user_Id {
+                        UserDefaults.standard.setValue(UserId, forKey: "u_id")
+                    }
+                    if let UserType = eventResponseModel.user_Type {
+                        UserDefaults.standard.setValue(UserType, forKey: "u_type")
+                    }
+                    let sb = UIStoryboard(name: "Home", bundle:nil)
+                    let navigation = sb.instantiateViewController(withIdentifier: "Navigate_home") as! UINavigationController
+                    navigation.modalPresentationStyle = .fullScreen
+                    self.present(navigation, animated: true)
+                } else if eventResponseModel.status == "2" {
+                    self.startTimer()
+                } else if eventResponseModel.status == "3" {
+                    let mobileNo = self.storyboard?.instantiateViewController(withIdentifier: "MobileNo_VC") as! MobileNo_VC
+                    mobileNo.UserId = eventResponseModel.user_Id ?? ""
+                    self.navigationController?.pushViewController(mobileNo, animated: true)
                 } else {
                     self.show_alert(msg: eventResponseModel.message ?? "")
                 }

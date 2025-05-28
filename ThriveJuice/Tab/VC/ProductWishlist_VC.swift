@@ -352,7 +352,7 @@ extension ProductWishlist_VC: UICollectionViewDelegate, UICollectionViewDataSour
                 if userId != "" {
                     if let arr = dict.product_Size, arr.count != 0 {
                         if let stock = arr[0].available_Stock {
-                            if stock != 0 {
+                            if stock != 0 && Cellcart < stock {
                                 cell1.vw_cart.isHidden = false
                                 Cellcart += 1
                                 cell1.lbl_cart.text = "\(Cellcart)"
@@ -413,7 +413,7 @@ extension ProductWishlist_VC: UICollectionViewDelegate, UICollectionViewDataSour
             cell1.Act_AddPlus = {
                 if let arr = dict.product_Size, arr.count != 0 {
                     if let stock = arr[0].available_Stock {
-                        if stock != 0 {
+                        if stock != 0 && Cellcart < stock {
                             Cellcart += 1
                             cell1.lbl_cart.text = "\(Cellcart)"
                             if let id = dict.product_Id {
