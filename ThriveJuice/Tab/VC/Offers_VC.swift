@@ -21,6 +21,7 @@ class Offers_VC: UIViewController {
 
     @IBOutlet weak var collect_vw: UICollectionView!
     @IBOutlet weak var lbl_cartTotal: UILabel!
+    @IBOutlet weak var lblNoOffers: UILabel!
     
     var arr_offers: [Offers] = []
     
@@ -111,6 +112,9 @@ class Offers_VC: UIViewController {
                 if let arr = eventResponseModel.offers, arr.count != 0 {
                     self.arr_offers = arr
                     self.collect_vw.reloadData()
+                    self.lblNoOffers.isHidden = true
+                }else{
+                    self.lblNoOffers.isHidden = false
                 }
             }
         }) {

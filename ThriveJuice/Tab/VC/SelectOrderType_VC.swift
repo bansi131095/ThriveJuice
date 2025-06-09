@@ -38,6 +38,19 @@ class SelectOrderType_VC: UIViewController {
         } else {
             if UserDefaults.standard.object(forKey: "orderType") != nil {
                 self.OrderType = UserDefaults.standard.string(forKey: "orderType") ?? ""
+                if OrderType == "Local_Delivery"{
+                    self.btn_LocalDelivery.setImage(UIImage(named: "Check"), for: .normal)
+                    self.btn_storePickup.setImage(UIImage(named: "Uncheck"), for: .normal)
+                    self.btn_pickupToday.setImage(UIImage(named: "Uncheck"), for: .normal)
+                }else if OrderType == "Store_Pickup"{
+                    self.btn_storePickup.setImage(UIImage(named: "Check"), for: .normal)
+                    self.btn_LocalDelivery.setImage(UIImage(named: "Uncheck"), for: .normal)
+                    self.btn_pickupToday.setImage(UIImage(named: "Uncheck"), for: .normal)
+                }else if OrderType == "Right_Away"{
+                    self.btn_pickupToday.setImage(UIImage(named: "Check"), for: .normal)
+                    self.btn_storePickup.setImage(UIImage(named: "Uncheck"), for: .normal)
+                    self.btn_LocalDelivery.setImage(UIImage(named: "Uncheck"), for: .normal)
+                }
             }
         }
     }
@@ -58,6 +71,7 @@ class SelectOrderType_VC: UIViewController {
     
     @IBAction func act_save(_ sender: UIButton) {
         if userId != "" {
+            UserDefaults.standard.set(self.OrderType, forKey: "orderType")
             self.call_UpdateProfileAPI()
         } else {
             UserDefaults.standard.set(self.OrderType, forKey: "orderType")
@@ -103,6 +117,7 @@ class SelectOrderType_VC: UIViewController {
                 if let user = eventResponseModel.user {
                     if let type = user.order_Type {
                         self.OrderType = type
+                        UserDefaults.standard.set(self.OrderType, forKey: "orderType")
                         if self.OrderType == "Local_Delivery" {
                             self.btn_LocalDelivery.setImage(UIImage(named: "Check"), for: .normal)
                             self.btn_storePickup.setImage(UIImage(named: "Uncheck"), for: .normal)

@@ -218,7 +218,7 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Jost-Medium" family="Jost" pointSize="14"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" title="LOGIN WITH OTP">
+                                                <state key="normal" title="LOGIN WITH VERIFICATION CODE">
                                                     <color key="titleColor" name="White"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
@@ -892,7 +892,7 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Jost-Medium" family="Jost" pointSize="14"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" title="LOGIN WITH OTP">
+                                                <state key="normal" title="LOGIN WITH VERIFICATION CODE">
                                                     <color key="titleColor" name="AccentColor"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>

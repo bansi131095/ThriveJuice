@@ -7,6 +7,7 @@
 
 import UIKit
 import ObjectMapper
+import ImageSlideshow
 
 class SpecialProduct_VC: UIViewController {
 
@@ -26,7 +27,7 @@ class SpecialProduct_VC: UIViewController {
     var selectFaqId = String()
     
     
-    //MARK:- View Life Cycle
+    //MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.lbl_title.text = self.CategoryName
@@ -79,7 +80,25 @@ class SpecialProduct_VC: UIViewController {
         }
     }
     
-    //MARK:- API Call
+    @IBAction func act_ViewList(_ sender: Any) {
+        guard let image = UIImage(named: "Love_Limit_Leave") else {
+            return
+        }
+
+        // Create ImageSlideshow instance
+        let slideshow = ImageSlideshow()
+        slideshow.contentScaleMode = .scaleAspectFill
+
+        // Set the local image
+        let localSource = [ImageSource(image: image)]
+        slideshow.setImageInputs(localSource)
+
+        // Present in full screen
+        let fullScreenController = slideshow.presentFullScreenController(from: self)
+        fullScreenController.slideshow.activityIndicator = DefaultActivityIndicator(style: .medium, color: nil)
+    }
+    
+    //MARK: - API Call
     func call_ProductAPI() {
             
         // Offset, Type= Category, Category_Id, Product_Id
@@ -110,6 +129,7 @@ class SpecialProduct_VC: UIViewController {
                     }
                     self.showAlertToast(message: "\(CategoryName) doesn't have products in \(ordertype)")
                     self.collect_vw.isHidden = true
+                    self.collect_height_const.constant = 0
                 }
             }
         }) {

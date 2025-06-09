@@ -121,7 +121,8 @@ extension Filter_VC: UITableViewDelegate, UITableViewDataSource {
         if self.isOrder {
             total = self.arr_order.count
         } else if self.isCategory {
-            total = self.arr_Category.count + 1
+            total = self.arr_Category.count
+//            total = self.arr_Category.count + 1
         } else {
             total = self.arr_price.count
         }
@@ -145,7 +146,7 @@ extension Filter_VC: UITableViewDelegate, UITableViewDataSource {
             }
         } else if self.isCategory {
             if let cell1 = self.tbl_vw.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? FilterCell {
-                if indexPath.row == 0 {
+                /*if indexPath.row == 0 {
                     cell1.lbl_title.text = "All Product"
                     if self.selectCategory == "All Product" {
                         let image = UIImage(named: "Check") ?? UIImage()
@@ -164,6 +165,15 @@ extension Filter_VC: UITableViewDelegate, UITableViewDataSource {
                         let image = UIImage(named: "Uncheck") ?? UIImage()
                         cell1.btn_check.image = image
                     }
+                }*/
+                let dict = self.arr_Category[indexPath.row]
+                cell1.lbl_title.text = dict.category_Name
+                if self.selectCategory == (dict.category_Id ?? "") {
+                    let image = UIImage(named: "Check") ?? UIImage()
+                    cell1.btn_check.image = image
+                } else {
+                    let image = UIImage(named: "Uncheck") ?? UIImage()
+                    cell1.btn_check.image = image
                 }
                 cell = cell1
             }
@@ -193,7 +203,7 @@ extension Filter_VC: UITableViewDelegate, UITableViewDataSource {
             delegate?.didFinishTask(data: self.selectOrder, type: "Order", name: "")
             self.dismiss(animated: true)
         } else if self.isCategory {
-            if indexPath.row == 0 {
+            /*if indexPath.row == 0 {
                 self.selectCategory = "All Product"
                 UserDefaults.standard.set(self.selectCategory, forKey: "selectCategory")
                 delegate?.didFinishTask(data: "0", type: "Category", name: "All Product")
@@ -202,7 +212,11 @@ extension Filter_VC: UITableViewDelegate, UITableViewDataSource {
                 self.selectCategory = dict.category_Id ?? ""
                 UserDefaults.standard.set(self.selectCategory, forKey: "selectCategory")
                 delegate?.didFinishTask(data: self.selectCategory, type: "Category", name: dict.category_Name ?? "")
-            }
+            }*/
+            let dict = self.arr_Category[indexPath.row]
+            self.selectCategory = dict.category_Id ?? ""
+            UserDefaults.standard.set(self.selectCategory, forKey: "selectCategory")
+            delegate?.didFinishTask(data: self.selectCategory, type: "Category", name: dict.category_Name ?? "")
             self.tbl_vw.reloadData()
             self.dismiss(animated: true)
         } else {

@@ -25,8 +25,8 @@ class Shop_VC: UIViewController {
     @IBOutlet weak var lbl_cartTotal: UILabel!
     
     var locationManager = CLLocationManager()
-    var userLatitude:CLLocationDegrees! = 0
-    var userLongitude:CLLocationDegrees! = 0
+    var userLatitude: Double? = nil
+    var userLongitude: Double? = nil
     var arr_banner: [Banners] = []
     var arr_Category: [Categories] = []
     var arr_RecommendProductList: [ProductsList] = []
@@ -43,6 +43,7 @@ class Shop_VC: UIViewController {
     //MARK:- View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+//        print("\(UserDefaults.standard.set(self.OrderType, forKey: "orderType"))")
         if let savedData = UserDefaults.standard.data(forKey: "cartDataList") {
             let decoder = JSONDecoder()
             if let decodedItems = try? decoder.decode([CartData].self, from: savedData) {
@@ -58,13 +59,19 @@ class Shop_VC: UIViewController {
         self.location()
         NotificationCenter.default.addObserver(self, selector: #selector(OrderTypeRedirect),name: NSNotification.Name ("OrderTypeSelect"),object: nil)
         
-        timer = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(slideToNext), userInfo: nil, repeats: true)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        timer?.invalidate()
+        timer = nil
+    }
+    
+    
     //MARK:- display Map on view
-    func location()
+    /*func location()
     {
-        locationManager.startUpdatingLocation()
+//        locationManager.startUpdatingLocation()
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.requestWhenInUseAuthorization()
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
@@ -75,7 +82,7 @@ class Shop_VC: UIViewController {
             authorizationStatus = CLLocationManager.authorizationStatus()
         }
         
-            if authorizationStatus == CLAuthorizationStatus.authorizedWhenInUse ||
+        if authorizationStatus == CLAuthorizationStatus.authorizedWhenInUse ||
             authorizationStatus == CLAuthorizationStatus.authorizedAlways {
             self.locationManager.delegate = self
             self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
@@ -86,11 +93,36 @@ class Shop_VC: UIViewController {
                     self.userLatitude = self.locationManager.location?.coordinate.latitude
                     self.userLongitude = self.locationManager.location?.coordinate.longitude
                     self.call_StoreListAPI()
-                } else { }
-        
-        } else {
-            self.showLocationPermissionAlert()
+                } else {
+                    self.userLatitude = self.locationManager.location?.coordinate.latitude
+                    self.userLongitude = self.locationManager.location?.coordinate.longitude
+                    self.call_StoreListAPI()
+                }
+        }else {
+            self.locationManager.requestWhenInUseAuthorization()
+            self.userLatitude = nil
+            self.userLongitude = nil
+            self.call_StoreListAPI()
+//            self.showLocationPermissionAlert()
         }
+        }
+    }*/
+    func location() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        
+        let status = CLLocationManager.authorizationStatus()
+        
+        if status == .authorizedWhenInUse || status == .authorizedAlways {
+            self.locationManager.delegate = self
+            self.userLatitude = self.locationManager.location?.coordinate.latitude
+            self.userLongitude = self.locationManager.location?.coordinate.longitude
+            self.call_StoreListAPI()
+        } else {
+            self.locationManager.requestWhenInUseAuthorization()
+            self.userLatitude = nil
+            self.userLongitude = nil
+            self.call_StoreListAPI()
         }
     }
     
@@ -116,23 +148,31 @@ class Shop_VC: UIViewController {
         }
     }
     
-    
-    @objc func slideToNext(){
-        if currentIndex < arr_banner .count - 1{
-            currentIndex = currentIndex + 1
-        }
-        else{
+    @objc func slideToNext() {
+        // Guard against empty banner array
+        guard arr_banner.count > 0 else { return }
+        
+        if currentIndex < arr_banner.count - 1 {
+            currentIndex += 1
+        } else {
             currentIndex = 0
         }
-        collection.scrollToItem(at: IndexPath(item: currentIndex, section: 0), at: .right, animated: true)
+        
+        collection.scrollToItem(
+            at: IndexPath(item: currentIndex, section: 0),
+            at: .right,
+            animated: true
+        )
     }
     
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        if arr_banner.count > 0 && timer == nil {
+            timer = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(slideToNext), userInfo: nil, repeats: true)
+        }
         self.call_DashboardAPI()
-        self.call_ProfileAPI()
-        
+
         var OrderType = String()
         if UserDefaults.standard.object(forKey: "orderType") != nil {
             OrderType = UserDefaults.standard.string(forKey: "orderType") ?? ""
@@ -148,10 +188,9 @@ class Shop_VC: UIViewController {
 //            let filter = self.storyboard?.instantiateViewController(withIdentifier: "SelectOrderType_VC") as! SelectOrderType_VC
 //            filter.modalPresentationStyle = .overFullScreen
 //            self.present(filter, animated: true)
-//            OrderType = "Right_Away"
+            OrderType = "Right_Away"
+            self.lbl_orderType.text = "Pickup Today"
             UserDefaults.standard.set(OrderType, forKey: "orderType")
-            print("OrderType:- \(OrderType)")
-            self.lbl_orderType.text = OrderType
         } else {
             if OrderType == "Right_Away"{
                 self.lbl_orderType.text = "Pickup Today"
@@ -161,6 +200,7 @@ class Shop_VC: UIViewController {
                 self.lbl_orderType.text = "Local Delivery"
             }
         }
+        self.call_ProfileAPI()
         self.call_StoreListAPI()
         if global.shared.arr_AddCartData.count != 0 {
             var total = 0
@@ -173,6 +213,17 @@ class Shop_VC: UIViewController {
             self.lbl_cartTotal.text = "\(total)"
         }
         
+        let hasShownPopup = UserDefaults.standard.bool(forKey: "hasShownKillLaunchPopup")
+        if !hasShownPopup {
+            ShowFirstTime()
+            UserDefaults.standard.set(true, forKey: "hasShownKillLaunchPopup")
+        }
+    }
+    
+    func ShowFirstTime() {
+        let filter = self.storyboard?.instantiateViewController(withIdentifier: "SelectOrderType_VC") as! SelectOrderType_VC
+        filter.modalPresentationStyle = .overFullScreen
+        self.present(filter, animated: true)
     }
     
     @objc func OrderTypeRedirect(_ notification: Notification){
@@ -305,6 +356,9 @@ class Shop_VC: UIViewController {
                 if let banner = eventResponseModel.banners, banner.count != 0 {
                     self.arr_banner = banner
                     self.view.layoutIfNeeded()
+                    if self.timer == nil && self.view.window != nil {
+                        self.timer = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(self.slideToNext), userInfo: nil, repeats: true)
+                    }
                     self.collection.showsHorizontalScrollIndicator = false
                     if let layout = self.collection.collectionViewLayout as? MMBannerLayout {
                         layout.itemSpace = 0
@@ -406,6 +460,17 @@ class Shop_VC: UIViewController {
             if let eventResponseModel:ProfileModel = Mapper<ProfileModel>().map(JSONObject: result) {
                 if let dict = eventResponseModel.user {
                     self.lbl_name.text = "Hi, " + (dict.name ?? "")
+                    UserDefaults.standard.set(dict.order_Type, forKey: "orderType")
+                    if let type = dict.order_Type {
+                        UserDefaults.standard.set(type, forKey: "orderType")
+                        if type == "Right_Away"{
+                            self.lbl_orderType.text = "Pickup Today"
+                        }else if type == "Store_Pickup"{
+                            self.lbl_orderType.text = "Store Pickup"
+                        }else if type == "Local_Delivery"{
+                            self.lbl_orderType.text = "Local Delivery"
+                        }
+                    }
                 }
             }
         }) {
@@ -419,12 +484,20 @@ class Shop_VC: UIViewController {
             
         // Offset, Type= Category, Category_Id, Product_Id
         var paramer: [String: Any] = [:]
-        paramer["Current_Lat"] = String(userLatitude)
-        paramer["Current_Lng"] = String(userLongitude)
+        if userLatitude != nil || userLongitude != nil{
+            UserDefaults.standard.setValue("0", forKey: "SelectedStoreId")
+            paramer["Current_Lat"] = String(userLatitude ?? 0.0)
+            paramer["Current_Lng"] = String(userLongitude ?? 0.0)
+            
+            self.userLatitude = nil
+            self.userLongitude = nil
+        }
+            
         
         
         WebService.call.POSTT(filePath: global.shared.URL_Stores, params: paramer, enableInteraction: false, showLoader: true, viewObj: self, onSuccess: { [self] (result, success) in
             print(result)
+            print("PARAMETER:- \(paramer)")
             if let eventResponseModel:StoreList = Mapper<StoreList>().map(JSONObject: result) {
                 if let selected = eventResponseModel.selected_Store_Id, selected != "" {
                     UserDefaults.standard.setValue(selected, forKey: "SelectedStoreId")
@@ -433,6 +506,7 @@ class Shop_VC: UIViewController {
                             if let id = arr[i].user_Id {
                                 if selected == id {
                                     self.lbl_address.text = arr[i].name ?? ""
+                                    call_DashboardAPI()
                                 }
                             }
                         }
@@ -634,10 +708,15 @@ extension Shop_VC: CLLocationManagerDelegate {
             locationManager.startUpdatingLocation()
             self.location()
             break
-        case .restricted:
+        /*case .restricted:
             // restricted by e.g. parental controls. User can't enable Location Services
+            break*/
+        case .restricted, .denied:
+            self.userLatitude = nil
+            self.userLongitude = nil
+            location()
             break
-        case .denied:
+        /*case .denied:
             // user denied your app access to Location Services, but can grant access from Settings.app
             if let settingUrl = URL(string:UIApplication.openSettingsURLString) {
                 if #available(iOS 10.0, *) {
@@ -649,13 +728,14 @@ extension Shop_VC: CLLocationManagerDelegate {
             else {
                 print("Setting URL invalid")
             }
-            break
+            break*/
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         if #available(iOS 14.0, *) {
             print(manager.authorizationStatus.rawValue)
+            print("manager.authorizationStatus.rawValue")
             if manager.authorizationStatus.rawValue == 2 {
                 DispatchQueue.main.async {
                     self.showAlertToast(message: "msglocation")

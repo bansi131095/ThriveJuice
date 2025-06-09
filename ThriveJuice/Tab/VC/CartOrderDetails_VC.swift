@@ -50,6 +50,7 @@ class CartOrderDetails_VC: UIViewController {
     @IBOutlet weak var btn_checkOut: UIButton!
     @IBOutlet weak var btn_checkout_height_const: NSLayoutConstraint!
     
+    @IBOutlet weak var lblTimeSlot: UILabel!
     
     var selectDeliverDate = String()
     var selectDeliverTime = String()
@@ -71,7 +72,7 @@ class CartOrderDetails_VC: UIViewController {
     var OrderType = String()
     var SubscribeWeek = String()
     var str_msg = String()
-
+    var orderType = String()
     
 //    lazy var  calenderView: CalenderView = {
 //        let calenderView = CalenderView(theme: MyTheme.light)
@@ -87,12 +88,18 @@ class CartOrderDetails_VC: UIViewController {
         self.lbl_year.text = dateFormate.string(from: Date())
         self.vw_TimeSlot.isHidden = true
         self.vw_timeHeight_const.constant = 0.0
-        var orderType = String()
+        
         if UserDefaults.standard.object(forKey: "orderType") != nil {
             orderType = UserDefaults.standard.string(forKey: "orderType") ?? ""
         }
         self.OrderType = orderType
+        print("Order_Type:- \(orderType)")
+        print("UserDefaults_Order_Type:- \(UserDefaults.standard.object(forKey: "orderType") ?? "")")
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.call_ProfileAPI()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -114,8 +121,23 @@ class CartOrderDetails_VC: UIViewController {
     }
     
     @IBAction func act_ChangeAddress(_ sender: UIButton) {
-        let address = self.storyboard?.instantiateViewController(withIdentifier: "AddressList_VC") as! AddressList_VC
-        self.navigationController?.pushViewController(address, animated: true)
+        if lbl_Address.text == "" {
+            let address = self.storyboard?.instantiateViewController(withIdentifier: "AddNewAddress_VC") as! AddNewAddress_VC
+            self.navigationController?.pushViewController(address, animated: true)
+        }else{
+            let address = self.storyboard?.instantiateViewController(withIdentifier: "AddressList_VC") as! AddressList_VC
+            self.navigationController?.pushViewController(address, animated: true)
+        }
+    }
+    
+    @IBAction func act_AddressChange(_ sender: Any) {
+        if lbl_Address.text == "" {
+            let address = self.storyboard?.instantiateViewController(withIdentifier: "AddNewAddress_VC") as! AddNewAddress_VC
+            self.navigationController?.pushViewController(address, animated: true)
+        }else{
+            let address = self.storyboard?.instantiateViewController(withIdentifier: "AddressList_VC") as! AddressList_VC
+            self.navigationController?.pushViewController(address, animated: true)
+        }
     }
     
     @IBAction func act_CheckOut(_ sender: UIButton) {
@@ -167,30 +189,34 @@ class CartOrderDetails_VC: UIViewController {
         self.btn_localPickup.setImage(UIImage(named: "Check"), for: .normal)
         self.btn_storePickup.setImage(UIImage(named: "Uncheck"), for: .normal)
         self.btn_pickupToday.setImage(UIImage(named: "Uncheck"), for: .normal)
-        self.tbl_vw.isHidden = true
-        self.tbl_height_const.constant = 0.0
-        self.btn_store.isHidden = true
-        self.btn_storeHeight_const.constant = 0.0
+        self.tbl_vw.isHidden = false
+        self.tbl_height_const.constant = CGFloat(self.arrSelectedStore.count*110)
+        self.btn_store.isHidden = false
+        self.btn_storeHeight_const.constant = 32.0
         self.vw_addressTitle.isHidden = false
         self.vw_addressTitle_height_const.constant = 32.0
         self.vw_address.isHidden = false
         for i in 0..<self.arr_Address.count {
             if let select = self.arr_Address[i].is_Selected {
                 if select {
-                    self.lbl_Address.text = self.arr_Address[i].address
+//                    self.lbl_Address.text = self.arr_Address[i].address
+                    self.lbl_Address.text = "\(self.arr_Address[i].landmark ?? "")" + "\n\n" + "\(self.arr_Address[i].address ?? "")"
                 }
             }
         }
         self.lbl_Address.isHidden = false
+        self.lblTimeSlot.text = "Time Slot"
         self.lbl_deliveryDate.text = "Delivery Date & Time"
         self.vw_deliveryDate.isHidden = false
         self.vw_deliveryDateHeight_const.constant = 85.0
         self.vw_TimeSlots.isHidden = true
         self.vw_timeSlotsHeight_const.constant = 0.0
         self.OrderType = "Local_Delivery"
-        self.call_CartAPI(str_data: true)
+        self.call_ScheduleDateAPI()
         self.vw_SubscribeBtn.isHidden = false
         self.vw_height_subscribeBtn.constant = 25.0
+        UserDefaults.standard.set(OrderType, forKey: "orderType")
+        call_UpdateProfileAPI()
     }
     
     @IBAction func act_storePickup(_ sender: UIButton) {
@@ -206,15 +232,18 @@ class CartOrderDetails_VC: UIViewController {
         self.vw_address.isHidden = true
         self.lbl_Address.text = ""
         self.lbl_Address.isHidden = true
+        self.lblTimeSlot.text = "Time Slot"
         self.lbl_deliveryDate.text = "Delivery Date & Time"
         self.vw_deliveryDate.isHidden = false
         self.vw_deliveryDateHeight_const.constant = 85.0
         self.vw_TimeSlots.isHidden = true
         self.vw_timeSlotsHeight_const.constant = 0.0
         self.OrderType = "Store_Pickup"
-        self.call_CartAPI(str_data: true)
+        self.call_ScheduleDateAPI()
         self.vw_SubscribeBtn.isHidden = false
         self.vw_height_subscribeBtn.constant = 25.0
+        UserDefaults.standard.set(OrderType, forKey: "orderType")
+        call_UpdateProfileAPI()
     }
     
     @IBAction func act_pickupToday(_ sender: UIButton) {
@@ -235,14 +264,44 @@ class CartOrderDetails_VC: UIViewController {
         self.vw_deliveryDateHeight_const.constant = 0.0
         self.vw_TimeSlots.isHidden = true
         self.vw_timeSlotsHeight_const.constant = 0.0
+        self.lblTimeSlot.text = "Pickup Slot"
         self.OrderType = "Right_Away"
-        self.call_CartAPI(str_data: true)
+        self.call_ScheduleDateAPI()
         self.vw_SubscribeBtn.isHidden = true
         self.vw_height_subscribeBtn.constant = 0.0
         self.btn_OTPurchase.setImage(UIImage(named: "Check"), for: .normal)
         self.btn_Subscribe.setImage(UIImage(named: "Uncheck"), for: .normal)
         self.vw_Subscribe.isHidden = true
         self.vw_height_subscribe.constant = 0.0
+        UserDefaults.standard.set(OrderType, forKey: "orderType")
+        call_UpdateProfileAPI()
+    }
+    
+    func call_UpdateProfileAPI() {
+            
+        // Offset, Type= Category, Category_Id, Product_Id
+        var paramer: [String: Any] = [:]
+        paramer["Update_Type"] = "Order_Type"
+        paramer["Order_Type"] = self.OrderType
+        
+        WebService.call.POSTT(filePath: global.shared.URL_Update_Profile, params: paramer, enableInteraction: false, showLoader: false, viewObj: self, onSuccess: { [self] (result, success) in
+            print(result)
+            if let eventResponseModel:ProfileModel = Mapper<ProfileModel>().map(JSONObject: result) {
+                if let status = eventResponseModel.status, status == "1" {
+                    //self.showAlertToast(message: eventResponseModel.message ?? "")
+                    UserDefaults.standard.set(self.OrderType, forKey: "orderType")
+                    NotificationCenter.default.post(name: NSNotification.Name("OrderTypeSelect"), object: nil, userInfo: ["OrderType": true])
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                        self.dismiss(animated: true)
+                    }
+                } else {
+                    //self.showAlertToast(message: eventResponseModel.message ?? "")
+                }
+            }
+        }) {
+            
+        }
+            
     }
     
     @IBAction func act_OK(_ sender: UIButton) {
@@ -294,16 +353,14 @@ class CartOrderDetails_VC: UIViewController {
         } catch { print(error) }
         
         var paramer: [String: Any] = [:]
-        if str_data {
-            paramer["Cart_Data"] = JsonData_Cart
-            paramer["Order_Type"] = self.OrderType
-            if self.btn_Subscribe.currentImage?.pngData() == UIImage(named: "Check")?.pngData() {
-                paramer["Subscribe_Week"] = SubscribeWeek
-            }
-        } else {
-            paramer["Cart_Data"] = JsonData_Cart
+        paramer["Cart_Data"] = JsonData_Cart
+        paramer["Order_Type"] = self.OrderType
+        if self.btn_Subscribe.currentImage?.pngData() == UIImage(named: "Check")?.pngData() {
+            paramer["Subscribe_Week"] = SubscribeWeek
         }
         paramer["Page"] = "Check_Out"
+        
+        print("paramer CHECK OUT:- \(paramer)")
         
         WebService.call.POSTT(filePath: global.shared.URL_Cart, params: paramer, enableInteraction: false, showLoader: true, viewObj: self, onSuccess: { (result, success) in
             print(result)
@@ -324,6 +381,19 @@ class CartOrderDetails_VC: UIViewController {
                     self.btn_checkOut.isHidden = false
                     self.btn_checkout_height_const.constant = 44.0
                     self.lbl_timeslots.text = ""
+                    
+                    if self.OrderType == "Right_Away" {
+                        
+                        if (self.arr_time.isEmpty) {
+                            
+                            self.str_msg = "Time slot not avaliable"
+                            self.vw_TimeSlots.isHidden = false
+                            self.vw_timeSlotsHeight_const.constant = 45.0
+                            self.btn_checkOut.isHidden = true
+                            self.btn_checkout_height_const.constant = 0.0
+                            self.lbl_timeslots.text = "Time slot not avaliable"
+                        }
+                    }
                 }
                 if let arr = eventResponseModel.stores, arr.count != 0 {
                     self.arr_Store = arr
@@ -361,17 +431,17 @@ class CartOrderDetails_VC: UIViewController {
                     self.btn_localPickup.setImage(UIImage(named: "Check"), for: .normal)
                     self.btn_storePickup.setImage(UIImage(named: "Uncheck"), for: .normal)
                     self.btn_pickupToday.setImage(UIImage(named: "Uncheck"), for: .normal)
-                    self.tbl_vw.isHidden = true
-                    self.tbl_height_const.constant = 0.0
-                    self.btn_store.isHidden = true
-                    self.btn_storeHeight_const.constant = 0.0
+                    self.tbl_vw.isHidden = false
+                    self.tbl_height_const.constant = CGFloat(self.arrSelectedStore.count*110)
+                    self.btn_store.isHidden = false
+                    self.btn_storeHeight_const.constant = 32.0
                     self.vw_addressTitle.isHidden = false
                     self.vw_addressTitle_height_const.constant = 32.0
                     self.vw_address.isHidden = false
                     for i in 0..<self.arr_Address.count {
                         if let select = self.arr_Address[i].is_Selected {
                             if select {
-                                self.lbl_Address.text = self.arr_Address[i].address
+                                self.lbl_Address.text = "\(self.arr_Address[i].landmark ?? "")" + "\n\n" + "\(self.arr_Address[i].address ?? "")"
                             }
                         }
                     }
@@ -419,7 +489,7 @@ class CartOrderDetails_VC: UIViewController {
                     self.vw_height_subscribe.constant = 0.0
                 }
             }
-            self.call_ScheduleDateAPI()
+            //self.call_ScheduleDateAPI()
         }) {
             
         }
@@ -519,6 +589,8 @@ class CartOrderDetails_VC: UIViewController {
                     self.btn_checkout_height_const.constant = 44.0
                     self.lbl_timeslots.text = ""
                 }
+                
+                self.call_CartAPI(str_data: true)
             }
         }) {
             
@@ -536,10 +608,12 @@ class CartOrderDetails_VC: UIViewController {
             if let eventResponseModel:ProfileModel = Mapper<ProfileModel>().map(JSONObject: result) {
                 if let address = eventResponseModel.user?.addresses, address.count != 0 {
                     self.arr_Address = address
+                    
                     for i in 0..<self.arr_Address.count {
                         if let select = self.arr_Address[i].is_Selected {
                             if select {
-                                self.lbl_Address.text = self.arr_Address[i].address
+//                                self.lbl_Address.text = self.arr_Address[i].address
+                                self.lbl_Address.text = "\(self.arr_Address[i].landmark ?? "")" + "\n\n" + "\(self.arr_Address[i].address ?? "")"
                             }
                         }
                     }

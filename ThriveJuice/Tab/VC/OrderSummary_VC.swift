@@ -41,6 +41,10 @@ class OrderSummary_VC: UIViewController {
     @IBOutlet weak var vw_coupon_height_const: NSLayoutConstraint!
     @IBOutlet weak var lbl_rewardsPointsMsg: UILabel!
     @IBOutlet weak var vw_cartEmpty: UIView!
+    @IBOutlet weak var lblUseMyRewardBalance: UILabel!
+    @IBOutlet weak var lblAvailabelPoints: UILabel!
+    @IBOutlet weak var lblRewardBalance: UILabel!
+    @IBOutlet weak var lblRewardBalanceHeight: NSLayoutConstraint!
     
     
     var OrderData_dict: OrderData?
@@ -137,6 +141,9 @@ class OrderSummary_VC: UIViewController {
                         self.RewardPointRate = rewardPointRate
                         self.lbl_RewardsPrice.text = "$" + (self.RewardPointRate ?? "0")
                     }
+                    
+                    self.lblAvailabelPoints.text = "Available " + "\(eventResponseModel.available_Reward_Points ?? "") " + "Points"
+                    
                     self.dict_CartData = eventResponseModel
                     if let arr = eventResponseModel.cart_Products, arr.count != 0 {
                         self.arrCartProduct = arr
@@ -174,14 +181,28 @@ class OrderSummary_VC: UIViewController {
                     if let Total = eventResponseModel.grand_Total {
                         self.lbl_TotalPrice.text = "$" + Total + " CAD"
                     }
+                    if let minimum_Points = eventResponseModel.minimum_Point_Usage {
+                        self.lblRewardBalance.text = "Note: Minimum Reward Balance Use In Checkout is $:\(minimum_Points)"
+                    }
                     if let availableRewards = eventResponseModel.available_Reward_Points_Rate,let double = Double(availableRewards), let minumumPoints = eventResponseModel.minimum_Point_Usage, let MinimumPoints = Double(minumumPoints) {
                         if double > 0 {
                             self.vw_Reward.isHidden = false
-                            self.vw_rewards_height_const.constant = 50.0
+                            self.vw_rewards_height_const.constant = 65.0
                             if double > MinimumPoints {
                                 self.btn_rewards.isEnabled = true
+                                self.lblAvailabelPoints.isEnabled = true
+                                self.lblUseMyRewardBalance.isEnabled = true
+                                self.lblRewardBalance.isHidden = true
+                                self.lblRewardBalanceHeight.constant = 0
+//                                self.lblRewardBalance.text = "true"
                             } else {
                                 self.btn_rewards.isEnabled = false
+                                self.lblAvailabelPoints.isEnabled = false
+                                self.lblUseMyRewardBalance.isEnabled = false
+                                self.lblRewardBalance.isHidden = false
+                                self.lblRewardBalanceHeight.constant = 24
+                                
+//                                self.lblRewardBalance.text = "False"
                             }
                         } else {
                             self.vw_Reward.isHidden = true

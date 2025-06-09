@@ -31,6 +31,7 @@ target 'ThriveJuice' do
     pod 'GoogleSignIn'
     pod 'ImageSlideshow'
     pod 'ImageSlideshow/SDWebImage'
+    pod 'DropDown'
 
 
 end

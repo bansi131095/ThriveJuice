@@ -15,6 +15,7 @@ PODS:
   - DeviceGuru/DeviceGuru (10.0.7):
     - DeviceGuru/Resources
   - DeviceGuru/Resources (10.0.7)
+  - DropDown (2.3.13)
   - Firebase/Core (10.25.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (~> 10.25.0)
@@ -836,6 +837,7 @@ DEPENDENCIES:
   - AlamofireObjectMapper
   - BSImagePicker
   - DeviceGuru
+  - DropDown
   - Firebase/Core
   - Firebase/Messaging
   - FirebaseAuth
@@ -863,6 +865,7 @@ SPEC REPOS:
     - AppAuth
     - BSImagePicker
     - DeviceGuru
+    - DropDown
     - Firebase
     - FirebaseAnalytics
     - FirebaseAppCheckInterop
@@ -912,6 +915,7 @@ SPEC CHECKSUMS:
   AppAuth: 501c04eda8a8d11f179dbe8637b7a91bb7e5d2fa
   BSImagePicker: 57900b323f951711608acaf97d52e9183530cb6d
   DeviceGuru: 593a89a21c71bc1d5a039a8d6807c325c84cc091
+  DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   Firebase: 0312a2352584f782ea56f66d91606891d4607f06
   FirebaseAnalytics: ec00fe8b93b41dc6fe4a28784b8e51da0647a248
   FirebaseAppCheckInterop: 5da5ce93e8797a215e3f677fb0654b74e736c8b8
@@ -955,6 +959,6 @@ SPEC CHECKSUMS:
   StripePaymentsUI: a51fd3468d9944b602f79ddae26d83e6dd2d9048
   StripeUICore: 436db87a21e3bb45b7a6a90c114a6d21c35b4be0
 
-PODFILE CHECKSUM: a426822d7ac1d78c547037bb54745c1f302167c4
+PODFILE CHECKSUM: defb15feb6a66851d7922a1f8a430c1e3ba0b082
 
 COCOAPODS: 1.15.2
