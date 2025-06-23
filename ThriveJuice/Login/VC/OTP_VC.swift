@@ -96,10 +96,28 @@ class OTP_VC: UIViewController {
             if self.Email != "" {
                 self.call_LoginAPI()
             }
+            if self.MobileNumber != "" {
+                let number = "+1" + (self.MobileNumber)
+                PhoneAuthProvider.provider().verifyPhoneNumber(number, uiDelegate: nil) { (verificationID, error) in
+                    if let error = error {
+                        print(error)
+                        return
+                    }
+                    UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
+                    
+                    self.startTimer()
+                    
+                    // Sign in using the verificationID and the code sent to the user
+                  // ...
+                }
+            }
         }
     }
     
     func startTimer() {
+        
+        countdown = 60
+        
         self.btn_resend.isHidden = true // Hide the button initially
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
         guard let self = self else { return }

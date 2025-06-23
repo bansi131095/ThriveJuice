@@ -342,7 +342,7 @@ extension SpecialProduct_VC: UICollectionViewDelegate, UICollectionViewDataSourc
                             if stock != 0 {
                                 
                             } else {
-                                self.showAlertToast(message: "Only {\(stock)} available at this moment")
+                                self.showAlertToast(message: "Only \(stock) available at this moment")
                             }
                         }
                     }
@@ -385,7 +385,7 @@ extension SpecialProduct_VC: UICollectionViewDelegate, UICollectionViewDataSourc
                         if stock != 0 {
                             
                         } else {
-                            self.showAlertToast(message: "Only {\(stock)} available at this moment")
+                            self.showAlertToast(message: "Only \(stock) available at this moment")
                         }
                     }
                 }

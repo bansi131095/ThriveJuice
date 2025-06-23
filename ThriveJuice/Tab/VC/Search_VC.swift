@@ -326,7 +326,7 @@ extension Search_VC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
                                     self.navigationController?.pushViewController(details, animated: true)
                                 } */
                             } else {
-                                self.showAlertToast(message: "Only {\(stock)} available at this moment")
+                                self.showAlertToast(message: "Only \(stock) available at this moment")
                             }
                         }
                     }
@@ -358,7 +358,7 @@ extension Search_VC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
                             }
                             self.call_CartAddAPI()
                         } else {
-                            self.showAlertToast(message: "Only {\(stock)} available at this moment")
+                            self.showAlertToast(message: "Only \(stock) available at this moment")
                         }
                     }
                 }

@@ -180,7 +180,9 @@ class Cart_VC: UIViewController {
                         self.btn_clearAll.isHidden = true
                         self.tbl_vw.isHidden = true
                         self.vw_buyNow.isHidden = true
+                        self.vw_Msg.isHidden = true
                         self.vw_emptyCart.isHidden = false
+                        self.lbl_cartTotal.text = "0"
                     }
                 }
                 
@@ -436,7 +438,43 @@ extension Cart_VC: UITableViewDelegate, UITableViewDataSource {
                     print("Arr data count \(global.shared.arr_AddCartData.count)")
                 }
                 cell.Act_AddPlus = {
-                    cart_countQty += 1
+                    //AJAY
+                    if let arr = data.product_Size, arr.count != 0 {
+                        if let stock = arr[0].available_Stock{
+                            if stock != 0 && cart_countQty < stock {
+                                cart_countQty += 1
+                                cell.lbl_count.text = "\(cart_countQty)"
+                                if let id = data.product_Id {
+                                    let arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
+                                    if arrCart.count != 0 {
+                                        var joinedIds = ""
+                                        if let arr1 = self.arrCartProduct[indexPath.row].cart_Addons_Price, arr1.count != 0 {
+                                            joinedIds = arr1.compactMap { $0.addon_Id }.joined(separator: ",")
+                                        }
+                                        print("Join \(joinedIds)");
+                                        if let index = global.shared.arr_AddCartData.firstIndex(where: {
+                                            let cartAddonSet = Set($0.Cart_Addons.components(separatedBy: ","))
+                                            let joinedIdSet = Set(joinedIds.components(separatedBy: ","))
+                                            return cartAddonSet == joinedIdSet
+                                        }) {
+                                            print("Index \(index)");
+                                            global.shared.arr_AddCartData[indexPath.row].Cart_Qty = "\(cart_countQty)"
+                                        }
+                                    } else {
+                                        cart_data = CartData(productId: data.product_Id ?? "", cartQty: "\(cart_countQty)", cartProductSize: data.cart_Product_Size ?? "0")
+                                        if let data = cart_data {
+                                            global.shared.arr_AddCartData.append(data)
+                                        }
+                                    }
+                                }
+                                self.call_CartAddAPI()
+                            }else{
+                                self.showAlertToast(message: "Only \(stock) available at this moment")
+                            }
+                        }
+                    }
+                    // Bansi Mem
+                    /*cart_countQty += 1
                     cell.lbl_count.text = "\(cart_countQty)"
                     if let id = data.product_Id {
                         let arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
@@ -463,7 +501,7 @@ extension Cart_VC: UITableViewDelegate, UITableViewDataSource {
                     }
                     self.call_CartAddAPI()
                     print("Arr data \(global.shared.arr_AddCartData)")
-                    print("Arr data count \(global.shared.arr_AddCartData.count)")
+                    print("Arr data count \(global.shared.arr_AddCartData.count)")*/
                 }
                 cell.Act_MinusCart = {
                     if cart_countQty != 0 {
@@ -679,7 +717,34 @@ extension Cart_VC: UITableViewDelegate, UITableViewDataSource {
                     print("Arr data count \(global.shared.arr_AddCartData.count)")
                 }
                 cell.Act_AddPlus = {
-                    cart_countQty += 1
+                    // AJAY
+                    if let arr = data.product_Size, arr.count != 0 {
+                        if let stock = arr[0].available_Stock{
+                            if stock != 0 && cart_countQty < stock {
+                                cart_countQty += 1
+                                cell.lbl_count.text = "\(cart_countQty)"
+                                if let id = data.product_Id {
+                                    let arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
+                                    if arrCart.count != 0 && arrCart.count == 1 {
+                                        if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Product_Id == id }) {
+                                            global.shared.arr_AddCartData[index].Cart_Qty = "\(cart_countQty)"
+                                        }
+                                    } else {
+                                        cart_data = CartData(productId: data.product_Id ?? "", cartQty: "\(cart_countQty)", cartProductSize: data.cart_Product_Size ?? "0")
+                                        if let data = cart_data {
+                                            global.shared.arr_AddCartData.append(data)
+                                        }
+                                    }
+                                }
+                                self.call_CartAddAPI()
+                            }else{
+                                self.showAlertToast(message: "Only \(stock) available at this moment")
+                            }
+                        }
+                    }
+                    
+                    // Bansi Mem
+                    /*cart_countQty += 1
                     cell.lbl_count.text = "\(cart_countQty)"
                     if let id = data.product_Id {
                         let arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
@@ -696,7 +761,7 @@ extension Cart_VC: UITableViewDelegate, UITableViewDataSource {
                     }
                     self.call_CartAddAPI()
                     print("Arr data \(global.shared.arr_AddCartData)")
-                    print("Arr data count \(global.shared.arr_AddCartData.count)")
+                    print("Arr data count \(global.shared.arr_AddCartData.count)")*/
                 }
                 cell.Act_MinusCart = {
                     if cart_countQty != 0 {

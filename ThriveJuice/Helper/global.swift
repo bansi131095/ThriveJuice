@@ -211,3 +211,13 @@ class global: NSObject
 
 
 
+var Show_Social_Login : String {
+    get {
+        let returnValue : String = (UserDefaults.standard.object(forKey: "Show_Social_Login") as? String) ?? ""
+        return returnValue
+    }
+    set (newValue) {
+        UserDefaults.standard.set(newValue, forKey: "Show_Social_Login")
+        UserDefaults.standard.synchronize()
+    }
+}

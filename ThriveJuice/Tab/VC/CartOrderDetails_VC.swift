@@ -92,6 +92,10 @@ class CartOrderDetails_VC: UIViewController {
         if UserDefaults.standard.object(forKey: "orderType") != nil {
             orderType = UserDefaults.standard.string(forKey: "orderType") ?? ""
         }
+        pickerTimeSlot.delegate = self
+        pickerTimeSlot.dataSource = self
+        txt_TimeSlot.inputView = pickerTimeSlot
+        
         self.OrderType = orderType
         print("Order_Type:- \(orderType)")
         print("UserDefaults_Order_Type:- \(UserDefaults.standard.object(forKey: "orderType") ?? "")")
@@ -105,8 +109,15 @@ class CartOrderDetails_VC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.call_ProfileAPI()
-        self.call_CartAPI(str_data: false)
-        
+        if OrderType == "Right_Away"{
+            self.call_ScheduleDateAPI()
+        }else if orderType == "Store_Pickup"{
+            self.call_ScheduleDateAPI()
+        }else if OrderType == "Local_Delivery"{
+            self.call_ScheduleDateAPI()
+        }else{
+            self.call_CartAPI(str_data: false)
+        }
     }
     
     
@@ -307,7 +318,7 @@ class CartOrderDetails_VC: UIViewController {
     @IBAction func act_OK(_ sender: UIButton) {
         self.vw_Calendar.isHidden = true
         let dateFormatter1 = DateFormatter()
-        dateFormatter1.dateFormat = "dd-MM-yyyy"
+        dateFormatter1.dateFormat = "dd/MM/yyyy"
         dateFormatter1.locale = NSLocale.init(localeIdentifier: "en") as Locale
         let dateString = dateFormatter1.string(from: self.selectDate)
         self.txt_DeliveryDate.text = dateString
@@ -466,6 +477,7 @@ class CartOrderDetails_VC: UIViewController {
                     self.vw_deliveryDate.isHidden = false
                     self.vw_deliveryDateHeight_const.constant = 85.0
                 } else if self.OrderType == "Right_Away" {
+                    self.lblTimeSlot.text = "Pickup Slot"
                     self.btn_pickupToday.setImage(UIImage(named: "Check"), for: .normal)
                     self.btn_localPickup.setImage(UIImage(named: "Uncheck"), for: .normal)
                     self.btn_storePickup.setImage(UIImage(named: "Uncheck"), for: .normal)
@@ -486,7 +498,28 @@ class CartOrderDetails_VC: UIViewController {
                     self.btn_OTPurchase.setImage(UIImage(named: "Check"), for: .normal)
                     self.btn_Subscribe.setImage(UIImage(named: "Uncheck"), for: .normal)
                     self.vw_Subscribe.isHidden = true
-                    self.vw_height_subscribe.constant = 0.0
+                    if self.arr_time.count != 0{
+                        self.vw_height_subscribe.constant = 0.0
+                        self.vw_TimeSlot.isHidden = false
+                        self.vw_timeHeight_const.constant = 90.0
+                        self.vw_TimeSlots.isHidden = true
+                        self.vw_timeSlotsHeight_const.constant = 0.0
+                        self.btn_checkOut.isHidden = false
+                        self.btn_checkout_height_const.constant = 44.0
+                        for i in 0..<self.arr_time.count {
+                            self.txt_TimeSlot.text = self.arr_time[0].time_Slot_Display ?? "0"
+                            self.selectDeliverTime = self.arr_time[0].time_Slot ?? "0"
+                        }
+                    }else{
+                        self.vw_TimeSlots.isHidden = false
+                        self.lbl_timeslots.text = "Time slots not available"
+                        self.vw_timeSlotsHeight_const.constant = 45.0
+                        self.vw_TimeSlot.isHidden = true
+                        self.vw_timeHeight_const.constant = 0.0
+                        self.btn_checkOut.isHidden = true
+                        self.btn_checkout_height_const.constant = 0.0
+                    }
+                    self.pickerTimeSlot.reloadAllComponents()
                 }
             }
             //self.call_ScheduleDateAPI()

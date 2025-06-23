@@ -20,6 +20,7 @@ struct DashboardModel : Mappable {
     var categories : [Categories]?
     var trendingProducts : [ProductsList]?
     var recommendProducts : [ProductsList]?
+    var show_Social_Login : String?
 
     init?(map: Map) {
 
@@ -31,6 +32,7 @@ struct DashboardModel : Mappable {
         categories <- map["Categories"]
         trendingProducts <- map["TrendingProducts"]
         recommendProducts <- map["RecommendProducts"]
+        show_Social_Login <- map["Show_Social_Login"]
     }
 
 }

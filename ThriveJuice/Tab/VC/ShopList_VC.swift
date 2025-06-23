@@ -458,7 +458,7 @@ extension ShopList_VC: UICollectionViewDelegate, UICollectionViewDataSource, UIC
                                     self.navigationController?.pushViewController(details, animated: true)
                                 }*/
                             } else {
-                                self.showAlertToast(message: "Only {\(stock)} available at this moment")
+                                self.showAlertToast(message: "Only \(stock) available at this moment")
                             }
                         }
                     }
@@ -476,7 +476,7 @@ extension ShopList_VC: UICollectionViewDelegate, UICollectionViewDataSource, UIC
                             Cellcart += 1
                             cell1.lbl_cart.text = "\(Cellcart)"
                             if let id = dict.product_Id {
-                                var arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
+                                let arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
                                 if arrCart.count != 0 && arrCart.count == 1 {
                                     if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Product_Id == id }) {
                                         global.shared.arr_AddCartData[index].Cart_Qty = "\(Cellcart)"
@@ -490,7 +490,7 @@ extension ShopList_VC: UICollectionViewDelegate, UICollectionViewDataSource, UIC
                             }
                             self.call_CartAddAPI()
                         } else {
-                            self.showAlertToast(message: "Only {\(stock)} available at this moment")
+                            self.showAlertToast(message: "Only \(stock) available at this moment")
                         }
                     }
                 }

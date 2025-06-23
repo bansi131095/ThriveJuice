@@ -255,7 +255,7 @@ class ProductDetails_VC: UIViewController {
                                 }
                             }
                         }  else {
-                            self.showAlertToast(message: "Only {\(stock)} available at this moment")
+                            self.showAlertToast(message: "Only \(stock) available at this moment")
                         }
                     }
                 }
@@ -275,11 +275,11 @@ class ProductDetails_VC: UIViewController {
         var cart_data: CartData?
         if let arr = self.dict_product?.product_Size, arr.count != 0 {
             if let stock = arr[0].available_Stock {
-                if stock != 0 {
+                if stock != 0 && CartTotal < stock{
                     self.CartTotal += 1
                     if self.CartTotal < 10 {
 //                        self.lbl_cartTotal.text = "0\(self.CartTotal)"
-                        self.lbl_cartQty.text = "0\(self.CartTotal)"
+                        self.lbl_cartQty.text = "\(self.CartTotal)"
                     } else {
 //                        self.lbl_cartTotal.text = "\(self.CartTotal)"
                         self.lbl_cartQty.text = "\(self.CartTotal)"
@@ -357,7 +357,7 @@ class ProductDetails_VC: UIViewController {
                         }
                     }
                 }  else {
-                    self.showAlertToast(message: "Only {\(stock)} available at this moment")
+                    self.showAlertToast(message: "Only \(stock) available at this moment")
                 }
             }
         }
@@ -372,7 +372,7 @@ class ProductDetails_VC: UIViewController {
             self.CartTotal -= 1
             if self.CartTotal < 10 {
 //                self.lbl_cartTotal.text = "0\(self.CartTotal)"
-                self.lbl_cartQty.text = "0\(self.CartTotal)"
+                self.lbl_cartQty.text = "\(self.CartTotal)"
             } else {
 //                self.lbl_cartTotal.text = "\(self.CartTotal)"
                 self.lbl_cartQty.text = "\(self.CartTotal)"
@@ -1124,7 +1124,7 @@ extension ProductDetails_VC: UICollectionViewDataSource, UICollectionViewDelegat
                                     self.navigationController?.pushViewController(details, animated: true)
                                 }
                             } else {
-                                self.showAlertToast(message: "Only {\(stock)} available at this moment")
+                                self.showAlertToast(message: "Only \(stock) available at this moment")
                             }
                         }
                     }
@@ -1156,7 +1156,7 @@ extension ProductDetails_VC: UICollectionViewDataSource, UICollectionViewDelegat
                             }
                             self.call_CartAddAPI()
                         } else {
-                            self.showAlertToast(message: "Only {\(stock)} available at this moment")
+                            self.showAlertToast(message: "Only \(stock) available at this moment")
                         }
                     }
                 }

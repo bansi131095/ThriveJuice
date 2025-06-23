@@ -387,6 +387,7 @@ class Shop_VC: UIViewController {
                     self.arr_TrendingProductList = trendingPro
                     tblHeight += 310
                 }
+                Show_Social_Login = eventResponseModel.show_Social_Login ?? ""
                 self.tbl_vw.register(UINib(nibName: "Product_ListCell", bundle: nil), forCellReuseIdentifier: "cell")
                 self.tbl_vw.delegate = self
                 self.tbl_vw.dataSource = self

@@ -15,12 +15,22 @@ class Login_VC: UIViewController {
     
     @IBOutlet weak var txt_email: UITextField!
     @IBOutlet weak var txt_mobileNo: UITextField!
-    
+    @IBOutlet weak var btnLoginEPORSocial: UIButton!
+    @IBOutlet weak var btnLogInHeight: NSLayoutConstraint!
     
     //MARK:- View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        btnLoginEPORSocial.titleLabel?.font = UIFont(name: "Jost-Medium", size: 14)
+        if Show_Social_Login == "0"{
+            self.btnLogInHeight.constant = 40
+            self.btnLoginEPORSocial.layer.cornerRadius = CGFloat(btnLogInHeight.constant / 2)
+            self.btnLoginEPORSocial.setTitle("LOGIN WITH EMAIL & PASSWORD", for: .normal)
+        }else{
+            self.btnLogInHeight.constant = 60
+            self.btnLoginEPORSocial.layer.cornerRadius = CGFloat(btnLogInHeight.constant / 2)
+            self.btnLoginEPORSocial.setTitle("LOGIN WITH EMAIL & PASSWORD OR SOCIAL MEDIA", for: .normal)
+        }
         // Do any additional setup after loading the view.
     }
     

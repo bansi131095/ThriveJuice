@@ -20,6 +20,9 @@ class SignUp_VC: UIViewController {
     @IBOutlet weak var txt_Password: UITextField!
     @IBOutlet weak var btn_terms: UIButton!
     
+    @IBOutlet weak var vwOrLoginUsing: UIView!
+    @IBOutlet weak var vwGoogle: UIView!
+    
     var str_terms = true
     var googleId = ""
     var googleIdToken = ""
@@ -30,7 +33,13 @@ class SignUp_VC: UIViewController {
     //MARK:- View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        if Show_Social_Login == "0"{
+            vwGoogle.isHidden = true
+            vwOrLoginUsing.isHidden = true
+        }else{
+            vwGoogle.isHidden = false
+            vwOrLoginUsing.isHidden = false
+        }
         // Do any additional setup after loading the view.
     }
     
@@ -149,11 +158,18 @@ class SignUp_VC: UIViewController {
         // Email_Id, Name, Signup_Via = APP / FB / Google, Password, Social_Id
         
         var paramer: [String: Any] = [:]
-        paramer["Email_Id"] = self.googleEmail
-        paramer["Name"] = self.googleName
+        
         if socialId != "" {
             paramer["Social_Id"] = socialId
             paramer["Signup_Via"] = "Google"
+            
+            paramer["Email_Id"] = self.googleEmail
+            paramer["Name"] = self.googleName
+            paramer["Password"] = ""
+        } else {
+            paramer["Email_Id"] = self.txt_email.text
+            paramer["Name"] = self.txt_name.text
+            paramer["Password"] = self.txt_Password.text
         }
         
         

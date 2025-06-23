@@ -18,6 +18,8 @@ class LoginMobileNumber_VC: UIViewController {
     @IBOutlet weak var txt_email: UITextField!
     @IBOutlet weak var txt_Password: UITextField!
     
+    @IBOutlet weak var vwOrLoginUsing: UIView!
+    @IBOutlet weak var vwGoogle: UIView!
     
     var googleId = ""
     var googleIdToken = ""
@@ -27,7 +29,13 @@ class LoginMobileNumber_VC: UIViewController {
     //MARK:- View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        if Show_Social_Login == "0"{
+            vwGoogle.isHidden = true
+            vwOrLoginUsing.isHidden = true
+        }else{
+            vwGoogle.isHidden = false
+            vwOrLoginUsing.isHidden = false
+        }
         // Do any additional setup after loading the view.
     }
     

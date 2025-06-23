@@ -398,7 +398,7 @@ extension ProductWishlist_VC: UICollectionViewDelegate, UICollectionViewDataSour
                                     self.navigationController?.pushViewController(details, animated: true)
                                 } */
                             } else {
-                                self.showAlertToast(message: "Only {\(stock)} available at this moment")
+                                self.showAlertToast(message: "Only \(stock) available at this moment")
                             }
                         }
                         
@@ -431,7 +431,7 @@ extension ProductWishlist_VC: UICollectionViewDelegate, UICollectionViewDataSour
                             }
                             self.call_CartAddAPI()
                         } else {
-                            self.showAlertToast(message: "Only {\(stock)} available at this moment")
+                            self.showAlertToast(message: "Only \(stock) available at this moment")
                         }
                     }
                 }
