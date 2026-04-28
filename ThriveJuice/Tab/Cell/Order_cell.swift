@@ -80,8 +80,29 @@ extension Order_cell: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = self.tbl_vw.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? OrderProduct_cell {
+            let data = self.arr_cartData[indexPath.row]
             cell.lbl_price.text = "$" + (self.arr_cartData[indexPath.row].cart_Product_Price ?? "0")
-            cell.lbl_product.text = self.arr_cartData[indexPath.row].product_Name
+            
+            /*if self.arr_cartData[indexPath.row].buy_Id != "0" && self.arr_cartData[indexPath.row].buy_Id != "" && self.arr_cartData[indexPath.row].buy_Id != nil{
+                cell.lbl_product.text = (self.arr_cartData[indexPath.row].product_Name ?? "") + " ( Free ) "
+            }else{
+                cell.lbl_product.text = self.arr_cartData[indexPath.row].product_Name
+            }*/
+            
+            
+            if data.buy_Id != "0" && data.buy_Id != "" && data.buy_Id != nil{
+                if data.buyX_Discount == "100"{
+                    cell.lbl_product.text = (data.product_Name ?? "") + " ( Free ) "
+                }else{
+                    cell.lbl_product.text = (data.product_Name ?? "") + " ( \(data.buyX_Discount ?? "")" + "% OFF )"
+                }
+            }else{
+                cell.lbl_product.text = (data.product_Name ?? "")
+            }
+
+            
+            
+//            cell.lbl_product.text = self.arr_cartData[indexPath.row].product_Name
             cell.lbl_qty.text = "X " + (self.arr_cartData[indexPath.row].cart_Qty ?? "0")
             if let arr = self.arr_cartData[indexPath.row].cart_Addons_Price, arr.count != 0 {
                 var str = ""

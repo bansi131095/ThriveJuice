@@ -8,6 +8,11 @@
 import UIKit
 import ObjectMapper
 
+struct BuyProductModel: Codable {
+    let Buy_Id: String
+    let Product_Id: String
+}
+
 
 class Cart_VC: UIViewController {
 
@@ -24,7 +29,8 @@ class Cart_VC: UIViewController {
     
     var arrCartData: [CartData] = []
     var arrCartProduct: [Cart_Products] = []
-    
+    var buyProductArray: [[String: String]] = []
+
     
     
     //MARK:- View Life Cycle
@@ -33,6 +39,18 @@ class Cart_VC: UIViewController {
         
         // Do any additional setup after loading the view.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.arrCartData = global.shared.arr_AddCartData
+        if self.arrCartData.count != 0 {
+            self.call_CartAPI()
+        } else {
+            self.tbl_vw.isHidden = true
+            self.vw_buyNow.isHidden = true
+        }
+    }
+
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -102,6 +120,7 @@ class Cart_VC: UIViewController {
     
     @IBAction func act_buyNow(_ sender: Any) {
         let cartDetails = self.storyboard?.instantiateViewController(withIdentifier: "CartOrderDetails_VC") as! CartOrderDetails_VC
+        cartDetails.buyProductJSONString = getBuyProductJSONString()
         self.navigationController?.pushViewController(cartDetails, animated: true)
     }
 
@@ -133,19 +152,22 @@ class Cart_VC: UIViewController {
         
         var paramer: [String: Any] = [:]
         paramer["Cart_Data"] = JsonData_Cart
+        paramer["Consider_BuyX_Products"] = getBuyProductJSONString()
         
         WebService.call.POSTT(filePath: global.shared.URL_Cart, params: paramer, enableInteraction: false, showLoader: true, viewObj: self, onSuccess: { (result, success) in
-            print(result)
+            print("paramer:- \(paramer)")
             if let eventResponseModel:CartModel = Mapper<CartModel>().map(JSONObject: result) {
                 if let status = eventResponseModel.status, status == "1" {
                     self.vw_Msg.isHidden = true
                     if let arr = eventResponseModel.cart_Products, arr.count != 0 {
                         self.arrCartProduct = arr
+                        self.printBuyProductJSON(self.arrCartProduct)
                         self.tbl_vw.isHidden = false
                         self.vw_buyNow.isHidden = false
                         self.vw_emptyCart.isHidden = true
                         self.tbl_vw.register(UINib(nibName: "Cart_cell", bundle: nil), forCellReuseIdentifier: "cell")
                         self.tbl_vw.register(UINib(nibName: "AddonCart_cell", bundle: nil), forCellReuseIdentifier: "cell1")
+                        self.tbl_vw.register(UINib(nibName: "FreeProductCell", bundle: nil), forCellReuseIdentifier: "FreeProductCell")
                         self.btn_clearAll.isHidden = false
                         self.tbl_vw.delegate = self
                         self.tbl_vw.dataSource = self
@@ -167,6 +189,7 @@ class Cart_VC: UIViewController {
                         self.vw_emptyCart.isHidden = true
                         self.tbl_vw.register(UINib(nibName: "Cart_cell", bundle: nil), forCellReuseIdentifier: "cell")
                         self.tbl_vw.register(UINib(nibName: "AddonCart_cell", bundle: nil), forCellReuseIdentifier: "cell1")
+                        self.tbl_vw.register(UINib(nibName: "FreeProductCell", bundle: nil), forCellReuseIdentifier: "FreeProductCell")
                         self.btn_clearAll.isHidden = false
                         self.tbl_vw.delegate = self
                         self.tbl_vw.dataSource = self
@@ -192,6 +215,30 @@ class Cart_VC: UIViewController {
         }
     }
     
+    func getBuyProductJSONString() -> String {
+
+        var resultArray: [[String: String]] = []
+
+        for item in arrCartProduct {
+            if let buyId = item.buy_Id,
+               let productId = item.product_Id {
+
+                resultArray.append([
+                    "Buy_Id": buyId,
+                    "Product_Id": productId
+                ])
+            }
+        }
+
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: resultArray, options: [])
+            return String(data: jsonData, encoding: .utf8) ?? "[]"
+        } catch {
+            print("BuyProduct JSON error:", error)
+            return "[]"
+        }
+    }
+
     
     func call_CartAddAPI() {
         global.shared.cleanCartDuplicates()
@@ -246,17 +293,30 @@ class Cart_VC: UIViewController {
         }
             
     }
+    
+    func printBuyProductJSON(_ arrCartProduct: [Cart_Products]) {
+        
+        var resultArray: [[String: String]] = []
 
+        for item in arrCartProduct {
+            if let buyId = item.buy_Id,
+               let productId = item.product_Id {
 
-    /*
-    // MARK: - Navigation
+                resultArray.append([
+                    "Buy_Id": buyId,
+                    "Product_Id": productId
+                ])
+            }
+        }
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: resultArray, options: [])
+            let jsonString = String(data: jsonData, encoding: .utf8) ?? ""
+            print("jsonString:- \(jsonString)")
+        } catch {
+            print("JSON Error:", error.localizedDescription)
+        }
     }
-    */
 
 }
 
@@ -268,18 +328,37 @@ extension Cart_VC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let arr = self.arrCartProduct[indexPath.row].product_Addons, arr.count != 0 {
-            if let cell = self.tbl_vw.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as? AddonCart_cell {
+        let data = self.arrCartProduct[indexPath.row]
+        if data.is_Free_Product == 1 {
+            if let cell = self.tbl_vw.dequeueReusableCell(withIdentifier: "FreeProductCell", for: indexPath) as? FreeProductCell {
                 let data = self.arrCartProduct[indexPath.row]
-                var cart_data: CartData?
+                
                 var cart_countQty = Int(data.cart_Qty ?? "0") ?? 0
                 cell.lbl_Name.text = data.product_Name ?? ""
                 cell.lbl_count.text = data.cart_Qty ?? "0"
-                cell.lbl_productPrice.text = "$" + (data.product_Price ?? "0")
-                cell.vw_cart = self
+                //                cell.btn_cancel.isHidden = true
+                if data.buyX_Free_Products?.count ?? 0 > 0 {
+                    cell.vw_change.isHidden = false
+                }else{
+                    cell.vw_change.isHidden = true
+                }
+                
+                if data.buyX_Discount == "100"{
+                    cell.lbl_Offer.text = "FREE"
+                }else{
+                    cell.lbl_Offer.text = "\(data.buyX_Discount ?? "")" + "% OFF"
+                }
+                
+//                applyDiscountLabelTransform(cell.lbl_Offer)
+                setTriangleLabel(label: cell.lbl_Offer, text: cell.lbl_Offer.text ?? "")
+                
+                cell.lbl_Price.text = "$" + (data.product_Price ?? "")
+                cell.lbl_FProductPrice.text = "$" + (data.old_Product_Price ?? "")
+                cell.lbl_Free.text = "$" + (data.cart_Product_Price ?? "")
+                cell.lbl_SProductPrice.text = "$" + (data.old_Cart_Product_Price ?? "")
                 if data.cart_Days == "" && (data.cart_Product_Size == " " || data.cart_Product_Size == "") {
-                    cell.vw_Sizes.isHidden = true
-                    cell.vw_days.isHidden = true
+                    //                    cell.vw_Sizes.isHidden = true
+                    //                    cell.vw_days.isHidden = true
                 } else {
                     if let arr = data.product_Size, arr.count != 0 {
                         cell.arr_ProductSize = arr
@@ -307,21 +386,18 @@ extension Cart_VC: UITableViewDelegate, UITableViewDataSource {
                             }
                             cell.arr_ProductSizes = filteredData
                         }
-                        print("Product Days : \(cell.arr_ProductDays)")
-                        print("Product Sizes : \(cell.arr_ProductSizes)")
                         if data.cart_Days != "" {
                             cell.vw_days.isHidden = false
                             if cell.arr_ProductDays.count == 1 {
                                 if let days = cell.arr_ProductDays[0].product_Days, days != "" {
                                     cell.lbl_days.text = days
-                                    cell.vw_day.isHidden = true
+                                    //                                    cell.vw_day.isHidden = true
                                 } else {
-                                    cell.vw_days.isHidden = true
+                                    //                                    cell.vw_days.isHidden = true
                                 }
                             } else if cell.arr_ProductDays.count != 0 {
                                 cell.lbl_days.text = ""
-                                cell.vw_day.isHidden = false
-                                cell.SetPickerVWDays()
+                                //                                cell.vw_day.isHidden = false
                             } else {
                                 cell.vw_days.isHidden = true
                             }
@@ -333,42 +409,20 @@ extension Cart_VC: UITableViewDelegate, UITableViewDataSource {
                             if cell.arr_ProductSizes.count == 1 {
                                 if let size = cell.arr_ProductSizes[0].product_Size, size != "" && size != " " {
                                     cell.lbl_size.text = size
-                                    cell.vw_size.isHidden = true
+                                    //                                    cell.vw_size.isHidden = true
                                 } else {
                                     cell.vw_Sizes.isHidden = true
                                 }
                             } else if cell.arr_ProductSizes.count != 0  {
                                 cell.lbl_size.text = data.cart_Product_Size
-                                cell.vw_size.isHidden = false
-                                cell.SetPickerVWSizes()
+                                //                                cell.vw_size.isHidden = false
                             } else {
                                 cell.vw_Sizes.isHidden = true
                             }
                         }
                     }
                 }
-                var arrAddons: [Addons]
-                if let arr1 = self.arrCartProduct[indexPath.row].cart_Addons_Price, arr1.count != 0 {
-                    arrAddons = arr1
-                    if arrAddons.count != 0 {
-                        cell.tbl_addon.isHidden = false
-                        cell.lbl_Addon.isHidden = false
-                        cell.lbl_total.isHidden = false
-                        cell.lbl_Addon.text = "Addon:"
-                        cell.lbl_total.text = "Total: $" + (data.product_Addon_Price ?? "0")
-                        cell.arr_addon = arrAddons
-                        cell.tbl_addon_height_const.constant = CGFloat(cell.arr_addon.count*30)
-                        cell.setTableView()
-                    }
-                } else {
-                    cell.tbl_addon.isHidden = true
-                    cell.tbl_addon_height_const.constant = 0
-                    cell.lbl_Addon.text = ""
-                    cell.lbl_Addon.isHidden = true
-                    cell.lbl_total.isHidden = true
-                    cell.lbl_total.text = ""
-                }
-                cell.lbl_TotalPrice.text = "$" + (data.cart_Product_Price ?? "0")
+                
                 if let arr = data.product_Image, arr.count != 0 {
                     let img = arr[0]
                     if img != "" {
@@ -389,10 +443,10 @@ extension Cart_VC: UITableViewDelegate, UITableViewDataSource {
                         let arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
                         if arrCart.count != 0 {
                             if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Product_Id == id }) {
-//                                let count = global.shared.arr_AddCartData[index].Cart_Qty
-//                                if let total = Int(count) {
-//                                    cart_countQty -= total
-//                                }
+                                //                                let count = global.shared.arr_AddCartData[index].Cart_Qty
+                                //                                if let total = Int(count) {
+                                //                                    cart_countQty -= total
+                                //                                }
                                 global.shared.arr_AddCartData.remove(at: index)
                             }
                         }
@@ -401,183 +455,72 @@ extension Cart_VC: UITableViewDelegate, UITableViewDataSource {
                     print("Arr data \(global.shared.arr_AddCartData)")
                     print("Arr data count \(global.shared.arr_AddCartData.count)")
                 }
-                cell.Act_ChangeDays = { str in
-                    if let id = data.cart_Days {
-                        let arrCart = global.shared.arr_AddCartData.filter{$0.Cart_Days == id}
-                        if arrCart.count != 0 && arrCart.count == 1 {
-                            if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Cart_Days == id }) {
-                                global.shared.arr_AddCartData[index].Cart_Days = "\(str)"
-                            }
-                        } else {
-//                            cart_data = CartData(productId: data.product_Id ?? "", cartQty: "\(cart_countQty)", cartProductSize: data.cart_Product_Size ?? "0")
-//                            if let data = cart_data {
-//                                global.shared.arr_AddCartData.append(data)
-//                            }
+                cell.Act_Change = {
+                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChangeFreeProduct_VC") as! ChangeFreeProduct_VC
+                    vc.modalPresentationStyle = .overFullScreen
+                    vc.arrCartProduct = data.buyX_Free_Products ?? []
+                    vc.buyId = data.buy_Id ?? ""
+                    vc.selectedProductId = data.product_Id ?? ""
+                    
+                    vc.onProductSelect = { selectedBuyId, selectedProductId in
+                        if let index = self.arrCartProduct.firstIndex(where: {
+                            $0.buy_Id == selectedBuyId
+                        }) {
+                            self.arrCartProduct[index].product_Id = selectedProductId
                         }
+                        self.call_CartAPI()
+                        //                        self.tbl_vw.reloadData()
+                        //                        self.printBuyProductJSON(self.arrCartProduct)
                     }
-                    self.call_CartAddAPI()
-                    print("Arr data \(global.shared.arr_AddCartData)")
-                    print("Arr data count \(global.shared.arr_AddCartData.count)")
-                }
-                cell.Act_ChangeSize = { str in
-                    if let id = data.cart_Product_Size {
-                        let arrCart = global.shared.arr_AddCartData.filter{$0.Cart_Product_Size == id}
-                        if arrCart.count != 0 && arrCart.count == 1 {
-                            if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Cart_Product_Size == id }) {
-                                global.shared.arr_AddCartData[index].Cart_Product_Size = "\(str)"
-                            }
-                        } else {
-//                            cart_data = CartData(productId: data.product_Id ?? "", cartQty: "\(cart_countQty)", cartProductSize: data.cart_Product_Size ?? "0")
-//                            if let data = cart_data {
-//                                global.shared.arr_AddCartData.append(data)
-//                            }
-                        }
-                    }
-                    self.call_CartAddAPI()
-                    print("Arr data \(global.shared.arr_AddCartData)")
-                    print("Arr data count \(global.shared.arr_AddCartData.count)")
-                }
-                cell.Act_AddPlus = {
-                    //AJAY
-                    if let arr = data.product_Size, arr.count != 0 {
-                        if let stock = arr[0].available_Stock{
-                            if stock != 0 && cart_countQty < stock {
-                                cart_countQty += 1
-                                cell.lbl_count.text = "\(cart_countQty)"
-                                if let id = data.product_Id {
-                                    let arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
-                                    if arrCart.count != 0 {
-                                        var joinedIds = ""
-                                        if let arr1 = self.arrCartProduct[indexPath.row].cart_Addons_Price, arr1.count != 0 {
-                                            joinedIds = arr1.compactMap { $0.addon_Id }.joined(separator: ",")
-                                        }
-                                        print("Join \(joinedIds)");
-                                        if let index = global.shared.arr_AddCartData.firstIndex(where: {
-                                            let cartAddonSet = Set($0.Cart_Addons.components(separatedBy: ","))
-                                            let joinedIdSet = Set(joinedIds.components(separatedBy: ","))
-                                            return cartAddonSet == joinedIdSet
-                                        }) {
-                                            print("Index \(index)");
-                                            global.shared.arr_AddCartData[indexPath.row].Cart_Qty = "\(cart_countQty)"
-                                        }
-                                    } else {
-                                        cart_data = CartData(productId: data.product_Id ?? "", cartQty: "\(cart_countQty)", cartProductSize: data.cart_Product_Size ?? "0")
-                                        if let data = cart_data {
-                                            global.shared.arr_AddCartData.append(data)
-                                        }
-                                    }
-                                }
-                                self.call_CartAddAPI()
-                            }else{
-                                self.showAlertToast(message: "Only \(stock) available at this moment")
-                            }
-                        }
-                    }
-                    // Bansi Mem
-                    /*cart_countQty += 1
-                    cell.lbl_count.text = "\(cart_countQty)"
-                    if let id = data.product_Id {
-                        let arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
-                        if arrCart.count != 0 {
-                            var joinedIds = ""
-                            if let arr1 = self.arrCartProduct[indexPath.row].cart_Addons_Price, arr1.count != 0 {
-                                joinedIds = arr1.compactMap { $0.addon_Id }.joined(separator: ",")
-                            }
-                            print("Join \(joinedIds)");
-                            if let index = global.shared.arr_AddCartData.firstIndex(where: {
-                                let cartAddonSet = Set($0.Cart_Addons.components(separatedBy: ","))
-                                let joinedIdSet = Set(joinedIds.components(separatedBy: ","))
-                                return cartAddonSet == joinedIdSet
-                            }) {
-                                print("Index \(index)");
-                                global.shared.arr_AddCartData[indexPath.row].Cart_Qty = "\(cart_countQty)"
-                            }
-                        } else {
-                            cart_data = CartData(productId: data.product_Id ?? "", cartQty: "\(cart_countQty)", cartProductSize: data.cart_Product_Size ?? "0")
-                            if let data = cart_data {
-                                global.shared.arr_AddCartData.append(data)
-                            }
-                        }
-                    }
-                    self.call_CartAddAPI()
-                    print("Arr data \(global.shared.arr_AddCartData)")
-                    print("Arr data count \(global.shared.arr_AddCartData.count)")*/
-                }
-                cell.Act_MinusCart = {
-                    if cart_countQty != 0 {
-                        cart_countQty -= 1
-                    } else {
-                        cart_countQty = 0
-                    }
-                    cell.lbl_count.text = "\(cart_countQty)"
-                    if let id = data.product_Id {
-                        let arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
-                        if arrCart.count != 0 {
-                            var joinedIds = ""
-                            if let arr1 = self.arrCartProduct[indexPath.row].cart_Addons_Price, arr1.count != 0 {
-                                joinedIds = arr1.compactMap { $0.addon_Id }.joined(separator: ",")
-                            }
-                            print("Join \(joinedIds)");
-                            if cart_countQty == 0 {
-                                if let index = global.shared.arr_AddCartData.firstIndex(where: {
-                                    let cartAddonSet = Set($0.Cart_Addons.components(separatedBy: ","))
-                                    let joinedIdSet = Set(joinedIds.components(separatedBy: ","))
-                                    return cartAddonSet == joinedIdSet
-                                }) {
-                                    print("Index \(index)");
-                                    global.shared.arr_AddCartData.remove(at: indexPath.row)
-                                }
-                            } else {
-                                if let index = global.shared.arr_AddCartData.firstIndex(where: {
-                                    let cartAddonSet = Set($0.Cart_Addons.components(separatedBy: ","))
-                                    let joinedIdSet = Set(joinedIds.components(separatedBy: ","))
-                                    return cartAddonSet == joinedIdSet
-                                }) {
-                                    print("Index \(index)");
-                                    global.shared.arr_AddCartData[index].Cart_Qty = "\(cart_countQty)"
-                                }
-                            }
-                        } else {
-                            if cart_countQty == 0 {
-                                if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Product_Id == id }) {
-                                    global.shared.arr_AddCartData.remove(at: index)
-                                }
-                            } else {
-                                cart_data = CartData(productId: data.product_Id ?? "", cartQty: "\(cart_countQty)", cartProductSize: data.cart_Product_Size ?? "0")
-                                if let data = cart_data {
-                                    global.shared.arr_AddCartData.append(data)
-                                }
-                            }
-                        }
-                    }
-                    self.call_CartAddAPI()
-                    print("Arr data \(global.shared.arr_AddCartData)")
-                    print("Arr data count \(global.shared.arr_AddCartData.count)")
+                    self.present(vc, animated: true)
+                    
                 }
                 return cell
             }
-        } else {
-            if let cell = self.tbl_vw.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? Cart_cell {
-                let data = self.arrCartProduct[indexPath.row]
-                var cart_data: CartData?
-                var cart_countQty = Int(data.cart_Qty ?? "0") ?? 0
-                cell.lbl_Name.text = data.product_Name ?? ""
-                cell.lbl_count.text = data.cart_Qty ?? "0"
-                cell.lbl_productPrice.text = "$" + (data.product_Price ?? "0")
-                cell.vw_cart = self
-                if let special = data.is_Special, special == "1" {
+        }else{
+            if let arr = self.arrCartProduct[indexPath.row].product_Addons, arr.count != 0 {
+                if let cell = self.tbl_vw.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as? AddonCart_cell {
+                    let data = self.arrCartProduct[indexPath.row]
+                    var cart_data: CartData?
+                    var cart_countQty = Int(data.cart_Qty ?? "0") ?? 0
+                    cell.lbl_Name.text = data.product_Name ?? ""
+                    cell.lbl_count.text = data.cart_Qty ?? "0"
+                    cell.lbl_productPrice.text = "$" + (data.product_Price ?? "0")
+                    cell.vw_cart = self
+                    cell.btn_cancel.isHidden = false
                     if data.cart_Days == "" && (data.cart_Product_Size == " " || data.cart_Product_Size == "") {
                         cell.vw_Sizes.isHidden = true
                         cell.vw_days.isHidden = true
                     } else {
                         if let arr = data.product_Size, arr.count != 0 {
                             cell.arr_ProductSize = arr
-                            if data.cart_Days != "" {
-                                let filteredData = arr.filter { Data in
-                                    return Data.product_Size == data.cart_Product_Size
+                            for i in 0..<arr.count {
+                                if let days = arr[i].product_Days {
+                                    if data.cart_Days == days {
+                                        cell.arr_ProductDays.append(arr[i])
+                                    } else {
+                                        if cell.arr_ProductDays.count != 0 {
+                                            let DaysExists = cell.arr_ProductDays.contains { person in
+                                                return person.product_Days == days
+                                            }
+                                            if !DaysExists {
+                                                cell.arr_ProductDays.append(arr[i])
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    cell.arr_ProductSizes = arr
                                 }
-                                cell.arr_ProductDays = filteredData
-                                print("Product Days : \(cell.arr_ProductDays)")
+                            }
+                            if cell.arr_ProductDays.count != 0 {
+                                let filteredData = arr.filter { Data in
+                                    return Data.product_Days == (cell.arr_ProductDays[0].product_Days ?? "")
+                                }
+                                cell.arr_ProductSizes = filteredData
+                            }
+                            print("Product Days : \(cell.arr_ProductDays)")
+                            print("Product Sizes : \(cell.arr_ProductSizes)")
+                            if data.cart_Days != "" {
                                 cell.vw_days.isHidden = false
                                 if cell.arr_ProductDays.count == 1 {
                                     if let days = cell.arr_ProductDays[0].product_Days, days != "" {
@@ -586,224 +529,579 @@ extension Cart_VC: UITableViewDelegate, UITableViewDataSource {
                                     } else {
                                         cell.vw_days.isHidden = true
                                     }
-                                } else {
+                                } else if cell.arr_ProductDays.count != 0 {
                                     cell.lbl_days.text = ""
                                     cell.vw_day.isHidden = false
                                     cell.SetPickerVWDays()
+                                } else {
+                                    cell.vw_days.isHidden = true
                                 }
+                            } else {
+                                cell.vw_days.isHidden = true
                             }
                             if data.cart_Product_Size != "" || data.cart_Product_Size != " " {
-                                let filteredData = arr.filter { Data in
-                                    return Data.product_Days == data.cart_Days
+                                cell.vw_Sizes.isHidden = false
+                                if cell.arr_ProductSizes.count == 1 {
+                                    if let size = cell.arr_ProductSizes[0].product_Size, size != "" && size != " " {
+                                        cell.lbl_size.text = size
+                                        cell.vw_size.isHidden = true
+                                    } else {
+                                        cell.vw_Sizes.isHidden = true
+                                    }
+                                } else if cell.arr_ProductSizes.count != 0  {
+                                    cell.lbl_size.text = data.cart_Product_Size
+                                    cell.vw_size.isHidden = false
+                                    cell.SetPickerVWSizes()
+                                } else {
+                                    cell.vw_Sizes.isHidden = true
                                 }
-                                cell.arr_ProductSizes = filteredData
+                            }
+                        }
+                    }
+                    var arrAddons: [Addons]
+                    if let arr1 = self.arrCartProduct[indexPath.row].cart_Addons_Price, arr1.count != 0 {
+                        arrAddons = arr1
+                        if arrAddons.count != 0 {
+                            cell.tbl_addon.isHidden = false
+                            cell.lbl_Addon.isHidden = false
+                            cell.lbl_total.isHidden = false
+                            cell.lbl_Addon.text = "Addon:"
+                            cell.lbl_total.text = "Total: $" + (data.product_Addon_Price ?? "0")
+                            cell.arr_addon = arrAddons
+                            cell.tbl_addon_height_const.constant = CGFloat(cell.arr_addon.count*30)
+                            cell.setTableView()
+                        }
+                    } else {
+                        cell.tbl_addon.isHidden = true
+                        cell.tbl_addon_height_const.constant = 0
+                        cell.lbl_Addon.text = ""
+                        cell.lbl_Addon.isHidden = true
+                        cell.lbl_total.isHidden = true
+                        cell.lbl_total.text = ""
+                    }
+                    cell.lbl_TotalPrice.text = "$" + (data.cart_Product_Price ?? "0")
+                    if let arr = data.product_Image, arr.count != 0 {
+                        let img = arr[0]
+                        if img != "" {
+                            cell.img_vw.sd_setImage(with: URL(string: img)) { (image, error, cache, url) in
+                                // Your code inside completion block
+                                if (error != nil) {
+                                    // Failed to load image
+                                    cell.img_vw.image = UIImage(named: "ProductDemo")
+                                } else {
+                                    // Successful in loading image
+                                    cell.img_vw.image = image
+                                }
+                            }
+                        }
+                    }
+                    cell.Act_cancel = {
+                        if let id = data.product_Id {
+                            let arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
+                            if arrCart.count != 0 {
+                                if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Product_Id == id }) {
+                                    //                                let count = global.shared.arr_AddCartData[index].Cart_Qty
+                                    //                                if let total = Int(count) {
+                                    //                                    cart_countQty -= total
+                                    //                                }
+                                    global.shared.arr_AddCartData.remove(at: index)
+                                }
+                            }
+                        }
+                        self.call_CartAddAPI()
+                        print("Arr data \(global.shared.arr_AddCartData)")
+                        print("Arr data count \(global.shared.arr_AddCartData.count)")
+                    }
+                    cell.Act_ChangeDays = { str in
+                        if let id = data.cart_Days {
+                            let arrCart = global.shared.arr_AddCartData.filter{$0.Cart_Days == id}
+                            if arrCart.count != 0 && arrCart.count == 1 {
+                                if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Cart_Days == id }) {
+                                    global.shared.arr_AddCartData[index].Cart_Days = "\(str)"
+                                }
+                            } else {
+                                //                            cart_data = CartData(productId: data.product_Id ?? "", cartQty: "\(cart_countQty)", cartProductSize: data.cart_Product_Size ?? "0")
+                                //                            if let data = cart_data {
+                                //                                global.shared.arr_AddCartData.append(data)
+                                //                            }
+                            }
+                        }
+                        self.call_CartAddAPI()
+                        print("Arr data \(global.shared.arr_AddCartData)")
+                        print("Arr data count \(global.shared.arr_AddCartData.count)")
+                    }
+                    cell.Act_ChangeSize = { str in
+                        if let id = data.cart_Product_Size {
+                            let arrCart = global.shared.arr_AddCartData.filter{$0.Cart_Product_Size == id}
+                            if arrCart.count != 0 && arrCart.count == 1 {
+                                if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Cart_Product_Size == id }) {
+                                    global.shared.arr_AddCartData[index].Cart_Product_Size = "\(str)"
+                                }
+                            } else {
+                                //                            cart_data = CartData(productId: data.product_Id ?? "", cartQty: "\(cart_countQty)", cartProductSize: data.cart_Product_Size ?? "0")
+                                //                            if let data = cart_data {
+                                //                                global.shared.arr_AddCartData.append(data)
+                                //                            }
+                            }
+                        }
+                        self.call_CartAddAPI()
+                        print("Arr data \(global.shared.arr_AddCartData)")
+                        print("Arr data count \(global.shared.arr_AddCartData.count)")
+                    }
+                    cell.Act_AddPlus = {
+                        //AJAY
+                        if let arr = data.product_Size, arr.count != 0 {
+                            if let stock = arr[0].available_Stock{
+                                if stock != 0 && cart_countQty < stock {
+                                    cart_countQty += 1
+                                    cell.lbl_count.text = "\(cart_countQty)"
+                                    if let id = data.product_Id {
+                                        let arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
+                                        if arrCart.count != 0 {
+                                            var joinedIds = ""
+                                            if let arr1 = self.arrCartProduct[indexPath.row].cart_Addons_Price, arr1.count != 0 {
+                                                joinedIds = arr1.compactMap { $0.addon_Id }.joined(separator: ",")
+                                            }
+                                            print("Join \(joinedIds)");
+                                            if let index = global.shared.arr_AddCartData.firstIndex(where: {
+                                                let cartAddonSet = Set($0.Cart_Addons.components(separatedBy: ","))
+                                                let joinedIdSet = Set(joinedIds.components(separatedBy: ","))
+                                                return cartAddonSet == joinedIdSet
+                                            }) {
+                                                print("Index \(index)");
+                                                global.shared.arr_AddCartData[indexPath.row].Cart_Qty = "\(cart_countQty)"
+                                            }
+                                        } else {
+                                            cart_data = CartData(productId: data.product_Id ?? "", cartQty: "\(cart_countQty)", cartProductSize: data.cart_Product_Size ?? "0")
+                                            if let data = cart_data {
+                                                global.shared.arr_AddCartData.append(data)
+                                            }
+                                        }
+                                    }
+                                    self.call_CartAddAPI()
+                                }else{
+                                    self.showAlertToast(message: "Only \(stock) available at this moment")
+                                }
+                            }
+                        }
+                        // Bansi Mem
+                        /*cart_countQty += 1
+                         cell.lbl_count.text = "\(cart_countQty)"
+                         if let id = data.product_Id {
+                         let arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
+                         if arrCart.count != 0 {
+                         var joinedIds = ""
+                         if let arr1 = self.arrCartProduct[indexPath.row].cart_Addons_Price, arr1.count != 0 {
+                         joinedIds = arr1.compactMap { $0.addon_Id }.joined(separator: ",")
+                         }
+                         print("Join \(joinedIds)");
+                         if let index = global.shared.arr_AddCartData.firstIndex(where: {
+                         let cartAddonSet = Set($0.Cart_Addons.components(separatedBy: ","))
+                         let joinedIdSet = Set(joinedIds.components(separatedBy: ","))
+                         return cartAddonSet == joinedIdSet
+                         }) {
+                         print("Index \(index)");
+                         global.shared.arr_AddCartData[indexPath.row].Cart_Qty = "\(cart_countQty)"
+                         }
+                         } else {
+                         cart_data = CartData(productId: data.product_Id ?? "", cartQty: "\(cart_countQty)", cartProductSize: data.cart_Product_Size ?? "0")
+                         if let data = cart_data {
+                         global.shared.arr_AddCartData.append(data)
+                         }
+                         }
+                         }
+                         self.call_CartAddAPI()
+                         print("Arr data \(global.shared.arr_AddCartData)")
+                         print("Arr data count \(global.shared.arr_AddCartData.count)")*/
+                    }
+                    cell.Act_MinusCart = {
+                        if cart_countQty != 0 {
+                            cart_countQty -= 1
+                        } else {
+                            cart_countQty = 0
+                        }
+                        cell.lbl_count.text = "\(cart_countQty)"
+                        if let id = data.product_Id {
+                            let arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
+                            if arrCart.count != 0 {
+                                var joinedIds = ""
+                                if let arr1 = self.arrCartProduct[indexPath.row].cart_Addons_Price, arr1.count != 0 {
+                                    joinedIds = arr1.compactMap { $0.addon_Id }.joined(separator: ",")
+                                }
+                                print("Join \(joinedIds)");
+                                if cart_countQty == 0 {
+                                    if let index = global.shared.arr_AddCartData.firstIndex(where: {
+                                        let cartAddonSet = Set($0.Cart_Addons.components(separatedBy: ","))
+                                        let joinedIdSet = Set(joinedIds.components(separatedBy: ","))
+                                        return cartAddonSet == joinedIdSet
+                                    }) {
+                                        print("Index \(index)");
+                                        global.shared.arr_AddCartData.remove(at: indexPath.row)
+                                    }
+                                } else {
+                                    if let index = global.shared.arr_AddCartData.firstIndex(where: {
+                                        let cartAddonSet = Set($0.Cart_Addons.components(separatedBy: ","))
+                                        let joinedIdSet = Set(joinedIds.components(separatedBy: ","))
+                                        return cartAddonSet == joinedIdSet
+                                    }) {
+                                        print("Index \(index)");
+                                        global.shared.arr_AddCartData[index].Cart_Qty = "\(cart_countQty)"
+                                    }
+                                }
+                            } else {
+                                if cart_countQty == 0 {
+                                    if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Product_Id == id }) {
+                                        global.shared.arr_AddCartData.remove(at: index)
+                                    }
+                                } else {
+                                    cart_data = CartData(productId: data.product_Id ?? "", cartQty: "\(cart_countQty)", cartProductSize: data.cart_Product_Size ?? "0")
+                                    if let data = cart_data {
+                                        global.shared.arr_AddCartData.append(data)
+                                    }
+                                }
+                            }
+                        }
+                        self.call_CartAddAPI()
+                        print("Arr data \(global.shared.arr_AddCartData)")
+                        print("Arr data count \(global.shared.arr_AddCartData.count)")
+                    }
+                    return cell
+                }
+            } else {
+                if let cell = self.tbl_vw.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? Cart_cell {
+                    let data = self.arrCartProduct[indexPath.row]
+                    var cart_data: CartData?
+                    var cart_countQty = Int(data.cart_Qty ?? "0") ?? 0
+                    cell.lbl_Name.text = data.product_Name ?? ""
+                    cell.lbl_count.text = data.cart_Qty ?? "0"
+                    cell.btn_cancel.isHidden = false
+                    cell.lbl_productPrice.text = "$" + (data.product_Price ?? "0")
+                    cell.vw_cart = self
+                    if let special = data.is_Special, special == "1" {
+                        if data.cart_Days == "" && (data.cart_Product_Size == " " || data.cart_Product_Size == "") {
+                            cell.vw_Sizes.isHidden = true
+                            cell.vw_days.isHidden = true
+                        } else {
+                            if let arr = data.product_Size, arr.count != 0 {
+                                cell.arr_ProductSize = arr
+                                if data.cart_Days != "" {
+                                    let filteredData = arr.filter { Data in
+                                        return Data.product_Size == data.cart_Product_Size
+                                    }
+                                    cell.arr_ProductDays = filteredData
+                                    print("Product Days : \(cell.arr_ProductDays)")
+                                    cell.vw_days.isHidden = false
+                                    if cell.arr_ProductDays.count == 1 {
+                                        if let days = cell.arr_ProductDays[0].product_Days, days != "" {
+                                            cell.lbl_days.text = days
+                                            cell.vw_day.isHidden = true
+                                        } else {
+                                            cell.vw_days.isHidden = true
+                                        }
+                                    } else {
+                                        cell.lbl_days.text = ""
+                                        cell.vw_day.isHidden = false
+                                        cell.SetPickerVWDays()
+                                    }
+                                }
+                                if data.cart_Product_Size != "" || data.cart_Product_Size != " " {
+                                    let filteredData = arr.filter { Data in
+                                        return Data.product_Days == data.cart_Days
+                                    }
+                                    cell.arr_ProductSizes = filteredData
+                                    print("Product Sizes : \(cell.arr_ProductSizes)")
+                                    cell.vw_Sizes.isHidden = false
+                                    if cell.arr_ProductSizes.count == 1 {
+                                        if let size = cell.arr_ProductSizes[0].product_Size, size != "" && size != " " {
+                                            cell.vw_Sizes_height_const.constant = 25.0
+                                            cell.lbl_size.text = size
+                                            cell.vw_size.isHidden = true
+                                            cell.vw_size_heigth_const.constant = 0.0
+                                        } else {
+                                            cell.vw_Sizes.isHidden = true
+                                            cell.vw_Sizes_height_const.constant = 0.0
+                                        }
+                                    } else {
+                                        cell.lbl_size.text = ""
+                                        cell.vw_size.isHidden = false
+                                        cell.vw_size_heigth_const.constant = 35.0
+                                        cell.vw_Sizes_height_const.constant = 35.0
+                                        cell.SetPickerVWSizes()
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        cell.vw_days.isHidden = true
+                        if data.cart_Product_Size != "" && data.cart_Product_Size != " " {
+                            if let arr = data.product_Size, arr.count != 0 {
+                                cell.arr_ProductSizes = arr
                                 print("Product Sizes : \(cell.arr_ProductSizes)")
                                 cell.vw_Sizes.isHidden = false
                                 if cell.arr_ProductSizes.count == 1 {
                                     if let size = cell.arr_ProductSizes[0].product_Size, size != "" && size != " " {
-                                        cell.vw_Sizes_height_const.constant = 25.0
                                         cell.lbl_size.text = size
                                         cell.vw_size.isHidden = true
-                                        cell.vw_size_heigth_const.constant = 0.0
                                     } else {
                                         cell.vw_Sizes.isHidden = true
-                                        cell.vw_Sizes_height_const.constant = 0.0
                                     }
-                                } else {
+                                } else if cell.arr_ProductSizes.count != 0 {
+                                    cell.lbl_size.text = data.cart_Product_Size
+                                    cell.vw_size.isHidden = false
+                                    cell.SetPickerVWSizes()
+                                }  else {
                                     cell.lbl_size.text = ""
                                     cell.vw_size.isHidden = false
-                                    cell.vw_size_heigth_const.constant = 35.0
-                                    cell.vw_Sizes_height_const.constant = 35.0
                                     cell.SetPickerVWSizes()
                                 }
                             }
+                        } else {
+                            cell.vw_Sizes.isHidden = true
                         }
                     }
-                } else {
-                    cell.vw_days.isHidden = true
-                    if data.cart_Product_Size != "" && data.cart_Product_Size != " " {
-                        if let arr = data.product_Size, arr.count != 0 {
-                            cell.arr_ProductSizes = arr
-                            print("Product Sizes : \(cell.arr_ProductSizes)")
-                            cell.vw_Sizes.isHidden = false
-                            if cell.arr_ProductSizes.count == 1 {
-                                if let size = cell.arr_ProductSizes[0].product_Size, size != "" && size != " " {
-                                    cell.lbl_size.text = size
-                                    cell.vw_size.isHidden = true
+                    cell.lbl_total.text = "$" + (data.cart_Product_Price ?? "0")
+                    if let arr = data.product_Image, arr.count != 0 {
+                        let img = arr[0]
+                        if img != "" {
+                            cell.img_vw.sd_setImage(with: URL(string: img)) { (image, error, cache, url) in
+                                // Your code inside completion block
+                                if (error != nil) {
+                                    // Failed to load image
+                                    cell.img_vw.image = UIImage(named: "ProductDemo")
                                 } else {
-                                    cell.vw_Sizes.isHidden = true
+                                    // Successful in loading image
+                                    cell.img_vw.image = image
                                 }
-                            } else if cell.arr_ProductSizes.count != 0 {
-                                cell.lbl_size.text = data.cart_Product_Size
-                                cell.vw_size.isHidden = false
-                                cell.SetPickerVWSizes()
-                            }  else {
-                                cell.lbl_size.text = ""
-                                cell.vw_size.isHidden = false
-                                cell.SetPickerVWSizes()
                             }
                         }
-                    } else {
-                        cell.vw_Sizes.isHidden = true
                     }
-                }
-                cell.lbl_total.text = "$" + (data.cart_Product_Price ?? "0")
-                if let arr = data.product_Image, arr.count != 0 {
-                    let img = arr[0]
-                    if img != "" {
-                        cell.img_vw.sd_setImage(with: URL(string: img)) { (image, error, cache, url) in
-                            // Your code inside completion block
-                            if (error != nil) {
-                                // Failed to load image
-                                cell.img_vw.image = UIImage(named: "ProductDemo")
+                    cell.Act_cancel = {
+                        if let id = data.product_Id {
+                            let arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
+                            if arrCart.count != 0 {
+                                if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Product_Id == id }) {
+                                    //                                let count = global.shared.arr_AddCartData[index].Cart_Qty
+                                    //                                if let total = Int(count) {
+                                    //                                    cart_countQty -= total
+                                    //                                }
+                                    global.shared.arr_AddCartData.remove(at: index)
+                                }
+                            }
+                        }
+                        self.call_CartAddAPI()
+                        print("Arr data \(global.shared.arr_AddCartData)")
+                        print("Arr data count \(global.shared.arr_AddCartData.count)")
+                    }
+                    cell.Act_ChangeDays = { str in
+                        if let id = data.cart_Days {
+                            let arrCart = global.shared.arr_AddCartData.filter{$0.Cart_Days == id}
+                            if arrCart.count != 0 {
+                                if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Cart_Days == id }) {
+                                    global.shared.arr_AddCartData[index].Cart_Days = "\(str)"
+                                }
                             } else {
-                                // Successful in loading image
-                                cell.img_vw.image = image
+                                //                            cart_data = CartData(productId: data.product_Id ?? "", cartQty: "\(cart_countQty)", cartProductSize: data.cart_Product_Size ?? "0")
+                                //                            if let data = cart_data {
+                                //                                global.shared.arr_AddCartData.append(data)
+                                //                            }
                             }
                         }
+                        self.call_CartAddAPI()
+                        print("Arr data \(global.shared.arr_AddCartData)")
+                        print("Arr data count \(global.shared.arr_AddCartData.count)")
                     }
-                }
-                cell.Act_cancel = {
-                    if let id = data.product_Id {
-                        let arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
-                        if arrCart.count != 0 {
-                            if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Product_Id == id }) {
-//                                let count = global.shared.arr_AddCartData[index].Cart_Qty
-//                                if let total = Int(count) {
-//                                    cart_countQty -= total
-//                                }
-                                global.shared.arr_AddCartData.remove(at: index)
+                    cell.Act_ChangeSize = { str in
+                        if let id = data.cart_Product_Size {
+                            let arrCart = global.shared.arr_AddCartData.filter{$0.Cart_Product_Size == id}
+                            if arrCart.count != 0 {
+                                if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Cart_Product_Size == id }) {
+                                    global.shared.arr_AddCartData[index].Cart_Product_Size = "\(str)"
+                                }
+                            } else {
+                                //                            cart_data = CartData(productId: data.product_Id ?? "", cartQty: "\(cart_countQty)", cartProductSize: data.cart_Product_Size ?? "0")
+                                //                            if let data = cart_data {
+                                //                                global.shared.arr_AddCartData.append(data)
+                                //                            }
                             }
                         }
+                        self.call_CartAddAPI()
+                        print("Arr data \(global.shared.arr_AddCartData)")
+                        print("Arr data count \(global.shared.arr_AddCartData.count)")
                     }
-                    self.call_CartAddAPI()
-                    print("Arr data \(global.shared.arr_AddCartData)")
-                    print("Arr data count \(global.shared.arr_AddCartData.count)")
-                }
-                cell.Act_ChangeDays = { str in
-                    if let id = data.cart_Days {
-                        let arrCart = global.shared.arr_AddCartData.filter{$0.Cart_Days == id}
-                        if arrCart.count != 0 {
-                            if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Cart_Days == id }) {
-                                global.shared.arr_AddCartData[index].Cart_Days = "\(str)"
-                            }
-                        } else {
-//                            cart_data = CartData(productId: data.product_Id ?? "", cartQty: "\(cart_countQty)", cartProductSize: data.cart_Product_Size ?? "0")
-//                            if let data = cart_data {
-//                                global.shared.arr_AddCartData.append(data)
-//                            }
-                        }
-                    }
-                    self.call_CartAddAPI()
-                    print("Arr data \(global.shared.arr_AddCartData)")
-                    print("Arr data count \(global.shared.arr_AddCartData.count)")
-                }
-                cell.Act_ChangeSize = { str in
-                    if let id = data.cart_Product_Size {
-                        let arrCart = global.shared.arr_AddCartData.filter{$0.Cart_Product_Size == id}
-                        if arrCart.count != 0 {
-                           if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Cart_Product_Size == id }) {
-                                global.shared.arr_AddCartData[index].Cart_Product_Size = "\(str)"
-                            }
-                        } else {
-//                            cart_data = CartData(productId: data.product_Id ?? "", cartQty: "\(cart_countQty)", cartProductSize: data.cart_Product_Size ?? "0")
-//                            if let data = cart_data {
-//                                global.shared.arr_AddCartData.append(data)
-//                            }
-                        }
-                    }
-                    self.call_CartAddAPI()
-                    print("Arr data \(global.shared.arr_AddCartData)")
-                    print("Arr data count \(global.shared.arr_AddCartData.count)")
-                }
-                cell.Act_AddPlus = {
-                    // AJAY
-                    if let arr = data.product_Size, arr.count != 0 {
-                        if let stock = arr[0].available_Stock{
-                            if stock != 0 && cart_countQty < stock {
-                                cart_countQty += 1
-                                cell.lbl_count.text = "\(cart_countQty)"
-                                if let id = data.product_Id {
-                                    let arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
-                                    if arrCart.count != 0 && arrCart.count == 1 {
-                                        if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Product_Id == id }) {
-                                            global.shared.arr_AddCartData[index].Cart_Qty = "\(cart_countQty)"
-                                        }
-                                    } else {
-                                        cart_data = CartData(productId: data.product_Id ?? "", cartQty: "\(cart_countQty)", cartProductSize: data.cart_Product_Size ?? "0")
-                                        if let data = cart_data {
-                                            global.shared.arr_AddCartData.append(data)
+                    cell.Act_AddPlus = {
+                        // AJAY
+                        if let arr = data.product_Size, arr.count != 0 {
+                            if let stock = arr[0].available_Stock{
+                                if stock != 0 && cart_countQty < stock {
+                                    cart_countQty += 1
+                                    cell.lbl_count.text = "\(cart_countQty)"
+                                    if let id = data.product_Id {
+                                        let arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
+                                        if arrCart.count != 0 && arrCart.count == 1 {
+                                            if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Product_Id == id }) {
+                                                global.shared.arr_AddCartData[index].Cart_Qty = "\(cart_countQty)"
+                                            }
+                                        } else {
+                                            cart_data = CartData(productId: data.product_Id ?? "", cartQty: "\(cart_countQty)", cartProductSize: data.cart_Product_Size ?? "0")
+                                            if let data = cart_data {
+                                                global.shared.arr_AddCartData.append(data)
+                                            }
                                         }
                                     }
+                                    self.call_CartAddAPI()
+                                }else{
+                                    self.showAlertToast(message: "Only \(stock) available at this moment")
                                 }
-                                self.call_CartAddAPI()
-                            }else{
-                                self.showAlertToast(message: "Only \(stock) available at this moment")
                             }
                         }
+                        
+                        // Bansi Mem
+                        /*cart_countQty += 1
+                         cell.lbl_count.text = "\(cart_countQty)"
+                         if let id = data.product_Id {
+                         let arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
+                         if arrCart.count != 0 && arrCart.count == 1 {
+                         if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Product_Id == id }) {
+                         global.shared.arr_AddCartData[index].Cart_Qty = "\(cart_countQty)"
+                         }
+                         } else {
+                         cart_data = CartData(productId: data.product_Id ?? "", cartQty: "\(cart_countQty)", cartProductSize: data.cart_Product_Size ?? "0")
+                         if let data = cart_data {
+                         global.shared.arr_AddCartData.append(data)
+                         }
+                         }
+                         }
+                         self.call_CartAddAPI()
+                         print("Arr data \(global.shared.arr_AddCartData)")
+                         print("Arr data count \(global.shared.arr_AddCartData.count)")*/
                     }
-                    
-                    // Bansi Mem
-                    /*cart_countQty += 1
-                    cell.lbl_count.text = "\(cart_countQty)"
-                    if let id = data.product_Id {
-                        let arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
-                        if arrCart.count != 0 && arrCart.count == 1 {
-                            if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Product_Id == id }) {
-                                global.shared.arr_AddCartData[index].Cart_Qty = "\(cart_countQty)"
-                            }
+                    cell.Act_MinusCart = {
+                        if cart_countQty != 0 {
+                            cart_countQty -= 1
                         } else {
-                            cart_data = CartData(productId: data.product_Id ?? "", cartQty: "\(cart_countQty)", cartProductSize: data.cart_Product_Size ?? "0")
-                            if let data = cart_data {
-                                global.shared.arr_AddCartData.append(data)
-                            }
+                            cart_countQty = 0
                         }
-                    }
-                    self.call_CartAddAPI()
-                    print("Arr data \(global.shared.arr_AddCartData)")
-                    print("Arr data count \(global.shared.arr_AddCartData.count)")*/
-                }
-                cell.Act_MinusCart = {
-                    if cart_countQty != 0 {
-                        cart_countQty -= 1
-                    } else {
-                        cart_countQty = 0
-                    }
-                    cell.lbl_count.text = "\(cart_countQty)"
-                    if let id = data.product_Id {
-                        let arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
-                        if arrCart.count != 0 && arrCart.count == 1 {
-                            if cart_countQty == 0 {
-                                if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Product_Id == id }) {
-                                    global.shared.arr_AddCartData.remove(at: index)
+                        cell.lbl_count.text = "\(cart_countQty)"
+                        if let id = data.product_Id {
+                            let arrCart = global.shared.arr_AddCartData.filter{$0.Product_Id == id}
+                            if arrCart.count != 0 && arrCart.count == 1 {
+                                if cart_countQty == 0 {
+                                    if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Product_Id == id }) {
+                                        global.shared.arr_AddCartData.remove(at: index)
+                                    }
+                                } else {
+                                    if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Product_Id == id }) {
+                                        global.shared.arr_AddCartData[index].Cart_Qty = "\(cart_countQty)"
+                                    }
                                 }
                             } else {
-                                if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Product_Id == id }) {
-                                    global.shared.arr_AddCartData[index].Cart_Qty = "\(cart_countQty)"
-                                }
-                            }
-                        } else {
-                            if cart_countQty == 0 {
-                                if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Product_Id == id }) {
-                                    global.shared.arr_AddCartData.remove(at: index)
-                                }
-                            } else {
-                                cart_data = CartData(productId: data.product_Id ?? "", cartQty: "\(cart_countQty)", cartProductSize: data.cart_Product_Size ?? "0")
-                                if let data = cart_data {
-                                    global.shared.arr_AddCartData.append(data)
+                                if cart_countQty == 0 {
+                                    if let index = global.shared.arr_AddCartData.firstIndex(where: { $0.Product_Id == id }) {
+                                        global.shared.arr_AddCartData.remove(at: index)
+                                    }
+                                } else {
+                                    cart_data = CartData(productId: data.product_Id ?? "", cartQty: "\(cart_countQty)", cartProductSize: data.cart_Product_Size ?? "0")
+                                    if let data = cart_data {
+                                        global.shared.arr_AddCartData.append(data)
+                                    }
                                 }
                             }
                         }
+                        self.call_CartAddAPI()
+                        print("Arr data \(global.shared.arr_AddCartData)")
+                        print("Arr data count \(global.shared.arr_AddCartData.count)")
                     }
-                    self.call_CartAddAPI()
-                    print("Arr data \(global.shared.arr_AddCartData)")
-                    print("Arr data count \(global.shared.arr_AddCartData.count)")
+                    return cell
                 }
-                return cell
             }
         }
-        
         return UITableViewCell()
     }
     
+    func applyDiscountLabelTransform(_ label: UILabel) {
+        label.transform = .identity
+        let rotationAngle = -45 * CGFloat.pi / 180
+        
+        var transform = CGAffineTransform.identity
+        transform = transform.translatedBy(x: -20, y: 15)
+        transform = transform.rotated(by: rotationAngle)
+        
+        label.transform = transform
+    }
+    
+    /*func setTriangleLabel(label: UILabel,text: String,bgColor: UIColor = #colorLiteral(red: 1, green: 0.9490196078, blue: 0.737254902, alpha: 1),textColor: UIColor = .black) {
+        label.text = text
+        label.textColor = textColor
+//        label.textAlignment = .center
+        label.backgroundColor = .clear
+        label.layer.masksToBounds = false
+        // Remove old triangle if exists
+        label.layer.sublayers?.removeAll(where: { $0.name == "TriangleLayer" })
+
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: 0, y: 0))
+        path.addLine(to: CGPoint(x: label.bounds.width, y: 0))
+        path.addLine(to: CGPoint(x: 0, y: label.bounds.height))
+        path.close()
+
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.path = path.cgPath
+        shapeLayer.fillColor = bgColor.cgColor
+        shapeLayer.name = "TriangleLayer"
+        label.layer.insertSublayer(shapeLayer, at: 0)
+        label.setNeedsDisplay()
+    }*/
+    
+    
+    func setTriangleLabel(label: UILabel,text: String,bgColor: UIColor = #colorLiteral(red: 1, green: 0.9490196078, blue: 0.737254902, alpha: 1),
+        textColor: UIColor = .black
+    ) {
+        label.text = "" // ❗️Clear default UILabel text
+        label.backgroundColor = .clear
+
+        // Remove old layers
+        label.layer.sublayers?.removeAll(where: {
+            $0.name == "TriangleLayer" || $0.name == "TextLayer"
+        })
+
+        // 🔺 Triangle
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: 0, y: 0))
+        path.addLine(to: CGPoint(x: label.bounds.width, y: 0))
+        path.addLine(to: CGPoint(x: 0, y: label.bounds.height))
+        path.close()
+
+        let triangleLayer = CAShapeLayer()
+        triangleLayer.path = path.cgPath
+        triangleLayer.fillColor = bgColor.cgColor
+        triangleLayer.name = "TriangleLayer"
+        label.layer.insertSublayer(triangleLayer, at: 0)
+
+        // 📝 Text with padding
+        let textLayer = CATextLayer()
+        textLayer.string = text
+        textLayer.foregroundColor = textColor.cgColor
+        textLayer.alignmentMode = .left
+        textLayer.contentsScale = UIScreen.main.scale
+        textLayer.fontSize = 11
+        textLayer.name = "TextLayer"
+
+        if let cgFont = CGFont("Jost-SemiBold" as CFString) {
+            textLayer.font = cgFont
+        }
+        
+        // ⬅️ Padding here
+        textLayer.frame = CGRect(
+            x: 5,
+            y: -2,
+            width: label.bounds.width - 6,
+            height: label.bounds.height - 4
+        )
+        
+        let angle: CGFloat = -.pi / 6
+        textLayer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        textLayer.setAffineTransform(CGAffineTransform(rotationAngle: angle))
+
+        label.layer.addSublayer(textLayer)
+    }
 }

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -27,16 +28,16 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aJS-nI-Yq0" customClass="CardView" customModule="ThriveJuice" customModuleProvider="target">
-                        <rect key="frame" x="20" y="10" width="355" height="118"/>
+                        <rect key="frame" x="20" y="10" width="355" height="121"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8xL-R1-bOQ">
-                                <rect key="frame" x="8" y="9.9999999999999982" width="339" height="20.333333333333329"/>
-                                <fontDescription key="fontDescription" name="Jost-SemiBold" family="Jost" pointSize="14"/>
+                                <rect key="frame" x="8" y="9.9999999999999982" width="339" height="23.333333333333329"/>
+                                <fontDescription key="fontDescription" name="Jost-SemiBold" family="Jost" pointSize="16"/>
                                 <color key="textColor" name="Black"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eAG-iB-UEm">
-                                <rect key="frame" x="8" y="40.333333333333336" width="339" height="35.000000000000007"/>
+                                <rect key="frame" x="8" y="43.333333333333336" width="339" height="35.000000000000007"/>
                                 <string key="text">abc
 abc</string>
                                 <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="12"/>
@@ -44,7 +45,7 @@ abc</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="abc" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFs-iZ-jB9">
-                                <rect key="frame" x="8" y="85.333333333333329" width="339" height="17.666666666666671"/>
+                                <rect key="frame" x="8" y="88.333333333333329" width="339" height="17.666666666666671"/>
                                 <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="12"/>
                                 <color key="textColor" name="TextColor"/>
                                 <nil key="highlightedColor"/>

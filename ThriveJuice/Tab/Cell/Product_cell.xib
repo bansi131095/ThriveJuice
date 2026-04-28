@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -56,15 +56,15 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XmL-G8-cpK">
-                                <rect key="frame" x="8" y="150" width="129" height="37.666666666666657"/>
+                                <rect key="frame" x="8" y="150" width="129" height="40.666666666666657"/>
                                 <string key="text">AWAKEN
 AWAKEN</string>
-                                <fontDescription key="fontDescription" name="Jost-Medium" family="Jost" pointSize="13"/>
+                                <fontDescription key="fontDescription" name="Jost-Medium" family="Jost" pointSize="14"/>
                                 <color key="textColor" name="Black"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="from $6.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vgm-xY-ydU">
-                                <rect key="frame" x="8" y="191.66666666666666" width="129" height="17.666666666666657"/>
+                                <rect key="frame" x="8" y="194.66666666666666" width="129" height="17.666666666666657"/>
                                 <fontDescription key="fontDescription" name="Jost-Regular" family="Jost" pointSize="12"/>
                                 <color key="textColor" name="LightGray"/>
                                 <nil key="highlightedColor"/>
@@ -88,6 +88,28 @@ AWAKEN</string>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="act_AddToCart:" destination="gTV-IL-0wX" eventType="touchUpInside" id="HfP-kz-VOd"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZNi-EQ-NYm">
+                                <rect key="frame" x="40" y="225" width="65" height="35"/>
+                                <color key="backgroundColor" name="AccentColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="P1C-vS-x4c"/>
+                                    <constraint firstAttribute="width" constant="65" id="Y9n-k3-grG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Jost-Medium" family="Jost" pointSize="12"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Select">
+                                    <color key="titleColor" name="White"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="17.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="act_AddToCart:" destination="gTV-IL-0wX" eventType="touchUpInside" id="W5S-wH-vDK"/>
+                                    <action selector="act_Select:" destination="gTV-IL-0wX" eventType="touchUpInside" id="fw7-a6-q4S"/>
                                 </connections>
                             </button>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lhX-58-b3n">
@@ -148,12 +170,14 @@ AWAKEN</string>
                             <constraint firstItem="86n-eH-qs5" firstAttribute="trailing" secondItem="yiX-1O-Fr9" secondAttribute="trailing" constant="-8" id="TMh-rv-6uk"/>
                             <constraint firstItem="XmL-G8-cpK" firstAttribute="leading" secondItem="117-Ck-c8N" secondAttribute="leading" constant="8" id="TvA-sF-MM1"/>
                             <constraint firstItem="vgm-xY-ydU" firstAttribute="top" secondItem="XmL-G8-cpK" secondAttribute="bottom" constant="4" id="aq8-gL-6a3"/>
+                            <constraint firstAttribute="bottom" secondItem="ZNi-EQ-NYm" secondAttribute="bottom" constant="10" id="cg0-B4-Wli"/>
                             <constraint firstItem="yiX-1O-Fr9" firstAttribute="top" secondItem="117-Ck-c8N" secondAttribute="top" id="iwO-Aa-OAb"/>
                             <constraint firstItem="86n-eH-qs5" firstAttribute="top" secondItem="yiX-1O-Fr9" secondAttribute="top" constant="8" id="lXJ-OV-i3P"/>
                             <constraint firstAttribute="trailing" secondItem="XmL-G8-cpK" secondAttribute="trailing" constant="8" id="oRZ-Ef-NRu"/>
                             <constraint firstAttribute="bottom" secondItem="lhX-58-b3n" secondAttribute="bottom" constant="10" id="ors-PY-cIX"/>
                             <constraint firstAttribute="trailing" secondItem="vgm-xY-ydU" secondAttribute="trailing" constant="8" id="pTw-Jo-RzX"/>
                             <constraint firstAttribute="trailing" secondItem="yiX-1O-Fr9" secondAttribute="trailing" id="tK6-tW-4FT"/>
+                            <constraint firstItem="ZNi-EQ-NYm" firstAttribute="centerX" secondItem="117-Ck-c8N" secondAttribute="centerX" id="zSe-1V-veH"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -173,6 +197,7 @@ AWAKEN</string>
             <size key="customSize" width="145" height="274"/>
             <connections>
                 <outlet property="btn_AddToCart" destination="ej5-JT-bWO" id="fhx-Vw-OuK"/>
+                <outlet property="btn_Select" destination="ZNi-EQ-NYm" id="eRD-wN-4Ux"/>
                 <outlet property="btn_like" destination="86n-eH-qs5" id="IRv-LW-blp"/>
                 <outlet property="btn_minus" destination="CwI-92-Ff6" id="90A-WK-hIj"/>
                 <outlet property="btn_plus" destination="Cgu-5I-ch6" id="KFB-Ad-zeI"/>
@@ -181,6 +206,7 @@ AWAKEN</string>
                 <outlet property="lbl_ProductName" destination="XmL-G8-cpK" id="57n-RV-Hh9"/>
                 <outlet property="lbl_cart" destination="d9j-0U-hK0" id="WwJ-sv-En5"/>
                 <outlet property="lbl_price" destination="vgm-xY-ydU" id="86W-Nu-XON"/>
+                <outlet property="vw_Background" destination="117-Ck-c8N" id="t1p-li-E6l"/>
                 <outlet property="vw_cart" destination="lhX-58-b3n" id="gxf-ph-hTc"/>
             </connections>
             <point key="canvasLocation" x="135.1145038167939" y="77.464788732394368"/>

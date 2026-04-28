@@ -10,6 +10,7 @@ import UIKit
 class Product_cell: UICollectionViewCell {
 
     
+    @IBOutlet weak var vw_Background: UIView!
     @IBOutlet weak var img_vw: UIImageView!
     @IBOutlet weak var lbl_ProductName: UILabel!
     @IBOutlet weak var lbl_price: UILabel!
@@ -21,6 +22,7 @@ class Product_cell: UICollectionViewCell {
     @IBOutlet weak var btn_like: UIButton!
     @IBOutlet weak var img_height_const: NSLayoutConstraint!
     
+    @IBOutlet weak var btn_Select: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -47,5 +49,9 @@ class Product_cell: UICollectionViewCell {
         self.Act_AddPlus?()
     }
     
+    var Act_Select:(()->Void)?
+    @IBAction func act_Select(_ sender: Any) {
+        self.Act_Select?()
+    }
     
 }

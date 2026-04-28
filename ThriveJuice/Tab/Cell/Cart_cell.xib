@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -111,7 +111,6 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" name="Gray 1"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="8CC-Aj-2H3"/>
                                             <constraint firstItem="eOX-Hz-id7" firstAttribute="leading" secondItem="3Xd-nn-wiF" secondAttribute="trailing" constant="10" id="BZE-zn-tbB"/>
@@ -182,7 +181,6 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" name="Gray 1"/>
                                         <constraints>
                                             <constraint firstItem="B7f-fa-WlE" firstAttribute="leading" secondItem="mLQ-kK-KeG" secondAttribute="trailing" constant="16" id="4RU-PY-mBY"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="B7f-fa-WlE" secondAttribute="trailing" constant="16" id="CDl-fp-CWG"/>
@@ -229,7 +227,6 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" name="Gray 1"/>
                                         <constraints>
                                             <constraint firstItem="rSW-aE-jMb" firstAttribute="centerY" secondItem="MNu-a1-DgW" secondAttribute="centerY" id="Jc2-Gx-Ulr"/>
                                             <constraint firstItem="rSW-aE-jMb" firstAttribute="leading" secondItem="lYQ-4O-Qcm" secondAttribute="trailing" constant="12" id="MCY-BP-RLL"/>
@@ -296,6 +293,8 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="btn_Minus" destination="lYQ-4O-Qcm" id="e6k-ZD-HGf"/>
+                <outlet property="btn_Plus" destination="iI2-N8-Qlw" id="akd-PB-e0M"/>
                 <outlet property="btn_cancel" destination="NNs-rP-Bkz" id="Ulu-YZ-YEc"/>
                 <outlet property="img_vw" destination="2Sn-RA-wlP" id="jHv-LO-89u"/>
                 <outlet property="lbl_Name" destination="MnQ-Am-vI2" id="w9Q-TV-rsU"/>
@@ -306,6 +305,7 @@
                 <outlet property="lbl_total" destination="bob-eL-n50" id="2ur-dw-c5R"/>
                 <outlet property="txt_days" destination="Zh2-qV-3Uk" id="MXP-2S-FbE"/>
                 <outlet property="txt_size" destination="HdY-1a-UsU" id="ycO-7Q-tY2"/>
+                <outlet property="vw_Background" destination="5N7-ie-ZbF" id="igu-Im-uoU"/>
                 <outlet property="vw_Sizes" destination="v66-Bn-e97" id="o1U-yS-QZP"/>
                 <outlet property="vw_Sizes_height_const" destination="lfj-Ed-DYS" id="zSb-hG-yoP"/>
                 <outlet property="vw_day" destination="jic-V6-3P8" id="cHr-7c-C6x"/>

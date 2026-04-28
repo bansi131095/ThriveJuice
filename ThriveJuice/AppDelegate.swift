@@ -34,6 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.overrideUserInterfaceStyle = .light
         }
         UserDefaults.standard.set(false, forKey: "hasShownKillLaunchPopup")
+        UserDefaults.standard.set(false, forKey: "hasVersionPopup")
         UIApplication.shared.applicationIconBadgeNumber = 0
         //MARK:- push notification
         if #available(iOS 10.0, *) {

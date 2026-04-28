@@ -10,6 +10,8 @@ import UIKit
 class Cart_cell: UITableViewCell {
 
     
+    
+    @IBOutlet weak var vw_Background: UIView!
     @IBOutlet weak var img_vw: UIImageView!
     @IBOutlet weak var lbl_size: UILabel!
     @IBOutlet weak var vw_size: UIView!
@@ -26,6 +28,11 @@ class Cart_cell: UITableViewCell {
     @IBOutlet weak var lbl_productPrice: UILabel!
     @IBOutlet weak var lbl_total: UILabel!
     @IBOutlet weak var btn_cancel: UIButton!
+    
+    
+    @IBOutlet weak var btn_Minus: UIButton!
+    @IBOutlet weak var btn_Plus: UIButton!
+    
     
     var arr_addon: [Product_Addons] = []
     var arr_ProductDays: [Product_Size] = []

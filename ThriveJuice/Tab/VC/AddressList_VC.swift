@@ -27,6 +27,9 @@ class AddressList_VC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.call_ProfileAPI()
+        if UserDefaults.standard.string(forKey: "fcmtoken") != "" {
+            self.call_UpdateToken()
+        }
     }
     
     @IBAction func act_Add(_ sender: UIButton) {
@@ -68,7 +71,7 @@ class AddressList_VC: UIViewController {
     func call_UpdateProfileAPI() {
             
         // User_Id, User_Type, Accesskey, Update_Type = Device ( Device_Key ) / Logout / Delete_Account / Profile ( Name, Mobile_No, Email_Id ) / Profile_Image ( Profile_Image ) / Address_Id ( Address_Id ) ( for set selected address ), Device_Id, Device_Name, Device_Type, App_Version, App_Package, Device_Key, Address_Id, Mobile_No, Email_Id, Name, Profile_Image = FILES
-        
+        let fcmToken = UserDefaults.standard.string(forKey: "fcmtoken") ?? ""
         var paramer: [String: Any] = [:]
         paramer["Update_Type"] = "Address_Id"
         paramer["Address_Id"] = self.selectAddressId
@@ -82,6 +85,31 @@ class AddressList_VC: UIViewController {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                             self.navigationController?.popViewController(animated: true)
                         }
+                    }
+                }
+            }
+        }) {
+            
+        }
+            
+    }
+    
+    
+    func call_UpdateToken() {
+            
+        // User_Id, User_Type, Accesskey, Update_Type = Device ( Device_Key ) / Logout / Delete_Account / Profile ( Name, Mobile_No, Email_Id ) / Profile_Image ( Profile_Image ) / Address_Id ( Address_Id ) ( for set selected address ), Device_Id, Device_Name, Device_Type, App_Version, App_Package, Device_Key, Address_Id, Mobile_No, Email_Id, Name, Profile_Image = FILES
+        let fcmToken = UserDefaults.standard.string(forKey: "fcmtoken") ?? ""
+        var paramer: [String: Any] = [:]
+        paramer["Update_Type"] = "Device"
+        paramer["Device_Key"] = fcmToken
+        
+        
+        WebService.call.POSTT(filePath: global.shared.URL_Update_Profile, params: paramer, enableInteraction: false, showLoader: true, viewObj: self, onSuccess: { [self] (result, success) in
+            print(result)
+            if let eventResponseModel:ProfileModel = Mapper<ProfileModel>().map(JSONObject: result) {
+                if let status = eventResponseModel.status {
+                    if status == "1" {
+                        
                     }
                 }
             }

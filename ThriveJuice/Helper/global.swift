@@ -18,13 +18,15 @@ class global: NSObject
     
     
 //    GOOGLE_MAP_KEY_RUSH_MALL=AIzaSyDNE-nH7aaKw21nG3yVaDtPZQm-6yaqHh8
-    
-    static let base_url = "https://thrivejuiceco.ca/admin/"
+//    aaa old che
+//    static let base_url = "https://thrivejuiceco.ca/admin/"
+    static let base_url = "https://thrivejuiceco.com/admin/"
     static let server_url = global.base_url + "API/"
     
     let Accesskey  = "THRIVE693JUICE753"
+    let AppShareLink  = "https://apps.apple.com/us/app/thrive-juice-co/id6469094197"
     let Device_Type = "IOS"
-    var App_Version = Bundle.main.infoDictionary?["CFBundleVersion"] ?? ""
+    var App_Version = "\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] ?? "") (\(Bundle.main.infoDictionary?["CFBundleVersion"] ?? ""))"
     var App_Package = Bundle.main.infoDictionary?["CFBundleIdentifier"] ?? ""
     var selectCategoryId = String()
     var selectSubCategoryId = String()
@@ -91,13 +93,15 @@ class global: NSObject
     var URL_Cart_Add = global.server_url + "Cart_Add.php"
     // Cart_Data = [{"Product_Id":"1","Cart_Qty":"2","Cart_Product_Size":"16oz"},{"Product_Id":"2","Cart_Qty":"2","Cart_Product_Size":"16oz"}]
     
-    var URL_Cart = global.server_url + "Cart.php"
+//    var URL_Cart = global.server_url + "Cart.php"
+    var URL_Cart = global.server_url + "Cart_V2.php"
     // Coupon_Code, Order_Type = Local_Delivery / Store_Pickup, Subscribe_Week, Use_Reward_Points,
     
     var URL_Schedule_Dates = global.server_url + "Schedule_Dates.php"
     //
     
-    var URL_Add_Order = global.server_url + "Add_Order.php"
+//    var URL_Add_Order = global.server_url + "Add_Order.php"
+    var URL_Add_Order = global.server_url + "Add_Order_V2.php"
     // Delivery_Date, Subscribe_Week, Order_Type = Local_Delivery / Store_Pickup
     
     var URL_StripepaymentAPI = global.base_url + "Stripe/paymentAPI-New.php"
@@ -146,6 +150,7 @@ class global: NSObject
     // Name, Email_Id, Message
     
     var URL_Offers = global.server_url + "Offers.php"
+    var URL_Version = global.server_url + "Version.php"
     
     //MARK:-
     override init()

@@ -101,7 +101,14 @@ extension RewardPoints_VC: UITableViewDelegate, UITableViewDataSource {
                 } else {
                     cell.lbl_rewardsPoints.textColor = UIColor(named: "Red")
                 }
+                
+                if data.reward_Type == "Point"{
+                    cell.lbl_rewardsPoints.text = points + " Points"
+                }else{
+                    cell.lbl_rewardsPoints.text = "$" + points
+                }
             }
+            
             return cell
         }
         return UITableViewCell()

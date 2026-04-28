@@ -43,6 +43,7 @@ struct Reward_Points : Mappable {
     var reward_Points_Comment : String?
     var reward_Points : String?
     var reward_Points_Added_At : String?
+    var reward_Type : String?
 
     init?(map: Map) {
 
@@ -55,6 +56,7 @@ struct Reward_Points : Mappable {
         reward_Points_Comment <- map["Reward_Points_Comment"]
         reward_Points <- map["Reward_Points"]
         reward_Points_Added_At <- map["Reward_Points_Added_At"]
+        reward_Type <- map["Reward_Type"]
     }
 
 }

@@ -40,7 +40,9 @@ struct CartModel : Mappable {
 	var subscribe_Amount : String?
 	var subscribe_Discount_Amount : String?
     var bottle_Environment_Fees : String?
-	var grand_Total : String?
+    var grand_Total : String?
+    var auto_Apply_Coupon_Id : String?
+	var auto_Apply_Coupon_Code : String?
 	var stores : [Stores]?
 	var selected_Stores : Selected_Stores?
 
@@ -75,7 +77,9 @@ struct CartModel : Mappable {
 		subscribe_Amount <- map["Subscribe_Amount"]
 		subscribe_Discount_Amount <- map["Subscribe_Discount_Amount"]
         bottle_Environment_Fees <- map["Bottle_Environment_Fees"]
-		grand_Total <- map["Grand_Total"]
+        grand_Total <- map["Grand_Total"]
+        auto_Apply_Coupon_Id <- map["Auto_Apply_Coupon_Id"]
+        auto_Apply_Coupon_Code <- map["Auto_Apply_Coupon_Code"]
 		stores <- map["Stores"]
 		selected_Stores <- map["Selected_Stores"]
 	}
@@ -124,9 +128,15 @@ struct Cart_Products : Mappable {
     var is_Special : String?
     var product_Addons : [Product_Addons]?
     var is_Available : Int?
+    var is_Free_Product : Int?
+    var buyX_Free_Products : [Cart_Products]?
     var product_Addon_Price : String?
+    var buy_Id : String?
+    var buyX_Discount : String?
     var cart_Addons_Price : [Addons]?
     var product_Price : String?
+    var old_Product_Price : String?
+    var old_Cart_Product_Price : String?
     var cart_Product_Base_Price : String?
     var cart_Product_Price : String?
     var cart_Qty : String?
@@ -150,9 +160,15 @@ struct Cart_Products : Mappable {
         is_Special <- map["Is_Special"]
         product_Addons <- map["Product_Addons"]
         is_Available <- map["Is_Available"]
+        is_Free_Product <- map["Is_Free_Product"]
+        buyX_Free_Products <- map["BuyX_Free_Products"]
+        buy_Id <- map["Buy_Id"]
+        buyX_Discount <- map["BuyX_Discount"]
         product_Addon_Price <- map["Product_Addon_Price"]
         cart_Addons_Price <- map["Cart_Addons_Price"]
         product_Price <- map["Product_Price"]
+        old_Product_Price <- map["Old_Product_Price"]
+        old_Cart_Product_Price <- map["Old_Cart_Product_Price"]
         cart_Product_Base_Price <- map["Cart_Product_Base_Price"]
         cart_Product_Price <- map["Cart_Product_Price"]
         cart_Qty <- map["Cart_Qty"]

@@ -118,7 +118,8 @@ struct Cart_Datas : Mappable {
     var cart_Addons_Price : [Cart_Addons_Price]?
     var cart_Product_Price : String?
     var product_Name : String?
-
+    var buy_Id : String?
+    var buyX_Discount : String?
     init?(map: Map) {
 
     }
@@ -135,6 +136,8 @@ struct Cart_Datas : Mappable {
         cart_Addons_Price <- map["Cart_Addons_Price"]
         cart_Product_Price <- map["Cart_Product_Price"]
         product_Name <- map["Product_Name"]
+        buy_Id <- map["Buy_Id"]
+        buyX_Discount <- map["BuyX_Discount"]
     }
 
 }

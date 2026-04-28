@@ -406,21 +406,27 @@ extension WebService {
             debugPrint(response)
             if response.error == nil {
                 if let resjson = response.value as? [String:Any] {
+                    print("Value Failure")
     //                                print("Json File --> \(resjson)")
                     if let code = resjson["Status"] as? String {
                         if code == "1" {
                             onSuccess(resjson, true)
                         } else if code == "-1" {
+                            print("-1 Failure")
                             onSuccess(resjson, true)
                         } else if code == "0" {
                             onSuccess(resjson, true)
+                            print("-0 Failure")
                         } else if code == "2" {
                             onSuccess(resjson, true)
+                            print("-2 Failure")
                         }  else if code == "3" {
                             onSuccess(resjson, true)
+                            print("-3 Failure")
                         } else {
                             viewObj?.show_alert(msg: "No Internet Connection Available")
                             onFailure()
+                            print("123 Failure")
                         }
                     } else if response.response?.statusCode == 200 {
                         onSuccess(resjson, true)

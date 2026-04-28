@@ -9,6 +9,8 @@ import UIKit
 
 class AddonCart_cell: UITableViewCell {
 
+    
+    @IBOutlet weak var vwBackground: UIView!
     @IBOutlet weak var img_vw: UIImageView!
     @IBOutlet weak var lbl_size: UILabel!
     @IBOutlet weak var vw_size: UIView!
@@ -27,6 +29,9 @@ class AddonCart_cell: UITableViewCell {
     @IBOutlet weak var tbl_addon_height_const: NSLayoutConstraint!
     @IBOutlet weak var lbl_TotalPrice: UILabel!
     @IBOutlet weak var btn_cancel: UIButton!
+    
+    @IBOutlet weak var btn_Minus: UIButton!
+    @IBOutlet weak var btn_Plus: UIButton!
     
     var arr_ProductDays: [Product_Size] = []
     var arr_ProductSizes: [Product_Size] = []

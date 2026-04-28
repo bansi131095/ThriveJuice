@@ -14,9 +14,17 @@ class MySubscription_VC: UIViewController {
     @IBOutlet weak var tbl_vw: UITableView!
     @IBOutlet weak var vw_EmptyData: UIView!
     
-    var arr_order: [Orders] = []
+    @IBOutlet weak var lbl_Upcoming: UILabel!
+    @IBOutlet weak var lbl_Orders: UILabel!
     
-    //MARK:- View Life Cycle
+    @IBOutlet weak var lbl_LineUpcoming: UILabel!
+    @IBOutlet weak var lbl_LineOrders: UILabel!
+    
+    
+    var arr_order: [Orders] = []
+    var subscription_Type = "Subscription_Orders_Upcoming"
+    
+    //MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -39,13 +47,33 @@ class MySubscription_VC: UIViewController {
     }
     
     
+    @IBAction func act_Upcoming(_ sender: Any) {
+        self.lbl_Upcoming.textColor = #colorLiteral(red: 0.08235294118, green: 0.3803921569, blue: 0.3764705882, alpha: 1)
+        self.lbl_LineUpcoming.backgroundColor = #colorLiteral(red: 0.08235294118, green: 0.3803921569, blue: 0.3764705882, alpha: 1)
+        
+        self.lbl_Orders.textColor = #colorLiteral(red: 0.6196078431, green: 0.6196078431, blue: 0.6196078431, alpha: 1)
+        self.lbl_LineOrders.backgroundColor = .clear
+        subscription_Type = "Subscription_Orders_Upcoming"
+        call_OrdersAPI()
+    }
+    
+    @IBAction func act_Orders(_ sender: Any) {
+        self.lbl_Upcoming.textColor = #colorLiteral(red: 0.6196078431, green: 0.6196078431, blue: 0.6196078431, alpha: 1)
+        self.lbl_LineUpcoming.backgroundColor = .clear
+        
+        self.lbl_Orders.textColor = #colorLiteral(red: 0.08235294118, green: 0.3803921569, blue: 0.3764705882, alpha: 1)
+        self.lbl_LineOrders.backgroundColor = #colorLiteral(red: 0.08235294118, green: 0.3803921569, blue: 0.3764705882, alpha: 1)
+        subscription_Type = "Subscription_Orders"
+        call_OrdersAPI()
+    }
+    
     
     //MARK:- API Call
     func call_OrdersAPI() {
             
         // Offset, Type= Category, Category_Id, Product_Id
         var paramer: [String: Any] = [:]
-        paramer["Type"] = "Subscription_Orders"
+        paramer["Type"] = subscription_Type
         
         WebService.call.POSTT(filePath: global.shared.URL_Orders, params: paramer, enableInteraction: false, showLoader: true, viewObj: self, onSuccess: { [self] (result, success) in
             print(result)
@@ -203,12 +231,25 @@ extension MySubscription_VC: UITableViewDelegate, UITableViewDataSource {
                     })
                 }
             }
+            
+            if (subscription_Type == "Subscription_Orders_Upcoming") {
+                cell.btn_Cancel.isHidden = true
+                cell.btn_repeat.isHidden = true
+                
+                cell.lbl_order.text = "#" + "XXXXXX"
+            }
+            
             return cell
         }
         return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if (subscription_Type == "Subscription_Orders_Upcoming") {
+            return;
+        }
+        
         let details = self.storyboard?.instantiateViewController(withIdentifier: "OrderDetails_VC") as! OrderDetails_VC
         details.OrderId = self.arr_order[indexPath.row].order_Id ?? ""
         if let subweek = self.arr_order[indexPath.row].subscribe_Week {

@@ -47,17 +47,22 @@ class OrderSummary_VC: UIViewController {
     @IBOutlet weak var lblRewardBalanceHeight: NSLayoutConstraint!
     
     
+    @IBOutlet weak var vwR_PointDiscount: UIView!
+    @IBOutlet weak var lbl_RPointDiscount: UILabel!
+    
+    
     var OrderData_dict: OrderData?
     var RewardPointRate: String?
     var dict_CartData: CartModel?
     var arrCartProduct: [Cart_Products] = []
     var paymentSheet: PaymentSheet?
+    var buyProductJSONString: String = ""
     
-    
-    //MARK:- View Life Cycle
+    var Check_Auto_Apply = "1"
+    //MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print("buyProductJSONString:- \(buyProductJSONString)")
         // Do any additional setup after loading the view.
     }
     
@@ -67,7 +72,7 @@ class OrderSummary_VC: UIViewController {
     }
     
     
-    //MARK:- Button Action
+    //MARK: - Button Action
     @IBAction func act_back(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -79,6 +84,8 @@ class OrderSummary_VC: UIViewController {
                 self.call_CartAPI()
             }
         } else {
+            self.txt_couponCode.isUserInteractionEnabled = true
+            Check_Auto_Apply = "0"
             self.btn_apply.setTitle("APPLY", for: .normal)
             self.txt_couponCode.text = ""
             self.call_CartAPI()
@@ -123,6 +130,10 @@ class OrderSummary_VC: UIViewController {
         paramer["Cart_Data"] = JsonData_Cart
         paramer["Page"] = "Check_Out"
         paramer["Order_Type"] = self.OrderData_dict?.OrderType
+        paramer["Consider_BuyX_Products"] = buyProductJSONString
+        if (Check_Auto_Apply == "1") {
+            paramer["Check_Auto_Apply"] = "X"
+        }
         if self.OrderData_dict?.SubscribeWeek != ""{
             paramer["Subscribe_Week"] = self.OrderData_dict?.SubscribeWeek
         }
@@ -243,6 +254,14 @@ class OrderSummary_VC: UIViewController {
                             self.vw_bottleEnvirmentFees.isHidden = true
                         }
                     }
+                    
+                    if self.btn_rewards.currentImage?.pngData() == UIImage(named: "RdCheck")?.pngData() {
+                        self.vwR_PointDiscount.isHidden = false
+                        self.lbl_RPointDiscount.text = "- $" + (eventResponseModel.reward_Points_Amount ?? "0")
+                    } else {
+                        self.vwR_PointDiscount.isHidden = true
+                    }
+                    
                     if let discount = eventResponseModel.discount_Amount, let double = Double(discount) {
                         if double == 0 {
                             if self.txt_couponCode.text != "" {
@@ -255,22 +274,20 @@ class OrderSummary_VC: UIViewController {
                                 self.vw_Coupon.isHidden = true
                                 self.vw_coupon_height_const.constant = 0
                             }
-                            if self.btn_rewards.currentImage?.pngData() == UIImage(named: "RdCheck")?.pngData() {
-                                self.vw_Discount.isHidden = false
-                                self.lbl_discount.text = "Reward Point Discount"
-                                self.lbl_DiscountPrice.text = "- $" + (eventResponseModel.reward_Points_Amount ?? "0")
-                            } else {
-                                self.vw_Discount.isHidden = true
-                            }
+                            
                         } else {
                             self.vw_Coupon.isHidden = false
                             self.vw_coupon_height_const.constant = 35
+                            if eventResponseModel.auto_Apply_Coupon_Id != "0" && eventResponseModel.auto_Apply_Coupon_Code != "" {
+                                self.txt_couponCode.text = eventResponseModel.auto_Apply_Coupon_Code
+                            }
                             self.lbl_CouponStatus.textColor = UIColor(named: "Green")
                             self.lbl_CouponStatus.text = eventResponseModel.message ?? ""
                             self.vw_Discount.isHidden = false
                             self.lbl_discount.text = "Discount"
                             self.lbl_DiscountPrice.text = "- $" + discount
                             self.btn_apply.setTitle("REMOVE", for: .normal)
+                            self.txt_couponCode.isUserInteractionEnabled = false
                         }
                     }
                     if let shippingCharge = eventResponseModel.shipping_Charge, let double = Double(shippingCharge) {
@@ -325,6 +342,7 @@ class OrderSummary_VC: UIViewController {
         paramer["Delivery_Date"] = self.OrderData_dict?.DeliveryDate
         paramer["Delivery_Time"] = self.OrderData_dict?.DeliveryTime
         paramer["Order_Notes"] = self.OrderData_dict?.OrderNotes
+        paramer["Consider_BuyX_Products"] = buyProductJSONString
         if self.OrderData_dict?.SubscribeWeek != ""{
             paramer["Subscribe_Week"] = self.OrderData_dict?.SubscribeWeek
         }
@@ -470,7 +488,16 @@ extension OrderSummary_VC: UITableViewDelegate, UITableViewDataSource {
         if let cell = self.tbl_vw.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? OrderProduct_cell {
             let data = self.arrCartProduct[indexPath.row]
             cell.lbl_price.text = "$" + (data.cart_Product_Price ?? "0")
-            cell.lbl_product.text = data.product_Name
+            if data.buy_Id != "0" && data.buy_Id != "" && data.buy_Id != nil{
+                if data.buyX_Discount == "100"{
+                    cell.lbl_product.text = (data.product_Name ?? "") + " ( Free ) "
+                }else{
+                    cell.lbl_product.text = (data.product_Name ?? "") + " ( \(data.buyX_Discount ?? "")" + "% OFF )"
+                }
+            }else{
+                cell.lbl_product.text = (data.product_Name ?? "")
+            }
+            
             cell.lbl_qty.text = "X " + (data.cart_Qty ?? "0")
             if let days = data.cart_Days {
                 if days == "" {

@@ -24,6 +24,12 @@ class Shop_VC: UIViewController {
     @IBOutlet weak var lbl_orderType: UILabel!
     @IBOutlet weak var lbl_cartTotal: UILabel!
     
+    
+    @IBOutlet weak var vwPopup: UIView!
+    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var vwUpdate: UIView!
+    @IBOutlet weak var btnSkip: UIButton!
+    
     var locationManager = CLLocationManager()
     var userLatitude: Double? = nil
     var userLongitude: Double? = nil
@@ -40,9 +46,10 @@ class Shop_VC: UIViewController {
     let items = Array(1...10).map { "Item \($0)" }
     var currentIndex = 0
     
-    //MARK:- View Life Cycle
+    //MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("App version:*-*-*- \("\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] ?? "") (\(Bundle.main.infoDictionary?["CFBundleVersion"] ?? ""))")")
 //        print("\(UserDefaults.standard.set(self.OrderType, forKey: "orderType"))")
         if let savedData = UserDefaults.standard.data(forKey: "cartDataList") {
             let decoder = JSONDecoder()
@@ -171,6 +178,7 @@ class Shop_VC: UIViewController {
         if arr_banner.count > 0 && timer == nil {
             timer = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(slideToNext), userInfo: nil, repeats: true)
         }
+        
         self.call_DashboardAPI()
 
         var OrderType = String()
@@ -213,10 +221,20 @@ class Shop_VC: UIViewController {
             self.lbl_cartTotal.text = "\(total)"
         }
         
-        let hasShownPopup = UserDefaults.standard.bool(forKey: "hasShownKillLaunchPopup")
+        if UserDefaults.standard.string(forKey: "fcmtoken") != "" {
+            self.call_UpdateToken()
+        }
+        
+//        let hasShownPopup = UserDefaults.standard.bool(forKey: "hasShownKillLaunchPopup")
+//        if !hasShownPopup {
+//            ShowFirstTime()
+//            UserDefaults.standard.set(true, forKey: "hasShownKillLaunchPopup")
+//        }
+        
+        let hasShownPopup = UserDefaults.standard.bool(forKey: "hasVersionPopup")
         if !hasShownPopup {
-            ShowFirstTime()
-            UserDefaults.standard.set(true, forKey: "hasShownKillLaunchPopup")
+            self.call_checkVersion_WS()
+            UserDefaults.standard.set(true, forKey: "hasVersionPopup")
         }
     }
     
@@ -252,6 +270,29 @@ class Shop_VC: UIViewController {
         }
     }
     
+    func call_UpdateToken() {
+            
+        // User_Id, User_Type, Accesskey, Update_Type = Device ( Device_Key ) / Logout / Delete_Account / Profile ( Name, Mobile_No, Email_Id ) / Profile_Image ( Profile_Image ) / Address_Id ( Address_Id ) ( for set selected address ), Device_Id, Device_Name, Device_Type, App_Version, App_Package, Device_Key, Address_Id, Mobile_No, Email_Id, Name, Profile_Image = FILES
+        let fcmToken = UserDefaults.standard.string(forKey: "fcmtoken") ?? ""
+        var paramer: [String: Any] = [:]
+        paramer["Update_Type"] = "Device"
+        paramer["Device_Key"] = fcmToken
+        
+        
+        WebService.call.POSTT(filePath: global.shared.URL_Update_Profile, params: paramer, enableInteraction: false, showLoader: true, viewObj: self, onSuccess: { [self] (result, success) in
+            print(result)
+            if let eventResponseModel:ProfileModel = Mapper<ProfileModel>().map(JSONObject: result) {
+                if let status = eventResponseModel.status {
+                    if status == "1" {
+                        
+                    }
+                }
+            }
+        }) {
+            
+        }
+            
+    }
     
     //MARK:- Button Action
     @IBAction func act_Offers(_ sender: UIButton) {
@@ -344,8 +385,58 @@ class Shop_VC: UIViewController {
         self.navigationController?.pushViewController(Search, animated: true)
     }
     
+    @IBAction func btnUpdateNow_Action(_ sender: Any) {
+        self.openExernalLink(site: URL(string: global.shared.AppShareLink))
+    }
+    
+    
+    @IBAction func btnSkip_Action(_ sender: Any) {
+        self.vwPopup.isHidden = true
+        let hasShownPopup = UserDefaults.standard.bool(forKey: "hasShownKillLaunchPopup")
+        if !hasShownPopup {
+            ShowFirstTime()
+            UserDefaults.standard.set(true, forKey: "hasShownKillLaunchPopup")
+        }
+    }
     
     //MARK:- API Call
+    func call_checkVersion_WS(){
+        let paramer: [String: Any] = [:]
+        
+        WebService.call.POSTT(filePath: global.shared.URL_Version, params: paramer, enableInteraction: false, showLoader: true, viewObj: self, onSuccess: { (result, success) in
+            print(result)
+            if let eventResponseModel:VersionModel = Mapper<VersionModel>().map(JSONObject: result) {
+                if eventResponseModel.Show_IOS == 1 {
+                    self.vwPopup.isHidden = false
+                    self.lblTitle.text = eventResponseModel.Message_IOS ?? ""
+                    self.lblTitle.sizeToFit()
+                    
+                    if eventResponseModel.Update_Show_IOS == 1 {
+                        self.vwUpdate.isHidden = false
+                    }else{
+                        self.vwUpdate.isHidden = true
+                    }
+                    
+                    if eventResponseModel.Skip_Show_IOS == 1 {
+                        self.btnSkip.isHidden = false
+                    }else{
+                        self.btnSkip.isHidden = true
+                    }
+                }else{
+                    self.vwPopup.isHidden = true
+                    let hasShownPopup = UserDefaults.standard.bool(forKey: "hasShownKillLaunchPopup")
+                    if !hasShownPopup {
+                        self.ShowFirstTime()
+                        UserDefaults.standard.set(true, forKey: "hasShownKillLaunchPopup")
+                    }
+                }
+            }
+        }) {
+            
+        }
+    }
+    
+    
     func call_DashboardAPI() {
             
         let paramer: [String: Any] = [:]
@@ -617,7 +708,7 @@ extension Shop_VC: UICollectionViewDataSource, UICollectionViewDelegate, UIColle
         if collectionView == self.collect_category {
             return CGSize(width: 95, height: 130)
         }else{
-            return CGSize(width: collection.frame.size.width, height: 160)
+            return CGSize(width: collection.frame.size.width, height: 180)
         }
 //        return self.collection.frame.insetBy(dx: 40, dy: 0).size
     }

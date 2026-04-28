@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		3A2C06EED668EF3175FF97E9 /* Pods_ThriveJuice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF533E8B33583D2F2825F7D3 /* Pods_ThriveJuice.framework */; };
+		600DFCCE2E323EE400819A5F /* UpdateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600DFCCD2E323EE400819A5F /* UpdateVC.swift */; };
+		609CBAB02EF5726400BFA8A0 /* FreeProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 609CBAAF2EF5726400BFA8A0 /* FreeProductCell.xib */; };
+		609CBAB12EF5726400BFA8A0 /* FreeProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609CBAAE2EF5726400BFA8A0 /* FreeProductCell.swift */; };
+		609CBAB32EF5840300BFA8A0 /* ChangeFreeProduct_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609CBAB22EF5840300BFA8A0 /* ChangeFreeProduct_VC.swift */; };
 		8412326B2C04C59F00F67329 /* ContactUsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8412326A2C04C59F00F67329 /* ContactUsModel.swift */; };
 		849A20D82C075C7F00BA7CA5 /* OfferModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849A20D72C075C7F00BA7CA5 /* OfferModel.swift */; };
 		FA03020F2B2334CC006C5173 /* Search_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA03020E2B2334CC006C5173 /* Search_VC.swift */; };
@@ -138,6 +142,10 @@
 /* Begin PBXFileReference section */
 		0853900B6F975E8220956F6A /* Pods-ThriveJuice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThriveJuice.debug.xcconfig"; path = "Target Support Files/Pods-ThriveJuice/Pods-ThriveJuice.debug.xcconfig"; sourceTree = "<group>"; };
 		0CEBEE7F2B04E7E800A119F3 /* ThriveJuice.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ThriveJuice.entitlements; sourceTree = "<group>"; };
+		600DFCCD2E323EE400819A5F /* UpdateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateVC.swift; sourceTree = "<group>"; };
+		609CBAAE2EF5726400BFA8A0 /* FreeProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeProductCell.swift; sourceTree = "<group>"; };
+		609CBAAF2EF5726400BFA8A0 /* FreeProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FreeProductCell.xib; sourceTree = "<group>"; };
+		609CBAB22EF5840300BFA8A0 /* ChangeFreeProduct_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeFreeProduct_VC.swift; sourceTree = "<group>"; };
 		629E6C9453CC277F6900229F /* Pods-ThriveJuice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThriveJuice.release.xcconfig"; path = "Target Support Files/Pods-ThriveJuice/Pods-ThriveJuice.release.xcconfig"; sourceTree = "<group>"; };
 		8412326A2C04C59F00F67329 /* ContactUsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsModel.swift; sourceTree = "<group>"; };
 		849A20D72C075C7F00BA7CA5 /* OfferModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferModel.swift; sourceTree = "<group>"; };
@@ -428,6 +436,8 @@
 				FAD58C342AF0F9B300711497 /* AddonList_cell.xib */,
 				FA45F8EC2AF35C0600EF2AB0 /* AddonCart_cell.swift */,
 				FA45F8ED2AF35C0600EF2AB0 /* AddonCart_cell.xib */,
+				609CBAAE2EF5726400BFA8A0 /* FreeProductCell.swift */,
+				609CBAAF2EF5726400BFA8A0 /* FreeProductCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -486,6 +496,8 @@
 				FAD494862AD4045000B094E2 /* StoreList_VC.swift */,
 				FA6746312ADD241E008BE99C /* SpecialProduct_VC.swift */,
 				FA03020E2B2334CC006C5173 /* Search_VC.swift */,
+				600DFCCD2E323EE400819A5F /* UpdateVC.swift */,
+				609CBAB22EF5840300BFA8A0 /* ChangeFreeProduct_VC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -629,6 +641,7 @@
 				FA3E533E2AEA91A200E8C837 /* Addon_cell.xib in Resources */,
 				FA8A06ED2A7B80E3006F7A8E /* Jost-SemiBold.ttf in Resources */,
 				FA8804512A80B1CB00B33015 /* Home.storyboard in Resources */,
+				609CBAB02EF5726400BFA8A0 /* FreeProductCell.xib in Resources */,
 				FAD55B502A8D06E100E3466D /* AddressList_cell.xib in Resources */,
 				FADE86F62A7B72C6000751F6 /* LaunchScreen.storyboard in Resources */,
 				FA8A06EF2A7B80E3006F7A8E /* Jost-Bold.ttf in Resources */,
@@ -740,6 +753,8 @@
 				FAB37E542AC1A81400F0F02E /* CategoryModel.swift in Sources */,
 				FA8A06D82A7B7EB3006F7A8E /* SquareView.swift in Sources */,
 				FA990AD62A7D183E006F6FAA /* Shop_VC.swift in Sources */,
+				609CBAB32EF5840300BFA8A0 /* ChangeFreeProduct_VC.swift in Sources */,
+				600DFCCE2E323EE400819A5F /* UpdateVC.swift in Sources */,
 				FAA7E8F52AB2D894006148FD /* Address_cell.swift in Sources */,
 				FA8A06C92A7B7EB3006F7A8E /* DeviceId.m in Sources */,
 				FA990AD82A7D18D6006F6FAA /* Offers_VC.swift in Sources */,
@@ -754,6 +769,7 @@
 				FADE86EC2A7B72C5000751F6 /* SceneDelegate.swift in Sources */,
 				FA3F08E42A8120520028DF92 /* Product_ListCell.swift in Sources */,
 				FA6F66552A82094D007DC53E /* ShopList_VC.swift in Sources */,
+				609CBAB12EF5726400BFA8A0 /* FreeProductCell.swift in Sources */,
 				FA8A06D92A7B7EB3006F7A8E /* global.swift in Sources */,
 				FA2976532AAF119E00FC1C11 /* OrderModel.swift in Sources */,
 				FA20A6022A8E35940087D830 /* RewardPoints_Cell.swift in Sources */,
@@ -988,12 +1004,13 @@
 					/usr/lib/swift,
 					"$(SDKROOT)/usr/lib/swift",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.iosapp.thrivejuice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "ThriveJuice/Helper/ThriveJuice-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1041,12 +1058,13 @@
 					/usr/lib/swift,
 					"$(SDKROOT)/usr/lib/swift",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.iosapp.thrivejuice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "ThriveJuice/Helper/ThriveJuice-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

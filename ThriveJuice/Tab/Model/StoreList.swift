@@ -30,3 +30,22 @@ struct StoreList : Mappable {
 
 }
 
+struct VersionModel : Mappable {
+    var Show_IOS : Int?
+    var Message_IOS : String?
+    var Update_Show_IOS : Int?
+    var Skip_Show_IOS : Int?
+    var Title_IOS : String?
+
+    init?(map: Map) {
+
+    }
+
+    mutating func mapping(map: Map) {
+        Show_IOS <- map["Show_IOS"]
+        Message_IOS <- map["Message_IOS"]
+        Update_Show_IOS <- map["Update_Show_IOS"]
+        Skip_Show_IOS <- map["Skip_Show_IOS"]
+        Title_IOS <- map["Title_IOS"]
+    }
+}

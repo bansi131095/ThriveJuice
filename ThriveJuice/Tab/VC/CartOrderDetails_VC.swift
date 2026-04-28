@@ -51,6 +51,7 @@ class CartOrderDetails_VC: UIViewController {
     @IBOutlet weak var btn_checkout_height_const: NSLayoutConstraint!
     
     @IBOutlet weak var lblTimeSlot: UILabel!
+    @IBOutlet weak var lbl_Delivery_Date: UILabel!
     
     var selectDeliverDate = String()
     var selectDeliverTime = String()
@@ -73,6 +74,9 @@ class CartOrderDetails_VC: UIViewController {
     var SubscribeWeek = String()
     var str_msg = String()
     var orderType = String()
+    
+    var buyProductJSONString: String = ""
+
     
 //    lazy var  calenderView: CalenderView = {
 //        let calenderView = CalenderView(theme: MyTheme.light)
@@ -99,6 +103,7 @@ class CartOrderDetails_VC: UIViewController {
         self.OrderType = orderType
         print("Order_Type:- \(orderType)")
         print("UserDefaults_Order_Type:- \(UserDefaults.standard.object(forKey: "orderType") ?? "")")
+        print("Received BuyX JSON:", buyProductJSONString)
         // Do any additional setup after loading the view.
     }
     
@@ -155,6 +160,7 @@ class CartOrderDetails_VC: UIViewController {
         if self.OrderType == "Right_Away" {
             let Data = OrderData(deliveryDate: "", subscribeWeek: (self.btn_Subscribe.currentImage?.pngData() == UIImage(named: "Check")?.pngData()) ? (self.SubscribeWeek) : "", orderType: self.OrderType, deliveryTime: self.selectDeliverTime, orderNotes: self.txt_Note.text ?? "")
             let OrderSummary = self.storyboard?.instantiateViewController(withIdentifier: "OrderSummary_VC") as! OrderSummary_VC
+            OrderSummary.buyProductJSONString = buyProductJSONString
             OrderSummary.OrderData_dict = Data
             self.navigationController?.pushViewController(OrderSummary, animated: true)
         } else if self.txt_DeliveryDate.text == "" {
@@ -176,6 +182,7 @@ class CartOrderDetails_VC: UIViewController {
             }
             let Data = OrderData(deliveryDate: SelectDate, subscribeWeek: (self.btn_Subscribe.currentImage?.pngData() == UIImage(named: "Check")?.pngData()) ? (self.SubscribeWeek) : "", orderType: self.OrderType, deliveryTime: self.selectDeliverTime, orderNotes: self.txt_Note.text ?? "")
             let OrderSummary = self.storyboard?.instantiateViewController(withIdentifier: "OrderSummary_VC") as! OrderSummary_VC
+            OrderSummary.buyProductJSONString = buyProductJSONString
             OrderSummary.OrderData_dict = Data
             self.navigationController?.pushViewController(OrderSummary, animated: true)
         }
@@ -211,13 +218,17 @@ class CartOrderDetails_VC: UIViewController {
             if let select = self.arr_Address[i].is_Selected {
                 if select {
 //                    self.lbl_Address.text = self.arr_Address[i].address
-                    self.lbl_Address.text = "\(self.arr_Address[i].landmark ?? "")" + "\n\n" + "\(self.arr_Address[i].address ?? "")"
+                    self.lbl_Address.text = "\(self.arr_Address[i].landmark ?? "")" + "\n" + "\(self.arr_Address[i].address ?? "")" + "\n" + "\(self.arr_Address[i].city ?? "") - " +
+                    "\(self.arr_Address[i].postal_Code ?? "")"
+
+                   
                 }
             }
         }
         self.lbl_Address.isHidden = false
         self.lblTimeSlot.text = "Time Slot"
         self.lbl_deliveryDate.text = "Delivery Date & Time"
+        self.lbl_Delivery_Date.text = "Delivery Date"
         self.vw_deliveryDate.isHidden = false
         self.vw_deliveryDateHeight_const.constant = 85.0
         self.vw_TimeSlots.isHidden = true
@@ -244,7 +255,8 @@ class CartOrderDetails_VC: UIViewController {
         self.lbl_Address.text = ""
         self.lbl_Address.isHidden = true
         self.lblTimeSlot.text = "Time Slot"
-        self.lbl_deliveryDate.text = "Delivery Date & Time"
+        self.lbl_deliveryDate.text = "Pickup Date & Time"
+        self.lbl_Delivery_Date.text = "Pickup Date"
         self.vw_deliveryDate.isHidden = false
         self.vw_deliveryDateHeight_const.constant = 85.0
         self.vw_TimeSlots.isHidden = true
@@ -302,9 +314,9 @@ class CartOrderDetails_VC: UIViewController {
                     //self.showAlertToast(message: eventResponseModel.message ?? "")
                     UserDefaults.standard.set(self.OrderType, forKey: "orderType")
                     NotificationCenter.default.post(name: NSNotification.Name("OrderTypeSelect"), object: nil, userInfo: ["OrderType": true])
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                    /*DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                         self.dismiss(animated: true)
-                    }
+                    }*/
                 } else {
                     //self.showAlertToast(message: eventResponseModel.message ?? "")
                 }
@@ -366,6 +378,7 @@ class CartOrderDetails_VC: UIViewController {
         var paramer: [String: Any] = [:]
         paramer["Cart_Data"] = JsonData_Cart
         paramer["Order_Type"] = self.OrderType
+        paramer["Consider_BuyX_Products"] = buyProductJSONString
         if self.btn_Subscribe.currentImage?.pngData() == UIImage(named: "Check")?.pngData() {
             paramer["Subscribe_Week"] = SubscribeWeek
         }
@@ -452,12 +465,15 @@ class CartOrderDetails_VC: UIViewController {
                     for i in 0..<self.arr_Address.count {
                         if let select = self.arr_Address[i].is_Selected {
                             if select {
-                                self.lbl_Address.text = "\(self.arr_Address[i].landmark ?? "")" + "\n\n" + "\(self.arr_Address[i].address ?? "")"
+//                                self.lbl_Address.text = "\(self.arr_Address[i].landmark ?? "")" + "\n\n" + "\(self.arr_Address[i].address ?? "")"
+                                self.lbl_Address.text = "\(self.arr_Address[i].landmark ?? "")" + "\n" + "\(self.arr_Address[i].address ?? "")" + "\n" + "\(self.arr_Address[i].city ?? "") - " +
+                                "\(self.arr_Address[i].postal_Code ?? "")"
                             }
                         }
                     }
                     self.lbl_Address.isHidden = false
                     self.lbl_deliveryDate.text = "Delivery Date & Time"
+                    self.lbl_Delivery_Date.text = "Delivery Date"
                     self.vw_deliveryDate.isHidden = false
                     self.vw_deliveryDateHeight_const.constant = 85.0
                 } else if self.OrderType == "Store_Pickup" {
@@ -473,7 +489,8 @@ class CartOrderDetails_VC: UIViewController {
                     self.vw_address.isHidden = true
                     self.lbl_Address.text = ""
                     self.lbl_Address.isHidden = true
-                    self.lbl_deliveryDate.text = "Delivery Date & Time"
+                    self.lbl_deliveryDate.text = "Pickup Date & Time"
+                    self.lbl_Delivery_Date.text = "Pickup Date"
                     self.vw_deliveryDate.isHidden = false
                     self.vw_deliveryDateHeight_const.constant = 85.0
                 } else if self.OrderType == "Right_Away" {
@@ -561,12 +578,24 @@ class CartOrderDetails_VC: UIViewController {
                         self.disableDates.append(arr[i])
                     }
                 }
+                /*if let arr = eventResponseModel.active_Dates_Slots, arr.count != 0 {
+                    self.arr_ActiveTime = arr
+                    self.pickerTimeSlot.delegate = self
+                    self.pickerTimeSlot.dataSource = self
+                    self.txt_TimeSlot.inputView = self.pickerTimeSlot
+                }*/
+                
                 if let arr = eventResponseModel.active_Dates_Slots, arr.count != 0 {
                     self.arr_ActiveTime = arr
                     self.pickerTimeSlot.delegate = self
                     self.pickerTimeSlot.dataSource = self
                     self.txt_TimeSlot.inputView = self.pickerTimeSlot
+
+                    // ✅ Apply slots for default selected date
+                    self.applySlotForSelectedDate(self.minimumDate)
                 }
+
+                
                 if self.OrderType == "Right_Away" {
                     if let arr = eventResponseModel.pickup_Slots, arr.count != 0 {
                         self.arr_time = arr
@@ -589,12 +618,32 @@ class CartOrderDetails_VC: UIViewController {
                         self.btn_checkout_height_const.constant = 0.0
                     }
                 } else {
-                    self.vw_TimeSlots.isHidden = true
-                    self.vw_timeSlotsHeight_const.constant = 0.0
-                    self.vw_TimeSlot.isHidden = true
-                    self.vw_timeHeight_const.constant = 0.0
-                    self.btn_checkOut.isHidden = false
-                    self.btn_checkout_height_const.constant = 44.0
+                    if let arr = eventResponseModel.active_Dates_Slots, arr.count != 0 {
+                        self.arr_ActiveTime = arr
+                        self.pickerTimeSlot.delegate = self
+                        self.pickerTimeSlot.dataSource = self
+                        self.txt_TimeSlot.inputView = self.pickerTimeSlot
+
+                        // ✅ Apply slots for default selected date
+                        self.applySlotForSelectedDate(self.minimumDate)
+                    }
+
+                    if self.txt_DeliveryDate.text == ""{
+                        self.vw_TimeSlots.isHidden = true
+                        self.vw_timeSlotsHeight_const.constant = 0.0
+                        self.vw_TimeSlot.isHidden = true
+                        self.vw_timeHeight_const.constant = 0.0
+                        self.btn_checkOut.isHidden = false
+                        self.btn_checkout_height_const.constant = 44.0
+                    }else{
+                        self.vw_TimeSlots.isHidden = true
+                        self.vw_timeSlotsHeight_const.constant = 0.0
+                        self.vw_TimeSlot.isHidden = false
+                        self.vw_timeHeight_const.constant = 90.0
+                        self.btn_checkOut.isHidden = false
+                        self.btn_checkout_height_const.constant = 44.0
+                    }
+                    
                 }
                 calendar.delegate = self
                 calendar.dataSource = self
@@ -630,6 +679,16 @@ class CartOrderDetails_VC: UIViewController {
         }
     }
     
+    func formatDate(_ input: String) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        
+        if let date = formatter.date(from: input) {
+            formatter.dateFormat = "E, dd MMM"
+            return formatter.string(from: date)
+        }
+        return ""
+    }
     
     func call_ProfileAPI() {
             
@@ -646,7 +705,9 @@ class CartOrderDetails_VC: UIViewController {
                         if let select = self.arr_Address[i].is_Selected {
                             if select {
 //                                self.lbl_Address.text = self.arr_Address[i].address
-                                self.lbl_Address.text = "\(self.arr_Address[i].landmark ?? "")" + "\n\n" + "\(self.arr_Address[i].address ?? "")"
+//                                self.lbl_Address.text = "\(self.arr_Address[i].landmark ?? "")" + "\n\n" + "\(self.arr_Address[i].address ?? "")"
+                                self.lbl_Address.text = "\(self.arr_Address[i].landmark ?? "")" + "\n" + "\(self.arr_Address[i].address ?? "")" + "\n" + "\(self.arr_Address[i].city ?? "") - " +
+                                "\(self.arr_Address[i].postal_Code ?? "")"
                             }
                         }
                     }
@@ -664,15 +725,39 @@ class CartOrderDetails_VC: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    /*
-    // MARK: - Navigation
+    func applySlotForSelectedDate(_ date: Date) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.locale = Locale(identifier: "en")
+        let dateString = dateFormatter.string(from: date)
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        self.selectDate = date
+        self.lbl_date.text = formatDate(dateString)
+
+        if let matchedItem = self.arr_ActiveTime.first(where: { $0.date == dateString }),
+           let slots = matchedItem.time_Slots, !slots.isEmpty {
+            self.arr_time = slots
+            self.vw_TimeSlot.isHidden = false
+            self.vw_timeHeight_const.constant = 90.0
+            if let firstSlot = slots.first {
+                self.txt_TimeSlot.text = firstSlot.time_Slot_Display ?? "-"
+                self.selectDeliverTime = firstSlot.time_Slot ?? "-"
+            }
+            self.pickerTimeSlot.reloadAllComponents()
+            self.vw_TimeSlots.isHidden = true
+            self.vw_timeSlotsHeight_const.constant = 0.0
+        } else {
+            self.arr_time = []
+            self.vw_TimeSlot.isHidden = true
+            self.vw_timeHeight_const.constant = 0.0
+            self.txt_TimeSlot.text = ""
+            self.selectDeliverTime = ""
+            self.vw_TimeSlots.isHidden = false
+            self.vw_timeSlotsHeight_const.constant = 45.0
+            self.lbl_timeslots.text = "Time slots not available"
+        }
     }
-    */
+
 
 }
 
@@ -701,7 +786,7 @@ extension CartOrderDetails_VC: FSCalendarDelegate, FSCalendarDataSource, FSCalen
     }
 
     // Other delegate methods
-    func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
+    /*func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
         // Check if the selected date is within the defined range
         let dateFormatter1 = DateFormatter()
         dateFormatter1.dateFormat = "yyyy-MM-dd"
@@ -712,7 +797,9 @@ extension CartOrderDetails_VC: FSCalendarDelegate, FSCalendarDataSource, FSCalen
                 return false
             } else {
                 self.selectDate = date
-                self.lbl_date.text = dateString
+//                self.lbl_date.text = dateString
+                let resultDate = formatDate(dateString)
+                lbl_date.text = resultDate
                 let arr = self.arr_ActiveTime.filter {$0.date == dateString}
                 if arr.count != 0 {
                     if let data = arr[0].time_Slots {
@@ -728,7 +815,56 @@ extension CartOrderDetails_VC: FSCalendarDelegate, FSCalendarDataSource, FSCalen
             }
         }
         return false
+    }*/
+    
+    func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
+        let dateFormatter1 = DateFormatter()
+        dateFormatter1.dateFormat = "yyyy-MM-dd"
+        dateFormatter1.locale = Locale(identifier: "en")
+        let dateString = dateFormatter1.string(from: date)
+        
+        if date >= minimumDate && date <= maximumDate {
+            if self.disableDates.contains(dateString) {
+                return false
+            } else {
+                self.selectDate = date
+                let resultDate = formatDate(dateString)
+                self.lbl_date.text = resultDate
+
+                /// ✅ Safely match time slot for selected date
+                if let matchedItem = self.arr_ActiveTime.first(where: { $0.date == dateString }),
+                   let slots = matchedItem.time_Slots, !slots.isEmpty {
+                    
+                    self.arr_time = slots
+                    self.vw_TimeSlot.isHidden = false
+                    self.vw_timeHeight_const.constant = 90.0
+                    
+                    // Safely unwrap first slot for default selection
+                    if let firstSlot = slots.first {
+                        self.txt_TimeSlot.text = firstSlot.time_Slot_Display ?? "-"
+                        self.selectDeliverTime = firstSlot.time_Slot ?? "-"
+                    }
+                    
+                    self.pickerTimeSlot.reloadAllComponents()
+                } else {
+                    /// ❌ No slots for the selected date
+                    self.arr_time = []
+                    self.vw_TimeSlot.isHidden = true
+                    self.vw_timeHeight_const.constant = 0.0
+                    self.txt_TimeSlot.text = ""
+                    self.selectDeliverTime = ""
+                    self.pickerTimeSlot.reloadAllComponents()
+                    self.vw_TimeSlots.isHidden = false
+                    self.vw_timeSlotsHeight_const.constant = 45.0
+                    self.lbl_timeslots.text = "Time slots not available"
+                }
+
+                return true
+            }
+        }
+        return false
     }
+
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         // Handle the selected date within the valid range

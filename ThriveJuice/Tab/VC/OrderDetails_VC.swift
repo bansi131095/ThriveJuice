@@ -173,11 +173,11 @@ class OrderDetails_VC: UIViewController {
                 if status == "Cancel" {
                     self.lbl_status.textColor = UIColor(named: "Red")
                     self.lbl_status.text = "· " + "Cancelled"
-                    btn_cancelOrder.isHidden = true
+//                    btn_cancelOrder.isHidden = true
                 }else{
                     self.lbl_status.textColor = UIColor(named: "Green")
                     self.lbl_status.text = "· " + (dict.order_Status ?? "")
-                    btn_cancelOrder.isHidden = false
+//                    btn_cancelOrder.isHidden = false
                 }
             }
             
@@ -309,33 +309,33 @@ class OrderDetails_VC: UIViewController {
                 if Int(subweek)! > 0 {
                     if let subCancel = self.subscribe_Week_Cancel {
                         if subCancel == "0" {
-                            self.btn_cancel.isHidden = false
+//                            self.btn_cancel.isHidden = false
                             self.btn_repeatOrder.isHidden = true
                         } else {
-                            self.btn_cancel.isHidden = true
+//                            self.btn_cancel.isHidden = true
                             self.btn_repeatOrder.isHidden = true
                         }
                     }
                     
                     self.lbl_week.text = subweek + " Weeks"
-                    self.btn_cancelOrder.isHidden = true
+//                    self.btn_cancelOrder.isHidden = true
                 } else {
                     var status = ""
                     if let Status = dict.order_Status {
                         status = Status;
                     }
                     if (Int(subweek)! == 0 && status == "Pending") {
-                        self.btn_cancelOrder.isHidden = false
+//                        self.btn_cancelOrder.isHidden = false
                     } else {
-                        self.btn_cancelOrder.isHidden = true
+//                        self.btn_cancelOrder.isHidden = true
                     }
                     self.lbl_week.text = ""
-                    self.btn_cancel.isHidden = true
+//                    self.btn_cancel.isHidden = true
                     self.btn_repeatOrder.isHidden = false
                 }
             } else {
                 self.lbl_week.text = ""
-                self.btn_cancel.isHidden = true
+//                self.btn_cancel.isHidden = true
                 self.btn_repeatOrder.isHidden = false
             }
           /*  if let subCancel = dict.subscribe_Week_Cancel, let subweek = dict.subscribe_Week {
@@ -538,7 +538,20 @@ extension OrderDetails_VC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = self.tbl_vw.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? OrderProduct_cell {
             cell.lbl_price.text = "$" + (self.arrCartProduct[indexPath.row].cart_Product_Price ?? "0")
-            cell.lbl_product.text = self.arrCartProduct[indexPath.row].product_Name
+//            cell.lbl_product.text = self.arrCartProduct[indexPath.row].product_Name
+            let data = self.arrCartProduct[indexPath.row]
+            
+            if data.buy_Id != "0" && data.buy_Id != "" && data.buy_Id != nil{
+                if data.buyX_Discount == "100"{
+                    cell.lbl_product.text = (data.product_Name ?? "") + " ( Free ) "
+                }else{
+                    cell.lbl_product.text = (data.product_Name ?? "") + " ( \(data.buyX_Discount ?? "")" + "% OFF )"
+                }
+            }else{
+                cell.lbl_product.text = (data.product_Name ?? "")
+            }
+            
+            
             cell.lbl_qty.text = "X " + (self.arrCartProduct[indexPath.row].cart_Qty ?? "0")
             if let arr = self.arrCartProduct[indexPath.row].cart_Addons_Price, arr.count != 0 {
                 var str = ""
